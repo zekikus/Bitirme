@@ -1,0 +1,61 @@
+body{
+	margin: 0px;
+	padding: 0px;
+}
+
+.header{
+	margin: 15px;
+	width: 90%;
+	background: black;
+	color: white;
+	padding: 25px 10px;
+	font-size: 30px;
+	display: inline-block;
+	text-align: center;
+}
+
+.header_text{
+	text-align: center;
+}
+
+.header_icon{
+	float: right;
+	width: 10%;
+}
+
+.header_icon a{
+	color: #fff;
+	font-size: 25px;
+}
+
+/* Popup Styles*/
+
+.popupContainer{
+	position:absolute;
+	width:60%;
+	height: auto;
+	left:45%;
+	background: #FFF;
+}
+
+.popupHeader {font-size:16px; text-transform: uppercase;}
+.popupHeader {background:#F4F4F2; position:relative; padding:10px 20px; border-bottom:1px solid #DDD; font-weight:bold;}
+.popupHeader .modal_close {position: absolute; right: 0; top:0; padding:10px 15px; background:#E4E4E2; cursor: pointer; color:#aaa; font-size:16px;}
+
+.popupBody {padding:20px;}
+
+.popupBody form{
+	padding: 15px 20%;
+}
+
+.popupBody form label{
+	width: 40%;
+	margin-right: 15px;
+}
+
+.popupBody form .btn{
+	margin: 25px 30%;
+}
+
+
+

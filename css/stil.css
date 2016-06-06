@@ -1,0 +1,114 @@
+
+a{
+	cursor: pointer;
+}
+
+/* Sidebar CSS --- */
+
+#sidebar-wrapper{
+	z-index: 1;
+	position: absolute;
+	width: 250px;
+	height: 100%;
+	overflow-y:hidden;
+	background: #2C3E50;
+	opacity: 0.9;
+}
+
+#page-content-wrapper{
+	width: 100%;
+	position: absolute;
+	padding: 15px;
+}
+
+#wrapper.menuDisplayed #sidebar-wrapper{
+	width: 250px;
+}
+
+#wrapper.menuDisplayed #page-content-wrapper{
+	padding-left: 250px;
+}
+
+
+.sidebar-nav{
+	margin-top: 35px;
+	padding: 0;
+	list-style: none;
+}
+
+.sidebar-nav li{
+	text-indent: 10px;
+	line-height: 30px;
+}
+
+.sidebar-nav li:hover{
+	background: #16A085;
+}
+
+.sidebar-nav li ul{
+	background: #2C3E50;
+	cursor: pointer;
+}
+
+.sidebar-nav li a{
+	font-weight: bold;
+	display: block;
+	text-decoration: none;
+	color: #ddd;
+}
+
+.sub-list{
+	color: #fff;
+	list-style: none;
+	text-decoration: none;
+}
+
+/* Sidebar Son ---- */
+
+.row{
+	margin-left: 250px;
+}
+
+.page_header{
+	margin-left: 250px;
+	padding: 20px 35%;
+	background: black;
+	color: #fff;
+	float: left;
+}
+
+.search_form{
+	margin-top: 50px;
+	margin-left: 15px;
+	width: 90%;
+	padding: 15px;
+	-webkit-box-shadow: 1px 2px 15px 2px black;
+	-moz-box-shadow: 1px 2px 15px 2px black;
+	box-shadow: 1px 2px 15px 2px black;
+}
+
+.search_form input{
+	margin-top: 5px;
+	width: 65%;
+}
+
+.search_form form{
+	margin:0 20%;
+}
+
+.search_form label{
+	width: 20%;
+	margin-right: 15px;	
+}
+
+.search_form form a{
+	font-size: 18px;
+}
+
+.table{
+	border: 1px solid black;
+	margin-left: 15px; 
+	margin-top: 75px;
+	width: 90%;
+}
+
