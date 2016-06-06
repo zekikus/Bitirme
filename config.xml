@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	 <dbProviderType>MYSQL</dbProviderType>
+	 <dbUser>root</dbUser>
+	 <dbPass></dbPass>
+	 <dbName>ats</dbName>
+	 <dbServer>localhost</dbServer>
+</config>
