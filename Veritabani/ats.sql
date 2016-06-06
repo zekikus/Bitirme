@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 06 Haz 2016, 11:15:26
+-- Üretim Zamanı: 06 Haz 2016, 20:07:02
 -- Sunucu sürümü: 10.1.13-MariaDB
 -- PHP Sürümü: 5.6.20
 
@@ -62,6 +62,28 @@ CREATE TABLE `birim` (
   `ilce` varchar(45) NOT NULL,
   `adres` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `config`
+--
+
+CREATE TABLE `config` (
+  `id` int(11) NOT NULL,
+  `vt_tip` varchar(45) NOT NULL,
+  `vt_server` varchar(45) NOT NULL,
+  `vt_kadi` varchar(45) NOT NULL,
+  `vt_sifre` varchar(45) NOT NULL,
+  `vt_adi` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Tablo döküm verisi `config`
+--
+
+INSERT INTO `config` (`id`, `vt_tip`, `vt_server`, `vt_kadi`, `vt_sifre`, `vt_adi`) VALUES
+(1, 'MYSQL', 'localhost', 'root', '', 'ats');
 
 -- --------------------------------------------------------
 
@@ -195,6 +217,13 @@ CREATE TABLE `urun` (
   `kullanim_suresi` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Tablo döküm verisi `urun`
+--
+
+INSERT INTO `urun` (`id`, `uretici_id`, `tanim_id`, `ad`, `tag_id`, `aciklama`, `doz`, `seans_tipi`, `seans_sayisi`, `kullanim_suresi`) VALUES
+(1, 1, 1, 'Test', 'Test', 'Test', 'Test', 'Test', 'Test', 'Test');
+
 -- --------------------------------------------------------
 
 --
@@ -227,6 +256,12 @@ ALTER TABLE `alarm`
 -- Tablo için indeksler `birim`
 --
 ALTER TABLE `birim`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Tablo için indeksler `config`
+--
+ALTER TABLE `config`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -289,6 +324,70 @@ ALTER TABLE `urun`
 ALTER TABLE `uruntanim`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Dökümü yapılmış tablolar için AUTO_INCREMENT değeri
+--
+
+--
+-- Tablo için AUTO_INCREMENT değeri `adres`
+--
+ALTER TABLE `adres`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Tablo için AUTO_INCREMENT değeri `alarm`
+--
+ALTER TABLE `alarm`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Tablo için AUTO_INCREMENT değeri `birim`
+--
+ALTER TABLE `birim`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Tablo için AUTO_INCREMENT değeri `iletisim`
+--
+ALTER TABLE `iletisim`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Tablo için AUTO_INCREMENT değeri `sicaklik`
+--
+ALTER TABLE `sicaklik`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Tablo için AUTO_INCREMENT değeri `sicakliktakipcihazi`
+--
+ALTER TABLE `sicakliktakipcihazi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Tablo için AUTO_INCREMENT değeri `stok`
+--
+ALTER TABLE `stok`
+  MODIFY `stok_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Tablo için AUTO_INCREMENT değeri `stok_birim`
+--
+ALTER TABLE `stok_birim`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Tablo için AUTO_INCREMENT değeri `transfer`
+--
+ALTER TABLE `transfer`
+  MODIFY `transfer_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Tablo için AUTO_INCREMENT değeri `uretici`
+--
+ALTER TABLE `uretici`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Tablo için AUTO_INCREMENT değeri `urun`
+--
+ALTER TABLE `urun`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- Tablo için AUTO_INCREMENT değeri `uruntanim`
+--
+ALTER TABLE `uruntanim`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
