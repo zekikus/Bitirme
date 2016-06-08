@@ -34,7 +34,7 @@ body{
 	position:absolute;
 	width:60%;
 	height: auto;
-	left:45%;
+	border: 1px solid black;
 	background: #FFF;
 }
 
@@ -44,16 +44,16 @@ body{
 
 .popupBody {padding:20px;}
 
-.popupBody form{
+.popupBody .form{
 	padding: 15px 20%;
 }
 
-.popupBody form label{
+.popupBody .form label{
 	width: 40%;
 	margin-right: 15px;
 }
 
-.popupBody form .btn{
+.popupBody .form .btn{
 	margin: 25px 30%;
 }
 
