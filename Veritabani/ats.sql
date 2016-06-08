@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 06 Haz 2016, 20:07:02
+-- Üretim Zamanı: 08 Haz 2016, 18:39:38
 -- Sunucu sürümü: 10.1.13-MariaDB
 -- PHP Sürümü: 5.6.20
 
@@ -84,6 +84,25 @@ CREATE TABLE `config` (
 
 INSERT INTO `config` (`id`, `vt_tip`, `vt_server`, `vt_kadi`, `vt_sifre`, `vt_adi`) VALUES
 (1, 'MYSQL', 'localhost', 'root', '', 'ats');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `dolap_tip`
+--
+
+CREATE TABLE `dolap_tip` (
+  `id` int(11) NOT NULL,
+  `ad` varchar(45) NOT NULL,
+  `aktifMi` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Tablo döküm verisi `dolap_tip`
+--
+
+INSERT INTO `dolap_tip` (`id`, `ad`, `aktifMi`) VALUES
+(15, 'BuzdolabÄ±', 1);
 
 -- --------------------------------------------------------
 
@@ -189,6 +208,18 @@ CREATE TABLE `transfer` (
 -- --------------------------------------------------------
 
 --
+-- Tablo için tablo yapısı `tuketim_nedeni`
+--
+
+CREATE TABLE `tuketim_nedeni` (
+  `id` int(11) NOT NULL,
+  `tanim` varchar(45) NOT NULL,
+  `aktifMi` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Tablo için tablo yapısı `uretici`
 --
 
@@ -197,6 +228,14 @@ CREATE TABLE `uretici` (
   `ad` varchar(45) NOT NULL,
   `ulke` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Tablo döküm verisi `uretici`
+--
+
+INSERT INTO `uretici` (`id`, `ad`, `ulke`) VALUES
+(14, 'Abdi ibrahim', 'TÃ¼rkiye'),
+(21, 'Bayer', 'Almanya');
 
 -- --------------------------------------------------------
 
@@ -222,7 +261,8 @@ CREATE TABLE `urun` (
 --
 
 INSERT INTO `urun` (`id`, `uretici_id`, `tanim_id`, `ad`, `tag_id`, `aciklama`, `doz`, `seans_tipi`, `seans_sayisi`, `kullanim_suresi`) VALUES
-(1, 1, 1, 'Test', 'Test', 'Test', 'Test', 'Test', 'Test', 'Test');
+(1, 1, 1, 'Test', 'Test', 'Test', 'Test', 'Test', 'Test', 'Test'),
+(2, 1, 1, 'Test', 'Test', 'Test', 'Test', 'Test', 'Test', 'Test');
 
 -- --------------------------------------------------------
 
@@ -262,6 +302,12 @@ ALTER TABLE `birim`
 -- Tablo için indeksler `config`
 --
 ALTER TABLE `config`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Tablo için indeksler `dolap_tip`
+--
+ALTER TABLE `dolap_tip`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -307,6 +353,12 @@ ALTER TABLE `transfer`
   ADD PRIMARY KEY (`transfer_id`);
 
 --
+-- Tablo için indeksler `tuketim_nedeni`
+--
+ALTER TABLE `tuketim_nedeni`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Tablo için indeksler `uretici`
 --
 ALTER TABLE `uretici`
@@ -344,6 +396,11 @@ ALTER TABLE `alarm`
 ALTER TABLE `birim`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- Tablo için AUTO_INCREMENT değeri `dolap_tip`
+--
+ALTER TABLE `dolap_tip`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+--
 -- Tablo için AUTO_INCREMENT değeri `iletisim`
 --
 ALTER TABLE `iletisim`
@@ -374,15 +431,20 @@ ALTER TABLE `stok_birim`
 ALTER TABLE `transfer`
   MODIFY `transfer_id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- Tablo için AUTO_INCREMENT değeri `tuketim_nedeni`
+--
+ALTER TABLE `tuketim_nedeni`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- Tablo için AUTO_INCREMENT değeri `uretici`
 --
 ALTER TABLE `uretici`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- Tablo için AUTO_INCREMENT değeri `urun`
 --
 ALTER TABLE `urun`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Tablo için AUTO_INCREMENT değeri `uruntanim`
 --
