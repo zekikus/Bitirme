@@ -11,7 +11,7 @@
 		//Config Ayarlarını Al;
 		public function initialize(){
 
-			$xml=simplexml_load_file("config.xml");
+			$xml=simplexml_load_file($_SERVER["DOCUMENT_ROOT"]."/Bitirme/config.xml");
 			
 			$this -> dbProviderType = $xml -> dbProviderType;
 			$this -> dbServer = $xml -> dbServer;

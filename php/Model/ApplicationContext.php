@@ -1,7 +1,7 @@
 <?php
 	
-	include "php/Model/Configuration.php";
-	include "php/Model/DBManagerFactory.php";
+	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/Configuration.php");
+	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/DBManagerFactory.php");
 
 	class ApplicationContext{
 

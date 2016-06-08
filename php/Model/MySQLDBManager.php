@@ -1,6 +1,6 @@
 <?php
 	
-	include "php/Model/DBManagerBase.php";
+	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/DBManagerBase.php");
 
 	class MySQLDBManager extends DBManagerBase{
 

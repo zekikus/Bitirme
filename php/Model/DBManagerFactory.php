@@ -1,6 +1,6 @@
 <?php
 	
-	include("php/Model/MySQLDBManager.php");
+	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/MySQLDBManager.php");
 
 	class DBManagerFactory{
 

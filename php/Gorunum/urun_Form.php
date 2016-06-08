@@ -48,7 +48,7 @@
 		    </tbody>
 		</table>
 		<?php
-			include "php/Gorunum/urun_Ekle.php";
+			include "php/Gorunum/urun_Islemleri.php";
 		?>
 
 	</section>
