@@ -8,6 +8,7 @@
   <link rel="stylesheet" type="text/css" href="css/gorunum.css">
   <script src="script/jquery.js"></script>
   <script src="script/bootstrap.min.js"></script>
+   <script type="text/javascript" src="script/jquery.leanModal.min.js"></script>
 </head>
 <body>
 
@@ -55,50 +56,8 @@
 					<div class="col-sm-12">
 						<!-- Degisken Kısım -->
 						<?php
-							include "php/Gorunum/urun_Form.php";
+							include "php/Gorunum/dolapTipi_Form.php";
 						?>
-						<!-- Arama Kriterleri -->
-						<!--<div class="search_form">
-							<form>
-							  <div class="row">
-							  	 <label class="col-sm-4 control-label">Urun ID</label>
-						     	 <input name="urunID" type="text" class="col-sm-6" />
-							  </div>
-							   <div class="row">
-							  	 <label class="col-sm-4 control-label">Urun Adi</label>
-						     	 <input name="urunAdi" type="text" class="col-sm-6" />
-							  </div>
-							 
-							</form>
-						</div>-->
-						<!--Tablo -->
-						<!--<table class="table table-striped">
-						    <thead>
-						      <tr>
-						        <th>Firstname</th>
-						        <th>Lastname</th>
-						        <th>Email</th>
-						      </tr>
-						    </thead>
-						    <tbody>
-						      <tr>
-						        <td>John</td>
-						        <td>Doe</td>
-						        <td>john@example.com</td>
-						      </tr>
-						      <tr>
-						        <td>Mary</td>
-						        <td>Moe</td>
-						        <td>mary@example.com</td>
-						      </tr>
-						      <tr>
-						        <td>July</td>
-						        <td>Dooley</td>
-						        <td>july@example.com</td>
-						      </tr>
-						    </tbody>
-						  </table>-->
-						<!-- Degisken Kısım Son -->
 					</div>
 				</div>
 			</div>
