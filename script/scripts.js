@@ -5,12 +5,7 @@ $(document).ready(function(){
 
 function ajaxUreticiKaydet(nesne){
 
-        var islemTip = "";
-        if($(nesne).val() == "Guncelle")
-           islemTip = "guncelle";
-        else
-            islemTip = "kaydet";
-
+        var islemTip = ajaxKaydet(nesne);
         var bilgi = {
                     ad: $("#ad").val(),
                     ulke : $("#ulke").val(),
@@ -26,12 +21,7 @@ function ajaxUreticiKaydet(nesne){
 
   function ajaxDolapTipiKaydet(nesne){
 
-        var islemTip = "";
-        if($(nesne).val() == "Guncelle")
-           islemTip = "guncelle";
-        else
-            islemTip = "kaydet";
-
+        var islemTip = ajaxKaydet(nesne);
         var bilgi = {
                     ad: $("#ad").val(),
                     aktifMi : $("#aktifMi").val(),
@@ -44,25 +34,71 @@ function ajaxUreticiKaydet(nesne){
 
 /* ---------- Dolap Tipi Fonksiyonlari Son -----------*/
 
+/* ---------- Urun Tanım Fonksiyonlari -----------*/
+  
+  function ajaxUrunTanimKaydet(nesne){
+        var islemTip = ajaxKaydet(nesne);
+        var bilgi = {
+                    ad: $("#ad").val(),
+                    tip : $("#urunTip").val(),
+                    aciklama : $("#urunAciklama").val(),
+                    islem : islemTip
+        };
+
+        ajaxFonk(bilgi,'#denemeTablo','ajax/urunTanimAjax.php');
+        $("#ad,#urunTip,#urunAciklama").val("");   
+  }
+
+/* ---------- Urun Tanım Fonksiyonlari Son -----------*/
+
+/* ---------- Urun Fonksiyonlari -----------*/
+
+  function ajaxUrunKaydet(nesne){
+        var islemTip = ajaxKaydet(nesne);
+        var bilgi = {
+                    ad: $("#ad").val(),
+                    urunTanim : $("#urunTanim").val(),
+                    urunNo : $("#urunNo").val(),
+                    uretici : $("#uretici").val(),
+                    aciklama : $("#aciklama").val(),
+                    urunDoz : $("#urunDoz").val(),
+                    seansTip : $("#seansTip").val(),
+                    seansSayi : $("#seansSayi").val(),
+                    kullanimSuresi : $("#kullanimSuresi").val(),
+                    islem : islemTip
+        };
+
+        ajaxFonk(bilgi,'#denemeTablo','ajax/urunAjax.php');
+        $("#ad,#urunTip,#urunAciklama").val("");   
+  }
+
+/* ---------- Urun Tanım Fonksiyonlari Son -----------*/
 
 /* ------------ Ortak Fonksiyonlar ----------*/
 
-/*function bilgiGetir(nesne){
-     var bilgi = "";
-     $(nesne + " input").each(function() {
-        var type = $(this).attr("type");
-        if ((type == "text")) {
-            inputValues.push($(this).val());
-        }
-     })
 
-     return inputValues.toString();//inputValues.join(',');
 
-}*/
+function ajaxKaydet(nesne){
+    var islemTip = "";
+    if($(nesne).val() == "Guncelle")
+       islemTip = "guncelle";
+    else
+        islemTip = "kaydet";
+    return islemTip;
+}
 
 function ajaxListele(url){
    var bilgi = {
                     deger: $('#sInput').val(),
+                    islem : "listele"
+                };
+    ajaxFonk(bilgi,"#denemeTablo",'ajax/'+url+'.php');
+}
+
+function ajaxCokluListele(url){
+   var bilgi = {
+                    deger: $('#sInput').val(),
+                    deger1: $('#sInput2').val(),
                     islem : "listele"
                 };
     ajaxFonk(bilgi,"#denemeTablo",'ajax/'+url+'.php');
@@ -130,6 +166,12 @@ function checkBoxGuncelle(nesne){
     $(nesne).val('1');
   else
     $(nesne).val('0');
+}
+
+function butonTemizle(){
+    $(".popupBody button").val('');
+    $(".popupBody button").html('Kaydet');
+
 }
 
 /* ------------ Ortak Fonksiyonlar Son ----------*/
