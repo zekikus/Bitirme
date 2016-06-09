@@ -3,14 +3,14 @@
 		<div class="header">
 			<span class="header_text">Uretici</span>
 			<div class="header_icon">
-				<a id="modal_trigger" href="#modal" class="btn"><span class="glyphicon glyphicon-plus"></span></a>
+				<a id="modal_trigger" href="#modal" class="btn" onclick="butonTemizle();"><span class="glyphicon glyphicon-plus"></span></a>
 			</div>
 		</div>
 		<div class="search_form">
 			<form>
 				<label>Üretici Adı:</label>
 				<input type="text" name="ureticiAd" id="sInput"/>
-				<a id="search_glyph" onclick="ajaxListele('ajaxUretici');"><span class="glyphicon glyphicon-list"></span></a><br/>
+				<a id="search_glyph" onclick="ajaxListele('ureticiAjax');"><span class="glyphicon glyphicon-list"></span></a><br/>
 				
 			</form>
 		</div>

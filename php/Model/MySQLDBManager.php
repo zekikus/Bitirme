@@ -20,6 +20,7 @@
 		
 		public function getYeniVTResultSet($sorgu){
 			$baglanti = $this -> getYeniVTBaglanti();
+			mysqli_query($baglanti,"SET NAMES UTF8");
 			return mysqli_query($baglanti,$sorgu);
 
 		}

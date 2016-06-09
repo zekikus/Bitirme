@@ -2,7 +2,7 @@
 
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/ApplicationContext.php");
 
-	class UrunIslemleri{
+	class UrunTanimIslemleri{
 
 		private $context = "";
 		private $manager = "";
