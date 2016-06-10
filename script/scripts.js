@@ -34,6 +34,27 @@ function ajaxUreticiKaydet(nesne){
 
 /* ---------- Dolap Tipi Fonksiyonlari Son -----------*/
 
+/* ---------- Tüketim Nedeni Fonksiyonlari -----------*/
+
+  function ajaxTuketimNedeniKaydet(nesne){
+
+        var islemTip = "";
+        if($(nesne).val() == "Guncelle")
+           islemTip = "guncelle";
+        else
+            islemTip = "kaydet";
+
+        var bilgi = {
+                    tanim : $("#tuketimTanim").val(),
+                    aktifMi : $("#aktifMi").val(),
+                    islem : islemTip
+        };
+
+        
+        ajaxFonk(bilgi,'#denemeTablo','ajax/tuketimNedeniAjax.php');
+        $("#tanim,#aktifMi").val("");   
+  }
+
 /* ---------- Urun Tanım Fonksiyonlari -----------*/
   
   function ajaxUrunTanimKaydet(nesne){
