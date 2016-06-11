@@ -3,7 +3,7 @@
 		<div class="header">
 			<span class="header_text">Tüketim Nedeni</span>
 			<div class="header_icon">
-				<a id="modal_trigger" href="#modal" class="btn" onclick="butonTemizle();"><span class="glyphicon glyphicon-plus"></span></a>
+				<a id="modal_trigger" href="#modal" class="btn" onclick="butonTemizle('.form');"><span class="glyphicon glyphicon-plus"></span></a>
 			</div>
 		</div>
 		<div class="search_form">
