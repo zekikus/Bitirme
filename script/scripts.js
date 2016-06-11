@@ -37,13 +37,7 @@ function ajaxUreticiKaydet(nesne){
 /* ---------- Tüketim Nedeni Fonksiyonlari -----------*/
 
   function ajaxTuketimNedeniKaydet(nesne){
-
-        var islemTip = "";
-        if($(nesne).val() == "Guncelle")
-           islemTip = "guncelle";
-        else
-            islemTip = "kaydet";
-
+        var islemTip = ajaxKaydet(nesne);
         var bilgi = {
                     tanim : $("#tuketimTanim").val(),
                     aktifMi : $("#aktifMi").val(),
@@ -95,9 +89,56 @@ function ajaxUreticiKaydet(nesne){
 
 /* ---------- Urun Tanım Fonksiyonlari Son -----------*/
 
+/* ---------- Birim Tanım Fonksiyonlari -----------*/
+
+  function ajaxIlceGetir(content,value){
+       
+       var bilgi = {
+                deger: $(value).val(),
+                islem : "ilceGetir"
+       }
+       ajaxFonk(bilgi,content,'ajax/birimAjax.php');
+  }
+
+  function ajaxBirimKaydet(nesne){
+        var islemTip = ajaxKaydet(nesne);
+        var bilgi = {
+                    ad: $("#ad").val(),
+                    birimIl : $("#birimIl select option:selected").text(),
+                    birimIlce : $("#birimIlce select option:selected").text(),
+                    birimAdres : $("#birimAdres").val(),
+                    islem : islemTip
+        };
+
+        ajaxFonk(bilgi,'#denemeTablo','ajax/birimAjax.php');
+        $("#ad,#birimIl,#birimIlce,#birimAdres").val("");   
+  }
+
+  function formGetir(content,islemTip){
+      var bilgi = {
+          birimID : $("#birimID").val(),
+          islem : islemTip
+      }
+      ajaxFonk(bilgi,content,'ajax/birimAjax.php');
+  }
+
+  function panelTemizle(field){
+    butonTemizle(field);
+    
+    $("#stokLink").hide();
+    $("#kullaniciLink").hide();
+    $("#stokPanel").empty();
+    $("#kullaniciPanel").empty();
+
+    $('#birimIl select #ilkOpt').text('');
+    $('#birimIl select').removeAttr('disabled');
+    $('#birimIlce select').prop('disabled','false');
+    $('#birimIlce').html('');
+  }
+
+/* ---------- Urun Tanım Fonksiyonlari Son -----------*/
+
 /* ------------ Ortak Fonksiyonlar ----------*/
-
-
 
 function ajaxKaydet(nesne){
     var islemTip = "";
@@ -117,9 +158,12 @@ function ajaxListele(url){
 }
 
 function ajaxCokluListele(url){
+  /*Deger2 ve Deger3 Birim Tanımlama Icın Eklendi*/
    var bilgi = {
                     deger: $('#sInput').val(),
                     deger1: $('#sInput2').val(),
+                    deger2: $('#sInput option:selected').text(),
+                    deger3: $('#sInput2 option:selected').text(),
                     islem : "listele"
                 };
     ajaxFonk(bilgi,"#denemeTablo",'ajax/'+url+'.php');
@@ -189,10 +233,10 @@ function checkBoxGuncelle(nesne){
     $(nesne).val('0');
 }
 
-function butonTemizle(){
+function butonTemizle(field){
+    $(field + " input,"+field+" textarea").each(function(){ $(this).val('');});
     $(".popupBody button").val('');
     $(".popupBody button").html('Kaydet');
-
 }
 
 /* ------------ Ortak Fonksiyonlar Son ----------*/
