@@ -1,0 +1,199 @@
+<?php
+	
+	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Kontrol/BirimKontrol.php");
+
+
+	if(isset($_POST['query'])){
+
+		$query = @$_POST['query'];
+		$deger = @$query["deger2"];
+		$deger1 = @$query["deger3"];
+		$islem = @$query["islem"];
+
+		if($islem == "listele")
+			kayitListele($deger,$deger1);
+		else if($islem == "sil")
+			kayitSil($query["deger"]);
+		else if($islem == "kaydet")
+			kayitEkle($query);
+		else if($islem == "guncelle")
+			kayitGuncelle($query);
+		else if($islem == "ilceGetir")
+			ilceGetir($query);
+		else if($islem == "stokForm")
+			formGetir($query);
+		else if($islem == "kullaniciForm")
+			kullaniciFormGetir($query);
+		else
+			inputDoldur($query["deger"]);
+		
+	}
+
+	function inputDoldur($deger){
+
+		$sorgu = "SELECT * FROM birim WHERE id = $deger LIMIT 1";
+		
+		$kontrol = new BirimKontrol();
+		$sonuc = $kontrol -> listele($sorgu);
+
+		while ($satir = mysqli_fetch_assoc($sonuc)) {
+			echo "<script>
+				$(document).ready(function(){
+					$('#stokLink').show();
+    				$('#kullaniciLink').show();
+					$('#birimID').val('".$satir['id']."');
+					$('#ad').val('".$satir['ad']."');
+					$('#birimIl select').prop('disabled','disabled');
+					$('#birimIl select #ilkOpt').prop('selected','true').text('".$satir['il']."');
+					$('#birimIlce').html('<label>Birim İlce :</label> <select><option>".$satir["ilce"]."</option></select>');
+					$('#birimIlce select').prop('disabled','disabled');
+					$('#birimAdres').val('".$satir['adres']."');
+					$('#kaydetBT').val('Guncelle');
+					$('#kaydetBT').html('Guncelle');
+				});
+			</script>";
+		}
+		setcookie("birimID",$deger,time() + 30);
+	}
+
+	function kayitGuncelle($query){
+		$ad = $query["ad"];
+		$birimIl = $query["birimIl"];
+		$birimIlce = $query["birimIlce"];
+		$birimAdres = $query["birimAdres"];
+
+		$id = $_COOKIE['birimID'];
+		
+		$sorgu = "UPDATE birim SET adres = '".$birimAdres."' WHERE id = $id";
+		$kontrol = new BirimKontrol();
+		$kontrol -> duzenle($sorgu,"guncelle");
+
+		echo "<script>
+			$(document).ready(function(){
+				$('#kaydetBT').val('');
+				$('#kaydetBT').html('Kaydet');
+			});
+		</script>";
+
+		kayitListele($birimIl,$birimIlce);
+	}
+
+	function kayitEkle($query){
+
+		$ad = $query["ad"];
+		$birimIl = $query["birimIl"];
+		$birimIlce = $query["birimIlce"];
+		$birimAdres = $query["birimAdres"];
+
+		$sorgu = "INSERT INTO `birim` (`id`, `ad`, `il`, `ilce`, `adres`) VALUES (NULL, '".$ad."', '".$birimIl."', '".$birimIlce."', '".$birimAdres."')";
+
+		$kontrol = new BirimKontrol();
+		$kontrol -> kaydet($sorgu);
+
+		kayitListele($birimIl,$birimIlce);
+	}
+
+	function kayitSil($deger){
+
+		$sorgu = "DELETE FROM birim WHERE id = $deger";
+
+		$kontrol = new BirimKontrol();
+		$kontrol -> duzenle($sorgu,"sil");
+	}
+
+	function ilceGetir($query){
+
+		$il = $query["deger"];
+
+		$sorgu = "SELECT * FROM ilce WHERE il_id = $il";
+		$kontrol = new BirimKontrol();
+		$sonuc = $kontrol -> listele($sorgu);
+		
+		echo "<label>Birim İlçe:</label>
+			  <select id='sInput2' value=''>";
+				while ($satir = mysqli_fetch_assoc($sonuc)){
+						echo "<option value=".$satir["id"].">".$satir["ad"]."</option>";
+			  	}
+			echo "</select><a onclick=\"ajaxCokluListele('birimAjax');\"><span class='glyphicon glyphicon-list'></span></a><br/>";
+	}
+
+	function formGetir($query){
+		$id = $query['birimID'];
+		
+		$kontrol = new BirimKontrol();
+		$sonuc = $kontrol -> listele("SELECT u.ad,u.doz FROM stok s,urun u WHERE s.urun_id = u.id and s.stokbirim_id =  $id");
+
+		echo "<table class='table table-striped'>
+		<tr>
+					<th>Stok Adı</th>
+					<th>Stok Doz</th>
+				</tr>
+		";
+		while ($satir = mysqli_fetch_assoc($sonuc)) {
+			echo "
+				<tr>
+					<td>".$satir["ad"]."</td>
+					<td>".$satir['doz']."</td>
+				</tr>
+			";
+		}
+		echo "</table>";
+	}
+
+	function kullaniciFormGetir($query){
+
+		$id = $query["birimID"];
+		$kontrol = new BirimKontrol();
+		$sonuc = $kontrol -> listele("SELECT ad,soyad,tip FROM kullanici WHERE birimID =  $id");
+
+		echo "<table class='table table-striped'>
+		<tr>
+					<th>Ad</th>
+					<th>Soyad</th>
+					<th>Kullanıcı Tipi</th>
+				</tr>
+		";
+		while ($satir = mysqli_fetch_assoc($sonuc)) {
+			echo "
+				<tr>
+					<td>".$satir["ad"]."</td>
+					<td>".$satir['soyad']."</td>
+					<td>".$satir['tip']."</td>
+				</tr>
+			";
+		}
+		echo "</table>";
+	}
+
+	function kayitListele($deger,$deger1){
+
+		$kontrol = new BirimKontrol();
+		$sonuc = $kontrol -> listele("SELECT * FROM birim  WHERE il LIKE '%".$deger."%' and ilce LIKE '%".$deger1."%'");
+
+		echo "<table class='table table-striped'>
+		<tr>
+					<th>Birim Adı</th>
+					<th>Birim İl</th>
+					<th>Birim İlçe</th>
+					<th>Birim Adres</th>
+					<th>Islemler</th>
+				</tr>
+
+		";
+		while ($satir = mysqli_fetch_assoc($sonuc)) {
+			echo "
+				<tr>
+					<td>".$satir["ad"]."</td>
+					<td>".$satir['il']."</td>
+					<td>".$satir['ilce']."</td>
+					<td>".$satir['adres']."</td>
+					<td>
+						<button id='upBtn' onclick=\"ajaxInputDoldur(this,'birimAjax');\" value=".$satir["id"].">Guncelle</button>
+						<button id='silBtn' onclick=\"ajaxSil(this,'birimAjax');\" value=".$satir["id"].">Sil</button>
+					</td>
+				</tr>
+			";
+		}
+		echo "</table>";
+	}
+?>
