@@ -103,10 +103,13 @@ function ajaxUreticiKaydet(nesne){
   function ajaxBirimKaydet(nesne){
         var islemTip = ajaxKaydet(nesne);
         var bilgi = {
+
                     ad: $("#ad").val(),
                     birimIl : $("#birimIl select option:selected").text(),
                     birimIlce : $("#birimIlce select option:selected").text(),
                     birimAdres : $("#birimAdres").val(),
+                    kullaniciID : $("#kullanici1 select option:selected").val(),
+                    kullaniciID2 : $("#kullanici2 select option:selected").val(),
                     islem : islemTip
         };
 
@@ -237,6 +240,8 @@ function butonTemizle(field){
     $(field + " input,"+field+" textarea").each(function(){ $(this).val('');});
     $(".popupBody button").val('');
     $(".popupBody button").html('Kaydet');
+    $('#kullanici1 select').val('0');
+          $('#kullanici2 select').val('0');
 }
 
 /* ------------ Ortak Fonksiyonlar Son ----------*/
