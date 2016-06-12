@@ -10,7 +10,7 @@
 			<form>
 				<label>Dolap Tipi:</label>
 				<input type="text" name="dolapTip" id="sInput"/>
-				<a id="search_dolapTip" onclick="ajaxListele('dolapTipiAjax');" ><span class="glyphicon glyphicon-list"></span></a><br/>			
+				<a id="sInput" onclick="ajaxListele('dolapTipiAjax');" ><span class="glyphicon glyphicon-list"></span></a><br/>			
 			</form>
 		</div>
 		<div id='denemeTablo' value="dolapTipi">
