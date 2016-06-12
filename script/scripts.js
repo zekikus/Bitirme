@@ -141,6 +141,37 @@ function ajaxUreticiKaydet(nesne){
 
 /* ---------- Urun Tanım Fonksiyonlari Son -----------*/
 
+/* ---------- İmha Fonksiyonlari -----------*/
+  function ajaxImhaKaydet(nesne){
+
+        var islemTip = "kaydet";
+
+        var bilgi = {
+                    urun_id : parseInt($("#urunID option:selected").text()),
+                    tarih : $("#islemTarih").val(),
+                    tuketim : $("#tuketimNeden option:selected").text(),
+                    aciklama : $("#aciklama").val(),
+                    islem : islemTip
+        };
+
+        
+        ajaxFonk(bilgi,'#denemeTablo','ajax/imhaAjax.php');
+        $("#urunID,#islemTarih,#aciklama").val("");
+  }
+/* ---------- İmha Fonksiyonlari Son -----------*/
+
+/* ---------- Kullanıcı Fonksiyonlari -----------*/
+  
+  function ajaxKullaniciKontrol(){
+        var bilgi = {
+                    deger : $("#tcNo").val(),
+                    islem : 'kullaniciKontrol'
+        };
+        ajaxFonk(bilgi,'#denemeTablo','ajax/kullaniciAjax.php');
+  }
+
+/* ---------- Kullanıcı Fonksiyonlari Son -----------*/
+
 /* ------------ Ortak Fonksiyonlar ----------*/
 
 function ajaxKaydet(nesne){
