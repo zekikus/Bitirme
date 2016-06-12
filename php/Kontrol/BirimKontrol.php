@@ -8,26 +8,30 @@
 		private $birimIslem;
 
 		public function __construct(){
-			$this -> urunIslem = new BirimIslemleri();
+			$this -> birimIslem = new BirimIslemleri();
 		}
 
 		public function kaydet($sorgu){
-			$this -> urunIslem -> ekle($sorgu);
+			$this -> birimIslem -> ekle($sorgu);
 		}
 
 		public function duzenle($sorgu,$islem){
 			if($islem == "sil")
-				$this -> urunIslem -> sil($sorgu);
+				$this -> birimIslem -> sil($sorgu);
 			else
-				$this -> urunIslem -> guncelle($sorgu);
+				$this -> birimIslem -> guncelle($sorgu);
 		}
 
 		public function listele($sorgu){
-			return $this -> urunIslem -> listele($sorgu);
+			return $this -> birimIslem -> listele($sorgu);
 		}
 
 		public function sorguCalistir($sorgu){
+			return $this -> birimIslem -> sorguCalistir($sorgu);
+		}
 
+		public function etkilenenKayitSayisi($sorgu){
+			return $this -> birimIslem -> etkilenenKayitSayisi($sorgu);
 		}
 
 	}

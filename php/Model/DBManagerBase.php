@@ -62,7 +62,7 @@
 		abstract public function getYeniVTResultSet($sorgu); // Sorgudan dönen sonucları döndürür.
 		abstract public function getYeniVTKomutIsle($sorgu); // Gelen komutu işler. INSERT UPDATE DELETE Işlemleri için
 		abstract public function getEtkilenenKayitSayisi($sorgu); // Sorgudan dönen sonuçların sayısını verir.
-
+		abstract public function sorguCalistir($sorgu);
 	}
 
 ?>

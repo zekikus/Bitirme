@@ -75,7 +75,40 @@
 						</div>
 						<label>Birim Adres:</label>
 						<textarea id="birimAdres"></textarea><br/>
-						
+						<div id="kullanici1">
+							<label>Alarm Kullanıcı:</label>
+							<select>
+								<option value="0" id="firstOpt"></option>
+								<?php
+									$sorgu = "SELECT * FROM kullanici";
+									$kontrol = new BirimKontrol();
+									$sonuc = $kontrol -> listele($sorgu);
+
+									while ($satir = mysqli_fetch_assoc($sonuc)) {
+									echo "
+										<option value=".$satir["id"].">".$satir["ad"]." ".$satir["soyad"]."</option>
+									";
+								}
+								?>
+							</select>
+						</div>
+						<div id="kullanici2">
+							<label>Alarm Kullanıcı:</label>
+							<select>
+								<option value="0" id="firstOpt"></option>
+								<?php
+									$sorgu = "SELECT * FROM kullanici";
+									$kontrol = new BirimKontrol();
+									$sonuc = $kontrol -> listele($sorgu);
+
+									while ($satir = mysqli_fetch_assoc($sonuc)) {
+									echo "
+										<option value=".$satir["id"].">".$satir["ad"]." ".$satir["soyad"]."</option>
+									";
+								}
+								?>
+							</select>
+						</div>
 						<button class="btn btn-success" id='kaydetBT' onclick="ajaxBirimKaydet(this);" value="">Kaydet</button>
 				    </div>
 				    <div class="tab-pane" id="stokPanel"">

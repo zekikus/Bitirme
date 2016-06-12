@@ -35,9 +35,12 @@
 		}
 
 		public function getEtkilenenKayitSayisi($sorgu){
-			return mysqli_num_rows(getYeniVTResultSet($sorgu));
+			return mysqli_num_rows($this -> getYeniVTResultSet($sorgu));
 		}
-		
+
+		public function sorguCalistir($sorgu){
+			$this -> getYeniVTResultSet($sorgu);
+		}
 	}
 
 ?>

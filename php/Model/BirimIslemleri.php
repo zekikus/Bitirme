@@ -37,6 +37,14 @@
 		public function guncelle($sorgu){
 			$this -> manager -> getYeniVTKomutIsle($sorgu);
 		}
+
+		public function etkilenenKayitSayisi($sorgu){
+			return $this -> manager -> getEtkilenenKayitSayisi($sorgu);
+		}
+
+		public function sorguCalistir($sorgu){
+			return $this -> manager -> sorguCalistir($sorgu);
+		}
 }
 	
 ?>
