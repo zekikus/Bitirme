@@ -236,7 +236,7 @@
 					<td>".$satir['ilce']."</td>
 					<td>".$satir['adres']."</td>
 					<td>
-						<button id='upBtn' onclick=\"ajaxInputDoldur(this,'birimAjax');\" value=".$satir["id"].">Guncelle</button>
+						<button id='upBtn' onclick=\"ajaxInputDoldur(this,'birimAjax','doldur');\" value=".$satir["id"].">Guncelle</button>
 						<button id='silBtn' onclick=\"ajaxSil(this,'birimAjax');\" value=".$satir["id"].">Sil</button>
 					</td>
 				</tr>

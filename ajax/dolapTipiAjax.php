@@ -106,7 +106,7 @@
 					<td>".$satir["ad"]."</td>
 					<td>".$aktif."</td>
 					<td>
-						<button id='upBtn' onclick=\"ajaxInputDoldur(this,'dolapTipiAjax');\" value=".$satir["id"].">Guncelle</button>
+						<button id='upBtn' onclick=\"ajaxInputDoldur(this,'dolapTipiAjax','doldur');\" value=".$satir["id"].">Guncelle</button>
 						<button id='silBtn' onclick=\"ajaxSil(this,'dolapTipiAjax');\" value=".$satir["id"].">Sil</button>
 					</td>
 				</tr>
