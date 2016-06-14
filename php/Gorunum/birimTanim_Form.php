@@ -12,7 +12,7 @@
 		<div class="search_form">
 			<form>
 				<label>Birim İl:</label>
-				<select id="sInput" value="" onchange="ajaxIlceGetir('#ilceler','#sInput');">
+				<select id="sInput" value="" onchange="ajaxIlceGetir('#ilceler','#sInput','birimAjax');">
 					<?php
 						$sorgu = "SELECT * FROM il";
 						$kontrol = new BirimKontrol();
@@ -55,7 +55,7 @@
 						<input type="text"  id='ad' value=""/><br/>
 						<div id="birimIl">
 							<label>Birim İl:</label>
-							<select onchange="ajaxIlceGetir('#birimIlce','#birimIl select');">
+							<select onchange="ajaxIlceGetir('#birimIlce','#birimIl select','birimAjax');">
 							<option id="ilkOpt"></option>
 							<?php
 								$sorgu = "SELECT * FROM il";
