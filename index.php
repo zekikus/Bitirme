@@ -31,7 +31,7 @@
 							<li><a href="index.php?s=birimTanim"><span class="glyphicon glyphicon-home"></span> Birim Tanımla</a></li>
 							<li><a href="index.php?s=dolapTipi"><span class="glyphicon glyphicon-tasks"></span> Dolap Tipi Tanımla</a></li>
 							<li><a href="index.php?s=kullanici"><span class="glyphicon glyphicon-user"></span> Kullanıcı Tanımla</a></li>
-							<li><a href="#"><span class="glyphicon glyphicon-edit"></span> Soğuk Oda Tipi Tanımla</a></li>
+							<li><a href="index.php?s=STC"><span class="glyphicon glyphicon-edit"></span> STC Tanımla</a></li>
 							<li><a href="index.php?s=urunTanim"><span class="glyphicon glyphicon-tint"></span> Urun Tipi Tanımla</a></li>
 							<li><a href="index.php?s=imha"><span class="glyphicon glyphicon-tint"></span> İmha Et</a></li>
 						</ul>
