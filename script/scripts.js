@@ -91,15 +91,6 @@ function ajaxUreticiKaydet(nesne){
 
 /* ---------- Birim Tanım Fonksiyonlari -----------*/
 
-  function ajaxIlceGetir(content,value,url){
-       
-       var bilgi = {
-                deger: $(value).val(),
-                islem : "ilceGetir"
-       }
-       ajaxFonk(bilgi,content,'ajax/'+url+'.php');
-  }
-
   function ajaxBirimKaydet(nesne){
         var islemTip = ajaxKaydet(nesne);
         var bilgi = {
@@ -147,7 +138,7 @@ function ajaxUreticiKaydet(nesne){
         var islemTip = "kaydet";
 
         var bilgi = {
-                    urun_id : parseInt($("#urunID option:selected").text()),
+                    urun_id : parseInt($("#urunID").val()),
                     tarih : $("#islemTarih").val(),
                     tuketim : $("#tuketimNeden option:selected").text(),
                     aciklama : $("#aciklama").val(),
@@ -163,7 +154,7 @@ function ajaxUreticiKaydet(nesne){
 /* ---------- Kullanıcı Fonksiyonlari -----------*/
 
   function panelGoster(){
-    butonTemizle('.form');
+    butonTemizle('.ortakForm');
 
     $('#kLink').show();
     $('#kisLink').show();
@@ -259,7 +250,6 @@ function ajaxUreticiKaydet(nesne){
 
         ajaxFonk(bilgi,'#denemeTablo','ajax/STCAjax.php');
         $("#cihazAktif,#aktifMi").val("");   
-  }
 }
 
 /* ---------- Sıcaklık Cihazı Fonksiyonlari Son -----------*/
@@ -367,9 +357,9 @@ function butonTemizle(field){
     $('#kullanici2 select').val('0');
 }
 
-function gizle(nesne){
-  $(nesne).hide();
-}
+  function gizle(nesne){
+    $(nesne).hide();
+  }
 
   function ajaxIslemYap(degerAlan,islemTip,content,url){
         var bilgi = {
@@ -378,6 +368,23 @@ function gizle(nesne){
                     islem : islemTip
         };
         ajaxFonk(bilgi,content,'ajax/'+url+'.php');
+  }
+
+  function ajaxIlceGetir(content,value,url){
+       var bilgi = {
+                deger: $(value).val(),
+                islem : "ilceGetir"
+       }
+       ajaxFonk(bilgi,content,'ajax/'+url+'.php');
+  }
+
+  function ajaxBirimGetir(content,value,value2,url){
+       var bilgi = {
+                il: $(value + " option:selected").text(),
+                ilce : $(value2 + " option:selected").text(),
+                islem : "birimGetir"
+       }
+       ajaxFonk(bilgi,content,'ajax/'+url+'.php');
   }
 
 /* ------------ Ortak Fonksiyonlar Son ----------*/
