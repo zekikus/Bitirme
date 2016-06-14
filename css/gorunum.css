@@ -47,18 +47,22 @@ select{
 
 .popupHeader {font-size:16px; text-transform: uppercase;}
 .popupHeader {background:#F4F4F2; position:relative; padding:10px 20px; border-bottom:1px solid #DDD; font-weight:bold;}
-.popupHeader .modal_close {position: absolute; right: 0; top:0; padding:10px 15px; background:#E4E4E2; cursor: pointer; color:#aaa; font-size:16px;}
+.popupHeader .modal_close,.popupHeader .close_Adres,.popupHeader .close_Iletisim {position: absolute; right: 0; top:0; padding:10px 15px; background:#E4E4E2; cursor: pointer; color:#aaa; font-size:16px;}
 .popupBody {padding:20px;}
 .popupBody .form{padding: 15px 20%;}
 .popupBody .form label{width: 40%; margin-right: 15px;}
 .popupBody .form .btn,.formBirim .btn{margin: 25px 30%;}
 .popupBody .formBirim .tab-content{width: 100%;}
-.tab-pane .table{
-	margin-top: 5px;
-}
+
 .formBirim #birimIlce .glyphicon{display: none;}
 #birim{margin-top: 15px;margin-left: 20%;}
 .tab-pane label{width: 20%;margin-right: 15px;}
 
+.ortakForm{
+	margin-top: 5px;
+	margin-left: 25px;
+}
+.ortakForm .btn{margin: 25px 30%;}
+.ortakForm label{width: 40%; margin-right: 15px;}
 
 
