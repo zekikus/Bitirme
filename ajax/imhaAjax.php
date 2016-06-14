@@ -40,7 +40,7 @@
 
 		$kontrol = new ImhaKontrol();
 		
-		$sorgu_stok = "SELECT * FROM stok";
+		$sorgu_stok = "SELECT * FROM stok WHERE urun_id = $deger";
 		
 		$etkilenenStok = $kontrol -> etkilenenKayitSayisi($sorgu_stok);
 
