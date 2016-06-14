@@ -68,7 +68,7 @@
 				<label>Seans Sayısı:</label>
 				<input type="text" id="seansSayi" /><br/>
 				<label>Kullanım Süresi:</label>
-				<input type="text" id="kullanimSuresi" /><br/>
+				<input type="date" id="kullanimSuresi"><br/>
 				<button class="btn btn-success" id="kaydetUrun" onclick="ajaxUrunKaydet(this);">Kaydet</button>
 			</div>
 		</section>

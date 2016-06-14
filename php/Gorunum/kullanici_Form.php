@@ -28,7 +28,7 @@
 				<span class="modal_close"><i class="glyphicon glyphicon-remove"></i></span>
 			</header>
 			
-			<div class="form">
+			<div class="ortakForm">
 				<ul class="nav nav-tabs">
 					<li id='kLink'><a href="#kullanici" data-toggle="tab">Kullanıcı</a></li>
 					 <li id='kisLink'><a href="#kisiBilgi" data-toggle="tab">Kişi Bilgileri</a></li>
@@ -37,24 +37,24 @@
 					   <input type="hidden" id='userID' />
 				</ul>
 				<div class="tab-content" id="tabs">
-					<div class="tab-pane" id="kullanici">
-						<label>T.C. No:</label>
+					<div class="tab-pane" id="kullanici" style="margin: 25px 15%;">
+						<label style="width:20%">T.C. No:</label>
 						<input type="text" id="tcNo" maxlength="11" />
 						<button class="btn btn-success" onclick="ajaxIslemYap('#tcNo','kullaniciKontrol','#denemeTablo','kullaniciAjax');" value="">Kaydet</button>
 					</div>
-					<div class="tab-pane" id="kisiBilgi">
+					<div class="tab-pane" id="kisiBilgi" style="margin-top:25px;">
 						<label>T.C. No:</label>
 						<input type='text' id='gTCNO' readonly="" /><br/>
 						<label>Ad:</label>
-						<input type='text' id='gAd'/>
+						<input type='text' id='gAd'/><br/>
 						<label>Soyad:</label>
-						<input type='text' id='gSoyad'/>
+						<input type='text' id='gSoyad'/><br/>
 						<label>Kullanıcı Adı:</label>
-						<input type='text' id='gKadi'/>
+						<input type='text' id='gKadi'/><br/>
 						<label>Şifre:</label>
-						<input type='password' id='gSifre'/>
+						<input type='password' id='gSifre'/><br/>
 						<label>Şifre Tekrar:</label>
-						<input type='password' id='gSifreTekrar'/>
+						<input type='password' id='gSifreTekrar'/><br/>
 						<button class="btn btn-success" id='kaydetKu' onclick="ajaxKullaniciKaydet(this)" value=""></button>
 					</div>
 					<div  class="tab-pane" id="adresBilgi"">
@@ -79,7 +79,7 @@
 						<span class="close_Adres" onclick="gizle('#modalAdres')"><i class="glyphicon glyphicon-remove"></i></span>
 					</header>
 				</section>
-				<div class="form">
+				<div class="ortakForm">
 					<input type="hidden" id='uID'/>
 					<label>Adres Tipi:</label>
 					<select id='adrsTip'>
@@ -118,7 +118,7 @@
 						<span class="close_Iletisim" onclick="gizle('#modalIletisim')"><i class="glyphicon glyphicon-remove"></i></span>
 					</header>
 				</section>
-				<div class="form">
+				<div class="ortakForm">
 					<label>Iletisim Tipi:</label>
 					<select id='iletisimTip'>
 						<option value="Cep Telefonu">Cep Telefonu</option>

@@ -41,7 +41,7 @@
 
 						while ($satir = mysqli_fetch_assoc($sonuc)){
 							echo "
-								<option value=".$satir["tag_id"].">".$satir["tag_id"]."</option>
+								<option value=".$satir["id"].">".$satir["tag_id"]."</option>
 							";
 						}
 					?>
