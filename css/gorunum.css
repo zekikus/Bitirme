@@ -58,11 +58,11 @@ select{
 #birim{margin-top: 15px;margin-left: 20%;}
 .tab-pane label{width: 20%;margin-right: 15px;}
 
-.ortakForm{
-	margin-top: 5px;
-	margin-left: 25px;
-}
+.ortakForm{margin-top: 5px;margin-left: 25px;}
 .ortakForm .btn{margin: 25px 30%;}
 .ortakForm label{width: 40%; margin-right: 15px;}
+.solPanel,.sagPanel{display: inline-block;width: 47%; margin-left: 15px; padding: 5px 5px;}
+.panelHeader{ padding: 15px; background: #000; color: #fff; width: 100%; display: block; margin-bottom: 15px; text-align: center;}
+
 
 
