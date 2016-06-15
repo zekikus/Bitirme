@@ -231,6 +231,42 @@ function ajaxUreticiKaydet(nesne){
 
 /* ---------- Kullanıcı Fonksiyonlari Son -----------*/
 
+/*----------- Stok Birim Fonksiyonları -------------*/
+
+function ajaxSBKaydet(nesne){
+
+          var islemTip = ajaxKaydet(nesne);
+          var bilgi = {
+                      sbID : $("#sbID").val(),
+                      birimDeger : $('#birimDeger option:selected').val(),
+                      stokBirimID : $("#stokBirimID").val(),
+                      sAlt : $("#sAlt").val(),
+                      sUst : $("#sUst").val(),
+                      sbTip : $("#sbTip").val(),
+                      sbAciklama : $("#sbAciklama").val(),
+                      sbHacim : $("#sbHacim").val(),
+                      sbMarka : $("#sbMarka").val(),
+                      sbModel : $("#sbModel").val(),
+                      sbUT : $("#sbUT").val(),
+                      islem : islemTip
+          };
+          ajaxFonk(bilgi,'#denemeTablo','ajax/stokBirimAjax.php');
+          butonTemizle('#stokBirimPanel');
+  }
+
+  function temizle(field,alan){
+    butonTemizle(field);
+    $('#stLink,#siLink').hide();
+    $('#birimDeger').removeAttr('disabled');
+    var randomID = rastgeleIDUret();
+    $('#stokBirimID').val('D-'+randomID);
+    $('.nav-tabs a[href="'+alan+'"]').tab('show');
+  }
+
+ 
+
+/*----------- Stok Birim Fonksiyonları Son -------------*/
+
 /* ---------- Sıcaklık Cihazı Fonksiyonlari -----------*/
 
   function ajaxSTCKaydet(nesne){
@@ -242,7 +278,7 @@ function ajaxUreticiKaydet(nesne){
             islemTip = "kaydet";
 
         var bilgi = {
-                    stokbirim_id : parseInt($("#stokbirimID option:selected").text()),
+                    stokbirim_id : $("#stokbirimID option:selected").val(),
                     cihaz_durum : $("#cihazAktif").val(),
                     alarm_uret : $("#alarmAktif").val(),
                     islem : islemTip
@@ -253,6 +289,20 @@ function ajaxUreticiKaydet(nesne){
 }
 
 /* ---------- Sıcaklık Cihazı Fonksiyonlari Son -----------*/
+
+function ajaxAlarmDetayListele(nesne, url){
+  $("#modal").css({
+            'width' : '900px',
+           'overlay' : '0.6',
+           'top' : '50px'
+        });
+    $("#modal").show();
+    var bilgi = {
+                    deger: $(nesne).val(),
+                    islem : "alarmListele"
+                };
+    ajaxFonk(bilgi,"#modal #alarmDetay",'ajax/'+url+'.php');
+}   
 
 /* ------------ Ortak Fonksiyonlar ----------*/
 
@@ -287,6 +337,7 @@ function ajaxCokluListele(url){
 
 function ajaxInputDoldur(nesne,url,islemTip){
    $("#modal").css({
+            'width' : '900px',
            'overlay' : '0.6',
            'top' : '50px'
         });
@@ -385,6 +436,12 @@ function butonTemizle(field){
                 islem : "birimGetir"
        }
        ajaxFonk(bilgi,content,'ajax/'+url+'.php');
+  }
+
+   function rastgeleIDUret(){
+      var tarih = new Date();
+      var sonuc = tarih.valueOf().toString().substr(8,13) + tarih.getUTCMilliseconds();
+     return sonuc;
   }
 
 /* ------------ Ortak Fonksiyonlar Son ----------*/
