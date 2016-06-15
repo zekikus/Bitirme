@@ -85,6 +85,13 @@
 		$kontrol = new STCKontrol();
 		$kontrol -> kaydet($sorgu);
 
+		$sonuc = $kontrol -> listele("SELECT id FROM sicakliktakipcihazi ORDER BY id DESC LIMIT 0,1");
+		$sonSID = mysqli_fetch_assoc($sonuc);
+
+		echo "<script>alert('".$sonSID['id']."')</script>";
+
+		$kontrol -> sorguCalistir("UPDATE stok_birim SET sensor_id = ".$sonSID['id']." WHERE id = $stokbirim_id");
+
 	}
 
 	function kayitSil($deger){
@@ -98,7 +105,7 @@
 	function kayitListele($deger){
 
 		$kontrol = new STCKontrol();
-		$sonuc = $kontrol -> listele("SELECT sc.*,sb.ad FROM sicakliktakipcihazi sc,stok_birim sb WHERE sc.id LIKE '%".$deger."%'");
+		$sonuc = $kontrol -> listele("SELECT sc.*,sb.ad FROM sicakliktakipcihazi sc,stok_birim sb WHERE sc.stokbirim_id = sb.id and sc.id LIKE '%".$deger."%'");
 
 		echo "<table class='table table-striped'>
 		<tr>
