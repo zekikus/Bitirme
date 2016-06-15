@@ -23,11 +23,11 @@
 					<a href="#tanim" data-toggle="collapse"><span class="glyphicon glyphicon-cog"></span> Tanım</a>
 					<div id="tanim" class="collapse">
 						<ul class="sub-list">
-							<li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Stok Birim Tanımla</a></li>
+							<li><a href="index.php?s=stokBirim"><span class="glyphicon glyphicon-list-alt"></span> Stok Birim Tanımla</a></li>
 							<li><a href="index.php?s=tuketimNedeni"><span class="glyphicon glyphicon-edit"></span> Tüketim Nedeni</a></li>
 							<li><a href="index.php?s=uretici""><span class="glyphicon glyphicon-user"></span> Üretici Tanımla</a></li>
 							<li><a href="index.php?s=urun"><span class="glyphicon glyphicon-tint"></span> Ürün Tanımla</a></li>
-							<li><a href="#"><span class="glyphicon glyphicon-time"></span> Alarm Tanımla</a></li>
+							<li><a href="index.php?s=Alarm"><span class="glyphicon glyphicon-time"></span> Alarm Tanımla</a></li>
 							<li><a href="index.php?s=birimTanim"><span class="glyphicon glyphicon-home"></span> Birim Tanımla</a></li>
 							<li><a href="index.php?s=dolapTipi"><span class="glyphicon glyphicon-tasks"></span> Dolap Tipi Tanımla</a></li>
 							<li><a href="index.php?s=kullanici"><span class="glyphicon glyphicon-user"></span> Kullanıcı Tanımla</a></li>
