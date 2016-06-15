@@ -33,14 +33,14 @@
 				<select id='stokbirimID'>
 					<option value="sec">Seçiniz</option>
 					<?php
-						$sorgu = "SELECT * FROM stok_birim";
+						$sorgu = "SELECT id,ad FROM stok_birim";
 		
 						$kontrol = new STCKontrol();
 						$sonuc = $kontrol -> listele($sorgu);
 
 						while ($satir = mysqli_fetch_assoc($sonuc)){
 							echo "
-								<option value=".$satir["id"].">".$satir["id"]."</option>
+								<option value=".$satir["id"].">".$satir["ad"]."</option>
 							";
 						}
 					?>

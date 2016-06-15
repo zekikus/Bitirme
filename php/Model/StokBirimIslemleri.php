@@ -1,7 +1,7 @@
 <?php
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/ApplicationContext.php");
 
-	class STCIslem {
+	class StokBirimIslemleri {
 		private $context = "";
 		private $manager = "";
 		private $sorgu = "";
@@ -34,10 +34,6 @@
 
 		public function guncelle($sorgu){
 			$this -> manager -> getYeniVTKomutIsle($sorgu);
-		}
-
-		public function sorguCalistir($sorgu){
-			return $this -> manager -> sorguCalistir($sorgu);
 		}
 	}
 
