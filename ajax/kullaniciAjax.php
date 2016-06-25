@@ -59,11 +59,12 @@
 		while ($satir = mysqli_fetch_assoc($sonuc)) {
 			echo "<script>
 				$(document).ready(function(){
+					$('.nav-tabs a[href=\"#kisiBilgi\"]').tab('show');
 					$('#aLink').show();
     				$('#iLink').show();
 					$('#kLink').hide();
-					$('#sPlus').hide();
-					$('#sPluss').hide();
+					//$('#sPlus').hide();
+					//$('#sPluss').hide();
 					$('#userID').val('".$satir['id']."');
 					$('#gTCNO').val('".$satir['tcNo']."');
 					$('#gAd').val('".$satir['ad']."');
@@ -144,7 +145,7 @@
 		</tr>
 		";
 
-		while ($satir = mysqli_fetch_assoc($sonuc)) {
+		while ($satir = @mysqli_fetch_assoc($sonuc)) {
 			echo "
 				<tr>
 					<td>".$satir["il"]."</td>
@@ -212,9 +213,14 @@
 
 		$kontrol = new KullaniciKontrol();
 		$sonKID = $_COOKIE['kullaniciID'];
+		$sorgu = "";
 
-		$sorgu = "INSERT INTO `iletisim`(`id`, `kullanici_id`, `tip`, `deger`) VALUES (NULL,'".$sonKID."','".$query['iletisimTip']."','".$query['deger']."')";
-
+		if($query['kullaniciID'] == ""){
+			$sorgu = "INSERT INTO `iletisim`(`id`, `kullanici_id`, `tip`, `deger`) VALUES (NULL,'".$sonKID."','".$query['iletisimTip']."','".$query['deger']."')";
+		}else{
+			$sorgu = "INSERT INTO `iletisim`(`id`, `kullanici_id`, `tip`, `deger`) VALUES (NULL,'".$query['kullaniciID']."','".$query['iletisimTip']."','".$query['deger']."')";
+		}
+		
 		$kontrol -> kaydet($sorgu);
 
 		echo "<script>
@@ -320,7 +326,7 @@
 		</tr>
 		";
 
-		while ($satir = mysqli_fetch_assoc($sonuc)) {
+		while ($satir = @mysqli_fetch_assoc($sonuc)) {
 			echo "
 				<tr>
 					<td>".$satir["tip"]."</td>
