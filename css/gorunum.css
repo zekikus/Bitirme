@@ -1,6 +1,15 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('Montserrat-Regular.ttf');
+    src: url('Montserrat-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body{
 	margin: 0px;
 	padding: 0px;
+	font-family: "Montserrat";
 }
 
 .header{
@@ -62,7 +71,38 @@ select{
 .ortakForm .btn{margin: 25px 30%;}
 .ortakForm label{width: 40%; margin-right: 15px;}
 .solPanel,.sagPanel{display: inline-block;width: 47%; margin-left: 15px; padding: 5px 5px;}
-.panelHeader{ padding: 15px; background: #000; color: #fff; width: 100%; display: block; margin-bottom: 15px; text-align: center;}
+.panelHeader{ padding: 15px; background: #4caf50; color: #fff; width: 100%; display: block; margin-bottom: 15px; text-align: center;}
 
+.stokContent{ width: 100%; height: 250px; }
+.stokContent div{ width: 45%; display: inline-block; float: left;}
+.sagContent div{ margin:5px 5%;	width: 100%;}
+#rfidContent{ height: 150px; }
+.stokBirimContent{border: 1px solid black;
+	padding: 2% 3%;
+	margin: 5px 5%;
+	text-align: center;
+	width: 80%;
+	background: #f3f2f5;
+	-webkit-box-shadow: 1px 2px 15px 2px black;
+	-moz-box-shadow: 1px 2px 15px 2px black;
+	box-shadow: 1px 2px 15px 2px black;}
 
+.body{
+	background-color: #b71c1c;
+}
 
+.container{
+	padding: 25px;
+	background-color: #263238;
+	margin: 5% 36%;
+	width: 30%;
+	height: 450px;
+	border-top:4px solid #bdbdbd;
+}
+
+.container p{ color: white; margin: 15% 30%; width: 100%;}
+.container input{color: white; background: #546e7a; margin-top:2%;padding: 5px;  width: 80%; border: none;}
+.login-panel span{margin:3% 8%;color: white; margin-right: 5px; display: inline-block; float: left;}
+.login-panel button{margin-top: 5%; margin-right: 15px; margin-left: 5px;}
+#lgnEmail{margin: 2% 20%; width: 60%;}
+#lgnGonder{margin: 2% 40%;}
