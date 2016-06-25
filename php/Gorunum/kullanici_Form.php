@@ -64,7 +64,8 @@
 						</div>
 					</div>
 					<div class="tab-pane" id="iletisimBilgi">
-						<a id="iletisim_Modal" href="#modalIletisim" class="btn" style="float:right;"><span id='sPluss' class="glyphicon glyphicon-plus"></span></a>
+						<a id="iletisim_Modal" href="#modalIletisim" onclick="btnSifirla();" class="btn" style="float:right;"><span id='sPluss' class="glyphicon glyphicon-plus"></span></a>
+
 						<div id='iletisimSonuc'>
 							<!-- Ajax Sonuçları Dönecek -->
 						</div>
