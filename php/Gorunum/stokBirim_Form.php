@@ -55,7 +55,6 @@
 							<span class='panelHeader'>Genel Bilgi</span>
 							<label>Birim:</label>
 							<select id='birimDeger'>
-								<option id='ilkBirim'></option>
 								<?php
 									$sonuc = $kontrol -> listele("SELECT id,ad FROM birim");
 
@@ -79,7 +78,16 @@
 						<div class="sagPanel">
 							<span class='panelHeader'>Detay Bilgi</span>
 							<label>Stok Birim Tipi:</label>
-							<input type="text" id="sbTip" /><br/>
+							<select id='sbTip' value="">
+							<?php
+								$sonuc = $kontrol -> listele("SELECT id,ad FROM dolap_tip");
+
+								while($satir = mysqli_fetch_assoc($sonuc)){
+										echo "<option value=".$satir['ad'].">".$satir['ad']."</option>";
+								}
+							?>
+							</select>
+							<!--<input type="text" id="sbTip" /><br/>-->
 							<label>Açıklama:</label>
 							<input type="text" id="sbAciklama" /><br/>
 							<label>Hacim:</label>
