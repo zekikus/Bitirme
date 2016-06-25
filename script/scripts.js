@@ -175,7 +175,7 @@ function ajaxUreticiKaydet(nesne){
 
   function panelGoster(){
     butonTemizle('.ortakForm');
-
+    $('.nav-tabs a[href="#kullanici"]').tab('show');
     $('#kLink').show();
     $('#kisLink').show();
     $('#sPlus').show();
@@ -186,6 +186,12 @@ function ajaxUreticiKaydet(nesne){
 
     $('#adresSonucccc table').remove();
     $('#iletisimSonuc table').remove();
+  }
+
+  function btnSifirla(){
+    $('#kaydetIle').val('');
+    $('#kaydetIle').html('Kaydet');
+    $('#iDeger').val('');
   }
 
   function ajaxKullaniciKaydet(nesne){
@@ -336,6 +342,10 @@ function ajaxGiris(islemtip,content){
 
 /* ------------ Ortak Fonksiyonlar ----------*/
 
+$('.modal_close').click(function(){
+        $("#modal").hide();
+});
+
 function ajaxKaydet(nesne){
     var islemTip = "";
     if($(nesne).val() == "Guncelle")
@@ -418,10 +428,6 @@ function ajaxFonk(bilgi,alan,postUrl){
         }
     });
 }
-
-$('.modal_close').click(function(){
-        $("#modal").hide();
-});
 
 function checkBoxGuncelle(nesne){
   if($(nesne).is(":checked"))
