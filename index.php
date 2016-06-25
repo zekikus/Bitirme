@@ -10,6 +10,11 @@
   <script src="script/bootstrap.min.js"></script>
    <script type="text/javascript" src="script/jquery.leanModal.min.js"></script>
 </head>
+<?php
+	session_start();
+	if(isset($_SESSION['kullanici'])){
+
+?>
 <body>
 
 <div id="wrapper">
@@ -17,7 +22,7 @@
 			<!--Sidebar Sabit Kısım Bütün Sayfalarda Aynı-->
 			<ul class="sidebar-nav">
 				<li>
-					<a href="#" ><span class="glyphicon glyphicon-home"></span> Anasayfa</a>
+					<a href="#" id='anasayfa'><span class="glyphicon glyphicon-home"></span> Anasayfa</a>
 				</li>
 				<li>
 					<a href="#tanim" data-toggle="collapse"><span class="glyphicon glyphicon-cog"></span> Tanım</a>
@@ -42,12 +47,12 @@
 					<div id ="stok" class="collapse">
 						<ul class="sub-list">
 							<li><a href="index.php?s=stok"><span class="glyphicon glyphicon-save"></span> Stok Takip</a></li>
-							<li><a href="#"><span class="glyphicon glyphicon-save"></span> Stok Giriş İşlemleri</a></li>
+							<li><a href="index.php?s=stokKabul"><span class="glyphicon glyphicon-save"></span> Stok Giriş İşlemleri</a></li>
 							<li><a href="#"><span class="glyphicon glyphicon-open"></span> Stok Çıkış İşlemleri</a></li>
 						</ul>
 					</div>				
 				</li>
-				<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Çıkış</a></li>
+				<li><a  onclick="ajaxGiris('cikisYap','#anasayfa');"><span class="glyphicon glyphicon-log-out"></span> Çıkış</a></li>
 			</ul>
 		</div>
 		<!--Sidebar-Son -->
@@ -70,5 +75,7 @@
 		</div>
 	</div>
 	<script type="text/javascript" src="script/scripts.js"></script>
-</body>
+</body><?php
+	}else{header("Location:login.php");}
+ ?>
 </html>
