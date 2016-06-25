@@ -12,7 +12,6 @@
 			kayitListele($query);
 		}else if($islem == "sil"){
 			kayitSil($deger);
-			kayitListele("");
 		}else if($islem == "kaydet"){
 			kayitEkle($query);
 		}else if($islem == "guncelle"){
