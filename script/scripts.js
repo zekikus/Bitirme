@@ -1,6 +1,26 @@
 $(document).ready(function(){
 });
 
+function tekrarla(){
+    var zamanlayici = setInterval(function() { denemeTest('listele'); },2000);
+}
+
+function denemeTest(islemtip){
+  var bilgi = {
+                    sb: $("#sBirim option:selected").val(),
+                    islem : islemtip
+        };
+
+   $.ajax({
+        type: 'post',
+        data : {query : bilgi},
+        url: 'ajax/stokKabulAjax.php',
+        success: function(result) {
+          $(".header").html(result);
+        }
+    });
+}
+
  /* --------- Uretici Fonksiyonları ------------- */
 
 function ajaxUreticiKaydet(nesne){
@@ -216,18 +236,7 @@ function ajaxUreticiKaydet(nesne){
           butonTemizle('#modalAdres');
   }
 
-  function inputKontrol(field){
-    var sonuc = true;
-
-    $(field + " input,"+field+" textarea").each(function(){
-      if($(this).val() == ''){
-        sonuc = false;
-        return sonuc;
-      }
-    });
-
-    return sonuc;
-  }
+  
 
 /* ---------- Kullanıcı Fonksiyonlari Son -----------*/
 
@@ -290,6 +299,7 @@ function ajaxSBKaydet(nesne){
 
 /* ---------- Sıcaklık Cihazı Fonksiyonlari Son -----------*/
 
+/* ---------- Alarm Fonksiyonlari -----------*/
 function ajaxAlarmDetayListele(nesne, url){
   $("#modal").css({
             'width' : '900px',
@@ -302,7 +312,27 @@ function ajaxAlarmDetayListele(nesne, url){
                     islem : "alarmListele"
                 };
     ajaxFonk(bilgi,"#modal #alarmDetay",'ajax/'+url+'.php');
-}   
+} 
+/* ---------- Alarm Fonksiyonlari Son-----------*/ 
+
+/* ---------- Login Fonksiyonlari -----------*/
+function ajaxGiris(islemtip,content){
+  $('#lgnGonder').attr('disabled',true);
+  var bilgi = "";
+  if(islemtip == "cikisYap"){
+    bilgi = {islem : islemtip};
+
+  }else{
+    bilgi = {
+              kad: $("#lgnKad").val(),
+              sifre: $("#lgnSifre").val(),
+              email : $("#lgnEmail").val(),
+              islem : islemtip
+          };
+  }
+  ajaxFonk(bilgi,content,'ajax/girisAjax.php');
+} 
+/* ---------- Login Fonksiyonlari Son-----------*/
 
 /* ------------ Ortak Fonksiyonlar ----------*/
 
@@ -442,6 +472,19 @@ function butonTemizle(field){
       var tarih = new Date();
       var sonuc = tarih.valueOf().toString().substr(8,13) + tarih.getUTCMilliseconds();
      return sonuc;
+  }
+
+  function inputKontrol(field){
+    var sonuc = true;
+
+    $(field + " input,"+field+" textarea").each(function(){
+      if($(this).val() == ''){
+        sonuc = false;
+        return sonuc;
+      }
+    });
+
+    return sonuc;
   }
 
 /* ------------ Ortak Fonksiyonlar Son ----------*/
