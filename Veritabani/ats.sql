@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 13 Haz 2016, 19:15:59
+-- Üretim Zamanı: 27 Haz 2016, 13:41:23
 -- Sunucu sürümü: 10.1.13-MariaDB
 -- PHP Sürümü: 5.6.20
 
@@ -41,7 +41,10 @@ CREATE TABLE `adres` (
 INSERT INTO `adres` (`id`, `kullanici_id`, `il`, `ilce`, `acikAdres`) VALUES
 (2, 1, 'İstanbul', 'Beylikdüzü', 'asdasdas'),
 (3, 4, 'Ankara', 'Mamak', 'adasd'),
-(4, 23, 'Ankara', 'Kızılay', 'Kızılay');
+(4, 23, 'Ankara', 'Kızılay', 'Kızılay'),
+(5, 25, 'Ankara', 'Mamak', 'adsd'),
+(6, 27, 'Ankara', 'Mamak', 'as'),
+(7, 5, 'Ankara', 'Mamak', 'zx');
 
 -- --------------------------------------------------------
 
@@ -57,6 +60,13 @@ CREATE TABLE `alarm` (
   `bitis_zaman` varchar(45) NOT NULL,
   `durum` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Tablo döküm verisi `alarm`
+--
+
+INSERT INTO `alarm` (`id`, `sensor_id`, `tip`, `baslangic_zaman`, `bitis_zaman`, `durum`) VALUES
+(1, 1, 'test', '', '', 'aktif');
 
 -- --------------------------------------------------------
 
@@ -78,19 +88,7 @@ CREATE TABLE `birim` (
 
 INSERT INTO `birim` (`id`, `ad`, `il`, `ilce`, `adres`) VALUES
 (1, 'Avcılar Sağlık Ocağı', 'İstanbul', 'Avcılar', 'deeeeeew'),
-(2, 'Mamak Sağlık Ocağı', 'Ankara', 'Mamak', 'Mamak Caddesi Merkez Camii'),
-(9, 'Test', 'Ankara', 'Kızılay', 'asda'),
-(10, 'Deneme', 'Ankara', 'Kızılay', 'asda'),
-(11, 'qweqwe', 'İstanbul', 'Beylikdüzü', 'asd'),
-(12, 'aqwe', 'Ankara', 'Kızılay', 'asda'),
-(13, 'xzc', 'Ankara', 'Kızılay', 'asdsa'),
-(14, 'xzxz', 'İstanbul', 'Beylikdüzü', 'asas'),
-(15, 'zxc', 'Ankara', 'Mamak', 'zxczxc'),
-(16, 'zxczx', 'Ankara', 'Mamak', 'qwe'),
-(17, 'Test', 'İstanbul', 'Beylikdüzü', 'as'),
-(18, 'Yeni Birim', 'İstanbul', 'Avcılar', 'adasd'),
-(19, 'adafvcx', 'Ankara', 'Kızılay', 'hj'),
-(20, '', '', '', '');
+(2, 'Mamak Sağlık Ocağı', 'Ankara', 'Mamak', 'Mamak Caddesi Merkez Camii');
 
 -- --------------------------------------------------------
 
@@ -131,7 +129,8 @@ CREATE TABLE `dolap_tip` (
 --
 
 INSERT INTO `dolap_tip` (`id`, `ad`, `aktifMi`) VALUES
-(15, 'Buzdolabı', 1);
+(1, 'Buzdolabı', 1),
+(3, 'No-Frost', 1);
 
 -- --------------------------------------------------------
 
@@ -192,8 +191,10 @@ CREATE TABLE `iletisim` (
 --
 
 INSERT INTO `iletisim` (`id`, `kullanici_id`, `tip`, `deger`) VALUES
-(4, 1, 'Cep Telefonu', '538899490'),
-(5, 4, 'İş', 'asdasd');
+(4, 1, 'E-posta', 'zekiiikus@gmail.com'),
+(5, 4, 'İş', 'asdasd'),
+(6, 1, 'Cep Telefonu', '53889949078'),
+(7, 5, 'E-posta', 'abc@hot.com');
 
 -- --------------------------------------------------------
 
@@ -214,7 +215,7 @@ CREATE TABLE `imha` (
 --
 
 INSERT INTO `imha` (`id`, `urun_id`, `tarih`, `tuketim_neden`, `aciklama`) VALUES
-(7, 123, '12-06-2016 15:16:01', 'Bozuldu', 'asd');
+(1, 1, '14-06-2016 14:45:20', 'Bozuldu', '?mha Edildi');
 
 -- --------------------------------------------------------
 
@@ -238,16 +239,9 @@ CREATE TABLE `kullanici` (
 --
 
 INSERT INTO `kullanici` (`id`, `tcNo`, `ad`, `soyad`, `tip`, `kullaniciAdi`, `kullaniciSifre`, `birimID`) VALUES
-(1, 542, 'Zeki', 'Kuş', 'test', 'zkus', 'kuslar', 18),
-(4, 456, 'Akif', 'Taş', 'test', 'akif', 'tas', 17),
-(16, 123123, 'asd', 'asd', 'test', 'ads', 'asd', 0),
-(17, 1231233, 'ads', 'asd', 'test', 'asd', 'ads', 0),
-(18, 5555, 'asd', 'ad', 'test', 'ads', 'ads', 0),
-(19, 1111, 'asd', 'asd', 'test', 'ads', 'asd', 0),
-(20, 21343, 'asd', 'sad', 'test', 'asd', 'asd', 0),
-(21, 1231234, 'asd', 'asd', 'test', 'as', 'a', 0),
-(22, 123111, 'asd', 'ad', 'test', 'asd', 'asd', 0),
-(23, 3333, 'a', 'a', 'test', 'a', 'a', 18);
+(1, 542, 'Zeki', 'Kuş', 'test', 'zkus', '2785cd74acf4735dc993305ae43e3106', 1),
+(4, 456, 'Akif', 'Taş', 'test', 'akif', 'tas', 1),
+(5, 77879, 'A', 'A', 'test', 'A', 'A', 0);
 
 -- --------------------------------------------------------
 
@@ -270,7 +264,9 @@ CREATE TABLE `sicaklik` (
 INSERT INTO `sicaklik` (`id`, `sensor_id`, `sicaklik_deger`, `kayit_zamani`, `olcum_zamani`) VALUES
 (1, 1, '45', '', ''),
 (2, 2, '55', '', ''),
-(3, 2, '76', '', '');
+(3, 2, '76', '', ''),
+(4, 4, '15', '', ''),
+(5, 4, '8', '', '');
 
 -- --------------------------------------------------------
 
@@ -290,9 +286,8 @@ CREATE TABLE `sicakliktakipcihazi` (
 --
 
 INSERT INTO `sicakliktakipcihazi` (`id`, `stokbirim_id`, `cihaz_durum`, `alarm_uret`) VALUES
-(1, 1, '1', 1),
-(2, 1, '1', 1),
-(3, 1, '1', 1);
+(1, 1, 'Aktif', 1),
+(4, 5, '1', 1);
 
 -- --------------------------------------------------------
 
@@ -304,8 +299,20 @@ CREATE TABLE `stok` (
   `stok_id` int(11) NOT NULL,
   `stokbirim_id` int(11) NOT NULL,
   `urun_id` int(11) NOT NULL,
-  `aciklama` varchar(45) NOT NULL
+  `tag_id` varchar(45) NOT NULL,
+  `aciklama` varchar(45) NOT NULL,
+  `tarih` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Tablo döküm verisi `stok`
+--
+
+INSERT INTO `stok` (`stok_id`, `stokbirim_id`, `urun_id`, `tag_id`, `aciklama`, `tarih`) VALUES
+(2, 1, 2, '0', 'Deneme', ''),
+(3, 1, 1, '0', 'asd', ''),
+(114, 5, 2, '42cc496', '', '24.06.2016 20:16:55'),
+(115, 5, 1, '148fc496', '', '24.06.2016 20:16:55');
 
 -- --------------------------------------------------------
 
@@ -323,15 +330,43 @@ CREATE TABLE `stok_birim` (
   `marka` varchar(45) NOT NULL,
   `model` varchar(45) NOT NULL,
   `uretim_tarihi` varchar(45) NOT NULL,
-  `tanim` varchar(45) NOT NULL
+  `tanim` varchar(45) NOT NULL,
+  `sicaklik_alt_limit` int(3) NOT NULL,
+  `sicaklik_ust_limit` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Tablo döküm verisi `stok_birim`
 --
 
-INSERT INTO `stok_birim` (`id`, `ad`, `sensor_id`, `birim_id`, `aciklama`, `hacim`, `marka`, `model`, `uretim_tarihi`, `tanim`) VALUES
-(1, 'Stok Birim 1', 1, 1, 'asD', '', '', '', '', '');
+INSERT INTO `stok_birim` (`id`, `ad`, `sensor_id`, `birim_id`, `aciklama`, `hacim`, `marka`, `model`, `uretim_tarihi`, `tanim`, `sicaklik_alt_limit`, `sicaklik_ust_limit`) VALUES
+(1, 'Stok Birim 1', 2, 1, 'asD', '150', 'Arçelik', 'A-520', '17.07.2016', 'Buzdolabı', 10, -8),
+(2, 'Stok Birim 2', 1, 18, '', '', '', '', '', '', 0, 0),
+(3, 'D-52218218', 4, 18, 'asd', '250', 'Beko', 'B-101', '15.06.2010', '', 5, -15),
+(5, 'D-17101101', 4, 1, 'Yeni Stok Birim', '250', 'Altus', 'A-850', '15.06.2017', 'No-Frost', 5, -8);
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `stok_cikis`
+--
+
+CREATE TABLE `stok_cikis` (
+  `id` int(11) NOT NULL,
+  `stokbirim_id` int(11) NOT NULL,
+  `urun_id` int(11) NOT NULL,
+  `aciklama` varchar(45) NOT NULL,
+  `tarih` varchar(45) NOT NULL,
+  `tuketim_nedeni` varchar(45) NOT NULL,
+  `uygulanan_tc` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Tablo döküm verisi `stok_cikis`
+--
+
+INSERT INTO `stok_cikis` (`id`, `stokbirim_id`, `urun_id`, `aciklama`, `tarih`, `tuketim_nedeni`, `uygulanan_tc`) VALUES
+(1, 1, 2, '', '06.14.2016', 'Hastaya Uygulandı', 123);
 
 -- --------------------------------------------------------
 
@@ -341,7 +376,8 @@ INSERT INTO `stok_birim` (`id`, `ad`, `sensor_id`, `birim_id`, `aciklama`, `haci
 
 CREATE TABLE `transfer` (
   `transfer_id` int(11) NOT NULL,
-  `stokbirim_id` int(11) NOT NULL,
+  `kaynak_sb_id` int(11) NOT NULL,
+  `hedef_sb_id` int(11) NOT NULL,
   `urun_id` int(11) NOT NULL,
   `aciklama` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -410,7 +446,8 @@ CREATE TABLE `urun` (
 --
 
 INSERT INTO `urun` (`id`, `uretici_id`, `tanim_id`, `ad`, `tag_id`, `aciklama`, `doz`, `seans_tipi`, `seans_sayisi`, `kullanim_suresi`) VALUES
-(1, 14, 1, 'asd', '123', 'asd', '1250', '1', 'ad', 'asd');
+(1, 14, 1, 'Abdi İbrahim Hepatit C', '123', 'asd', '1250', '1', 'ad', '2016-06-16'),
+(2, 21, 1, 'Bayer Hepatit B', '1234', 'asd', '150', '1', '25', '2016-06-25');
 
 -- --------------------------------------------------------
 
@@ -465,7 +502,8 @@ ALTER TABLE `config`
 -- Tablo için indeksler `dolap_tip`
 --
 ALTER TABLE `dolap_tip`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `ad` (`ad`);
 
 --
 -- Tablo için indeksler `il`
@@ -520,7 +558,15 @@ ALTER TABLE `stok`
 -- Tablo için indeksler `stok_birim`
 --
 ALTER TABLE `stok_birim`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `ad` (`ad`);
+
+--
+-- Tablo için indeksler `stok_cikis`
+--
+ALTER TABLE `stok_cikis`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uygulanan_tc` (`uygulanan_tc`);
 
 --
 -- Tablo için indeksler `transfer`
@@ -560,22 +606,22 @@ ALTER TABLE `uruntanim`
 -- Tablo için AUTO_INCREMENT değeri `adres`
 --
 ALTER TABLE `adres`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- Tablo için AUTO_INCREMENT değeri `alarm`
 --
 ALTER TABLE `alarm`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Tablo için AUTO_INCREMENT değeri `birim`
 --
 ALTER TABLE `birim`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Tablo için AUTO_INCREMENT değeri `dolap_tip`
 --
 ALTER TABLE `dolap_tip`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Tablo için AUTO_INCREMENT değeri `ilce`
 --
@@ -585,36 +631,41 @@ ALTER TABLE `ilce`
 -- Tablo için AUTO_INCREMENT değeri `iletisim`
 --
 ALTER TABLE `iletisim`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- Tablo için AUTO_INCREMENT değeri `imha`
 --
 ALTER TABLE `imha`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Tablo için AUTO_INCREMENT değeri `kullanici`
 --
 ALTER TABLE `kullanici`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Tablo için AUTO_INCREMENT değeri `sicaklik`
 --
 ALTER TABLE `sicaklik`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Tablo için AUTO_INCREMENT değeri `sicakliktakipcihazi`
 --
 ALTER TABLE `sicakliktakipcihazi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- Tablo için AUTO_INCREMENT değeri `stok`
 --
 ALTER TABLE `stok`
-  MODIFY `stok_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `stok_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 --
 -- Tablo için AUTO_INCREMENT değeri `stok_birim`
 --
 ALTER TABLE `stok_birim`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- Tablo için AUTO_INCREMENT değeri `stok_cikis`
+--
+ALTER TABLE `stok_cikis`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Tablo için AUTO_INCREMENT değeri `transfer`
@@ -635,7 +686,7 @@ ALTER TABLE `uretici`
 -- Tablo için AUTO_INCREMENT değeri `urun`
 --
 ALTER TABLE `urun`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Tablo için AUTO_INCREMENT değeri `uruntanim`
 --
