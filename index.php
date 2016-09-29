@@ -48,7 +48,7 @@
 						<ul class="sub-list">
 							<li><a href="index.php?s=stok"><span class="glyphicon glyphicon-save"></span> Stok Takip</a></li>
 							<li><a href="index.php?s=stokKabul"><span class="glyphicon glyphicon-save"></span> Stok Giriş İşlemleri</a></li>
-							<li><a href="#"><span class="glyphicon glyphicon-open"></span> Stok Çıkış İşlemleri</a></li>
+							<li><a href="index.php?s=stokCikis"><span class="glyphicon glyphicon-open"></span> Stok Çıkış İşlemleri</a></li>
 						</ul>
 					</div>				
 				</li>

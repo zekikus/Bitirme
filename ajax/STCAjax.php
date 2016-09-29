@@ -145,7 +145,8 @@
 		           'overlay' : '0.6',
 		           'top' : '50px'
 		        });
-		    	$('#sicaklikDetay').toggle();</script>";
+		    	$('#sicaklikDetay').toggle();
+		    	alert(".$deger.")</script>";
 
 		$kontrol = new STCKontrol();
 		$sonuc = $kontrol -> listele("SELECT sensor_id, sicaklik_deger, kayit_zamani, olcum_zamani FROM sicaklik WHERE sensor_id = $deger");

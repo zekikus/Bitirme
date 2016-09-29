@@ -29,7 +29,7 @@
 	function kayitEkle($uid,$tagID,$bid){
 
 		$kontrol = new StokKabulKontrol();
-		$kayitSayisi = $kontrol -> etkilenenKayitSayisi("SELECT stok_id FROM stok WHERE tag_id = '".$tagID."' and aciklama = '".$bid."'");
+		$kayitSayisi = $kontrol -> etkilenenKayitSayisi("SELECT stok_id FROM stok WHERE tag_id = '".$tagID."'");
 
 		if($kayitSayisi == 0){
 			$sorgu = "INSERT INTO `stok`(`stok_id`, `stokbirim_id`, `urun_id`, `tag_id`, `aciklama`, `tarih`) VALUES (NULL,0,".$uid.",'".$tagID."','".$bid."','Test')";

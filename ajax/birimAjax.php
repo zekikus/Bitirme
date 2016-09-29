@@ -169,7 +169,7 @@
 		$id = $query['birimID'];
 		
 		$kontrol = new BirimKontrol();
-		$sonuc = $kontrol -> listele("SELECT u.ad,u.doz FROM stok s,urun u WHERE s.urun_id = u.id and s.stokbirim_id =  $id");
+		$sonuc = $kontrol -> listele("SELECT u.ad,u.doz FROM stok s,urun u WHERE s.urun_id = u.id and s.stokbirim_id IN (SELECT id FROM stok_birim WHERE birim_id = $id)");
 
 		echo "<table class='table table-striped'>
 		<tr>

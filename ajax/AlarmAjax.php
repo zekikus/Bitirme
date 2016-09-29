@@ -94,7 +94,4 @@
 		}
 		echo "</table>";
 	}
-
-
-	//onclick="test('this','dolapTipiAjax');"
 ?>
