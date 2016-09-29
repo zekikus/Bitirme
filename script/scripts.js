@@ -340,6 +340,28 @@ function ajaxGiris(islemtip,content){
 } 
 /* ---------- Login Fonksiyonlari Son-----------*/
 
+/* ---------- Stok Çıkış Fonksiyonları ---------*/
+function ajaxStokCikis(islemtip){
+  var bilgi = { 
+                    uID : $("#rfuID").val(),
+                    tag_id : $('#rfTag').val(),
+                    tc: $("#rfTC").val(),
+                    rfTN : $("#rfTN option:selected").val(),
+                    islem : islemtip
+        };
+
+   $.ajax({
+        type: 'post',
+        data : {query : bilgi},
+        url: 'ajax/stokCikisAjax.php',
+        success: function(result) {
+          $(".header").html(result);
+        }
+    });
+}
+
+/*--------- Stok Çıkış Fonksiyonları Son ------------*/
+
 /* ------------ Ortak Fonksiyonlar ----------*/
 
 $('.modal_close').click(function(){
