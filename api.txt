@@ -1,0 +1,31 @@
+### Stok Birim ####
+
+- getStokBirimById : Gelen ýd deðerine göre stok birim sonuçlarýný getirir.
+- getStokBirimInfoById : Gelen id deðerine göre stok birim detaylý bilgilerini getirir.
+- getStokById : Gelen stok birim id deðerine göre stok birimine ait stok bilgilerini getirir.
+- getSicaklikById : Gelen stok birim id deðerine göre stok biriminde bulunan sýcaklýk takip cihazýna ait sýcaklýk bilgilerini getirir.
+
+### Urun ###
+
+- getAllSehir : Bütün illeri döndürür.
+- getUrunByTagOrName : Gelen tag_id ve urun adýna göre ilgili ürünleri listeler. Tag_id,urun adý veya her ikiside boþ geçilebilir.Bu þekilde bütün ürün kayýtlarý listelenir.
+- getUrunInfoById : Gelen urun_id deðerine ait ürün bilgilerini listeler.
+
+## Birim ##
+
+- getBirimByIlceName : Gelen il_ad ve ilce_ad deðerlerine göre uygun birimleri listeler.
+- getBirimInfoById : Gelen birim_id deðerine göre birimin detaylý bilgilerini getirir.
+- getBirimStokById : Gelen birim_id deðerine göre birimde bulunan stok bilgisini getirir.
+- getBirimKullanýcýById : Gelen birim_id deðerine birimde uyarý alacak kullanýcý bilgisini getirir.
+
+## Sýcaklýk Takip Cihazý ##
+
+- getStcById : Gelen stc_id deðerine uygun sýcaklýk takip cihazlarýný listeler.
+- getStcSicaklikById: Gelen stc_id deðerinin ölçtüðü sýcaklýk bilgilerini listeler.
+
+## Kullanýcý ##
+
+- getKullaniciById : Gelen tc_no bilgisine uygun kullanýcýyý listeler.
+- getKullaniciInfoById : Gelen kullanici_id deðerine uygun kullanýcý bilgilerini getirir.
+- getKullaniciAdresById : Gelen kullanici_id deðerine göre kullanýcýya ait adres bilgilerini getirir.
+- getKullaniciIletisimById : Gelen kullanici_id deðerine göre kullanýcýya ait iletiþim bilgilerini getirir.
