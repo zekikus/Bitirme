@@ -4,7 +4,7 @@
 	* Dolap Tipi DAO
 	*/
 
-	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/BirimIslemleri.php");
+	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/OrtakIslemler.php");
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/api/jsonManager.php");
 
 	class DolapTipiDAO extends jsonManager
@@ -14,7 +14,7 @@
 		
 		function __construct()
 		{
-			$this -> dolapTipiIslem = new BirimIslemleri();
+			$this -> dolapTipiIslem = new OrtakIslem();
 		}
 
 		public function getDolapTipiByName($dolap_ad){

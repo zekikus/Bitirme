@@ -4,7 +4,7 @@
 	* Sehir DAO
 	*/
 
-	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/BirimIslemleri.php");
+	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/OrtakIslemler.php");
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/api/jsonManager.php");
 
 	class UrunDAO extends jsonManager
@@ -14,11 +14,11 @@
 		
 		function __construct()
 		{
-			$this -> urunIslem = new BirimIslemleri();
+			$this -> urunIslem = new OrtakIslem();
 		}
 
 		public function getUrunByTagOrName($tag_id,$urun_ad){
-			$query = "SELECT u.id,u.ad,u.tag_id,ut.ad as 'TanimAd' FROM urun u,uruntanim ut WHERE u.tanim_id = ut.id and u.tag_id LIKE '%".$tag_id."%' and u.ad LIKE '%".$urun_ad."%'";
+			$query = "SELECT u.id,u.ad,u.tag_id,ut.ad as 'TanimAd',u.kullanim_suresi,u.doz FROM urun u,uruntanim ut WHERE u.tanim_id = ut.id and u.tag_id LIKE '%".$tag_id."%' and u.ad LIKE '%".$urun_ad."%'";
 			$this -> listele($query);
 		}
 

@@ -4,7 +4,7 @@
 	* Sehir DAO
 	*/
 
-	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/BirimIslemleri.php");
+	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/OrtakIslemler.php");
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/api/jsonManager.php");
 
 	class UreticiDAO extends jsonManager
@@ -14,7 +14,7 @@
 		
 		function __construct()
 		{
-			$this -> ureticiIslem = new BirimIslemleri();
+			$this -> ureticiIslem = new OrtakIslem();
 		}
 		
 		public function getUreticiByName($uretici_ad){

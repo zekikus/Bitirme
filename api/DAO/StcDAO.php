@@ -4,7 +4,7 @@
 	* Sehir DAO
 	*/
 
-	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/BirimIslemleri.php");
+	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/OrtakIslemler.php");
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/api/jsonManager.php");
 
 	class StcDAO extends jsonManager
@@ -14,7 +14,7 @@
 		
 		function __construct()
 		{
-			$this -> stcIslem = new BirimIslemleri();
+			$this -> stcIslem = new OrtakIslem();
 		}
 
 		public function getStcById($stc_id){

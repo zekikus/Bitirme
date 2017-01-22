@@ -4,7 +4,7 @@
 	* TuketimNedeni
 	*/
 
-	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/BirimIslemleri.php");
+	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/OrtakIslemler.php");
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/api/jsonManager.php");
 
 	class TuketimNedeniDAO extends jsonManager
@@ -14,7 +14,7 @@
 		
 		function __construct()
 		{
-			$this -> tuketimNedeniIslem = new BirimIslemleri();
+			$this -> tuketimNedeniIslem = new OrtakIslem();
 		}
 
 		public function getTuketimNedeniByName($tuketim_nedeni){

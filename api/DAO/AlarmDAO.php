@@ -4,7 +4,7 @@
 	* Sehir DAO
 	*/
 
-	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/BirimIslemleri.php");
+	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/OrtakIslemler.php");
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/api/jsonManager.php");
 
 	class AlarmDAO extends jsonManager
@@ -14,7 +14,7 @@
 		
 		function __construct()
 		{
-			$this -> alarmIslem = new BirimIslemleri();
+			$this -> alarmIslem = new OrtakIslemler();
 		}
 
 		public function getAlarmByIdOrStcNo($alarm_no,$stc_no){

@@ -4,7 +4,7 @@
 	* StokBirim DAO
 	*/
 
-	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/StokBirimIslemleri.php");
+	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/OrtakIslemler.php");
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/api/jsonManager.php");
 
 	class StokBirimDAO extends jsonManager
@@ -14,7 +14,7 @@
 		
 		function __construct()
 		{
-			$this -> stokBirim = new StokBirimIslemleri();
+			$this -> stokBirim = new OrtakIslem();
 		}
 
 		public function getStokBirimById($birim_id){
