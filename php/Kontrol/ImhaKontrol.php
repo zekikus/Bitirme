@@ -1,14 +1,14 @@
 <?php
 	
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Kontrol/IKontrol.php");
-	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/ImhaIslemleri.php");
+	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/OrtakIslemler.php");
 
 	class ImhaKontrol implements IKontrol{
 
 		private $islem;
 
 		public function __construct(){
-			$this -> islem = new ImhaIslem();
+			$this -> islem = new OrtakIslem();
 		}
 
 		public function kaydet($sorgu){
