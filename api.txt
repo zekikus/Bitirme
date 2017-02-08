@@ -29,3 +29,24 @@
 - getKullaniciInfoById : Gelen kullanici_id deðerine uygun kullanýcý bilgilerini getirir.
 - getKullaniciAdresById : Gelen kullanici_id deðerine göre kullanýcýya ait adres bilgilerini getirir.
 - getKullaniciIletisimById : Gelen kullanici_id deðerine göre kullanýcýya ait iletiþim bilgilerini getirir.
+
+##Tüketim Nedeni ##
+
+- getTuketimNedeniByName/ : Gelen string ifadeye göre tüketim nedenlerini listeler.
+
+## Üretici ##
+
+- getUreticiByName/ : Gelen string ifadeye göre üreticileri listeler.
+
+## Alarm ##
+
+- getAlarmByIdOrStcNo/id/?/stcno/? : Gelen id veya stcnoya göre alarmlarý listeler.
+
+## DolapTipi ##
+
+- getDolapTipiByName/? : Gelen string deðere göre dolap tiplerini listeler.
+
+## Ürün Taným ##
+
+- getUrunTanimByName/? : Gelen string deðere göre ürün tanýmlarýný listeler.
+
