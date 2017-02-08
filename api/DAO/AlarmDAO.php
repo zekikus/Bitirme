@@ -14,7 +14,7 @@
 		
 		function __construct()
 		{
-			$this -> alarmIslem = new OrtakIslemler();
+			$this -> alarmIslem = new OrtakIslem();
 		}
 
 		public function getAlarmByIdOrStcNo($alarm_no,$stc_no){
