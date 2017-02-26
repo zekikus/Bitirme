@@ -8,7 +8,7 @@
 ### Urun ###
 
 - getAllSehir : Bütün illeri döndürür.
-- getUrunByTagOrName : Gelen tag_id ve urun adýna göre ilgili ürünleri listeler. Tag_id,urun adý veya her ikiside boþ geçilebilir.Bu þekilde bütün ürün kayýtlarý listelenir.
+- getUrunByTagOrName/tag/?/name/? : Gelen tag_id ve urun adýna göre ilgili ürünleri listeler. Tag_id,urun adý veya her ikiside boþ geçilebilir.Bu þekilde bütün ürün kayýtlarý listelenir.
 - getUrunInfoById : Gelen urun_id deðerine ait ürün bilgilerini listeler.
 
 ## Birim ##
@@ -37,6 +37,7 @@
 ## Üretici ##
 
 - getUreticiByName/ : Gelen string ifadeye göre üreticileri listeler.
+- getUreticiById/ : Gelen int ifadeye göre üretici detaylý bilgilerini listeler.
 
 ## Alarm ##
 

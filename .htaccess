@@ -19,6 +19,7 @@ RewriteRule ^api/getIlceByID/([0-9]+)$   api/RestControllers/SehirRest.php?view=
 RewriteRule ^api/getTuketimNedeniByName/([a-zA-Z0-9]*)$   api/RestControllers/TuketimNedeniRest.php?view=byName&name=$1 [nc,qsa]
 
 RewriteRule ^api/getUreticiByName/([a-zA-Z0-9]*)$   api/RestControllers/UreticiRest.php?view=byName&name=$1 [nc,qsa]
+RewriteRule ^api/getUreticiById/([0-9]*)$   api/RestControllers/UreticiRest.php?view=byId&id=$1 [nc,qsa]
 
 ## Urun ##
 RewriteRule ^api/getUrunByTagOrName/tag/?([^/])*/name/?([^/]*)$   api/RestControllers/UrunRest.php?view=byTagOrName&tag=$1&name=$2 [nc,qsa]
@@ -29,7 +30,7 @@ RewriteRule ^api/getUrunInfoById/([0-9]+)$   api/RestControllers/UrunRest.php?vi
 RewriteRule ^api/getAlarmByIdOrStcNo/id/?([^/])*/stcno/?([^/]*)$   api/RestControllers/AlarmRest.php?view=byIdOrStcNo&id=$1&stcno=$2 [nc,qsa]
 
 ## Birim ##
-RewriteRule ^api/getBirimByIlceName/il/([^/])*/ilce/([^/]*)$   api/RestControllers/BirimRest.php?view=byIlceName&il=$1&ilce=$2 [nc,qsa]
+RewriteRule ^api/getBirimByIlceName/il/?([^/])*/ilce/?([^/]*)$   api/RestControllers/BirimRest.php?view=byIlceName&il=$1&ilce=$2 [nc,qsa]
 RewriteRule ^api/getBirimInfoById/([0-9]+)$   api/RestControllers/BirimRest.php?view=biriminfo&id=$1 [nc,qsa]
 RewriteRule ^api/getBirimStokById/([0-9]+)$   api/RestControllers/BirimRest.php?view=birimstokbyid&id=$1 [nc,qsa]
 RewriteRule ^api/getBirimKullaniciById/([0-9]+)$   api/RestControllers/BirimRest.php?view=birimkullanicibyid&id=$1 [nc,qsa]
@@ -49,3 +50,4 @@ RewriteRule ^api/getKullaniciByTC/([0-9]+)$   api/RestControllers/KullaniciRest.
 RewriteRule ^api/getKullaniciInfoById/([0-9]+)$   api/RestControllers/KullaniciRest.php?view=byId&id=$1 [nc,qsa]
 RewriteRule ^api/getKullaniciAdresById/([0-9]+)$   api/RestControllers/KullaniciRest.php?view=adresbyid&id=$1 [nc,qsa]
 RewriteRule ^api/getKullaniciIletisimById/([0-9]+)$   api/RestControllers/KullaniciRest.php?view=iletisimbyid&id=$1 [nc,qsa]
+RewriteRule ^api/getKullaniciByBirimID/([0-9]+)$   api/RestControllers/KullaniciRest.php?view=birimbyid&id=$1 [nc,qsa]
