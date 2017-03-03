@@ -21,6 +21,11 @@
 			$query = "SELECT * FROM dolap_tip WHERE ad LIKE '%".$dolap_ad."%'";
 			$this -> listele($query);
 		}
+		
+		public function getDolapTipiById($dolap_id){
+			$query = "SELECT * FROM dolap_tip WHERE id LIKE '".$dolap_id."'";
+			$this -> listele($query);
+		}
 
 		public function listele($query){
 			$result = $this -> dolapTipiIslem -> listele($query);

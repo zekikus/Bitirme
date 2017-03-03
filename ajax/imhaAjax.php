@@ -1,7 +1,9 @@
 <?php
 	
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Kontrol/ImhaKontrol.php");
-
+	session_start();
+	$myDefines = include("myDefines.php");
+	$kontrol = new ImhaKontrol();
 
 	if(isset($_POST['query'])){
 
@@ -22,7 +24,7 @@
 
 
 	function kayitEkle($query){
-
+		global $kontrol;
 		$urun_id = $query["urun_id"];
 		$tarih = $query["tarih"];
 		$tuketim = $query["tuketim"];
@@ -31,15 +33,12 @@
 
 		$sorgu = "INSERT INTO `imha` (`id`, `urun_id`, `tarih`, `tuketim_neden`, `aciklama`) VALUES (NULL, '".$urun_id."', '".$tarih."', '".$tuketim."', '".$aciklama."')";
 
-		$kontrol = new ImhaKontrol();
 		$kontrol -> kaydet($sorgu);
-
 	}
 
 	function kayitSil($deger){
 
-		$kontrol = new ImhaKontrol();
-		
+		global $kontrol;
 		$sorgu_stok = "SELECT * FROM stok WHERE urun_id = $deger";
 		
 		$etkilenenStok = $kontrol -> etkilenenKayitSayisi($sorgu_stok);
@@ -55,31 +54,26 @@
 	}
 
 	function kayitListele($deger){
-
-		$kontrol = new ImhaKontrol();
+		global $myDefines,$kontrol;
+		
 		$sonuc = $kontrol -> listele("SELECT * FROM imha WHERE urun_id LIKE '%".$deger."%'");
 
 		echo "<table class='table table-striped'>
-		<tr>
-					<th>Ürün No</th>
-					<th>İşlem Tarihi</th>
-					<th>Tüketim Nedeni</th>
-					<th>Açıklama</th>
-					<th>İşlem</th>
-				</tr>
-
-		";
+				<tr>";
+					foreach ($myDefines["imhaHeaderNames"] as $headerName) {
+						echo "<th>".$headerName."</th>";
+					}
+		echo	"</tr>";
 		while ($satir = mysqli_fetch_assoc($sonuc)) {
 
-			echo "
-				<tr>
-					<td>".$satir["urun_id"]."</td>
-					<td>".$satir["tarih"]."</td>
-					<td>".$satir["tuketim_neden"]."</td>
-					<td>".$satir["aciklama"]."</td>
-					<td>
-						<button id='silBtn' onclick=\"ajaxSil(this,'imhaAjax');\" value=".$satir["urun_id"].">İmha Et</button>
-					</td>
+			echo "<tr>";
+					foreach ($myDefines["imhaColNames"] as $colName) {
+						echo "<td>".$satir[$colName]."</td>";
+					}
+			echo  "<td>";
+						if($_SESSION["kullanici"] == -1)
+							echo "<button id='silBtn' onclick=\"ajaxSil(this,'imhaAjax');\" value=".$satir["urun_id"].">İmha Et</button>";
+					"</td>
 				</tr>
 			";
 		}

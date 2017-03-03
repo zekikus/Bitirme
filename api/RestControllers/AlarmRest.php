@@ -13,6 +13,8 @@
 		case 'byIdOrStcNo':
 			$alarmDAO -> getAlarmByIdOrStcNo($_GET['id'],$_GET['stcno']);
 			break;
+		case 'infoById':
+			$alarmDAO -> getAlarmInfoById($_GET['id']);
 	}
 
 ?>

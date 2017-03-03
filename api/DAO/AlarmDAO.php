@@ -22,6 +22,11 @@
 			$this -> listele($query);
 		}
 
+		public function getAlarmInfoById($alarm_id){
+			$query = "SELECT * FROM `alarm` WHERE id = '$alarm_id'";
+			$this -> listele($query);
+		}
+
 		public function listele($query){
 			$result = $this -> alarmIslem -> listele($query);
 			$list = array();

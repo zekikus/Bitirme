@@ -1,7 +1,9 @@
 <?php
 	
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Kontrol/BirimKontrol.php");
+	session_start();
 
+	$myDefines = include("myDefines.php");
 
 	if(isset($_POST['query'])){
 
@@ -167,22 +169,23 @@
 
 	function formGetir($query){
 		$id = $query['birimID'];
-		
+		global $myDefines;
 		$kontrol = new BirimKontrol();
-		$sonuc = $kontrol -> listele("SELECT u.ad,u.doz FROM stok s,urun u WHERE s.urun_id = u.id and s.stokbirim_id IN (SELECT id FROM stok_birim WHERE birim_id = $id)");
+		$sonuc = $kontrol -> listele("SELECT u.tag_id,u.ad,u.doz FROM stok s,urun u WHERE s.urun_id = u.id and s.stokbirim_id IN (SELECT id FROM stok_birim WHERE birim_id = $id)");
 
 		echo "<table class='table table-striped'>
-		<tr>
-					<th>Stok Adı</th>
-					<th>Stok Doz</th>
-				</tr>
-		";
+				<tr>";
+					foreach ($myDefines["birimStokHeader"] as $headerName) {
+						echo "<th>".$headerName."</th>";
+					}
+				"</tr>";
 		while ($satir = mysqli_fetch_assoc($sonuc)) {
 			echo "
-				<tr>
-					<td>".$satir["ad"]."</td>
-					<td>".$satir['doz']."</td>
-				</tr>
+				<tr>";
+					foreach ($myDefines["birimStokColNames"] as $colName) {
+						echo "<td>".$satir[$colName]."</td>";
+					}					
+				"</tr>
 			";
 		}
 		echo "</table>";
@@ -193,21 +196,21 @@
 		$id = $query["birimID"];
 		$kontrol = new BirimKontrol();
 		$sonuc = $kontrol -> listele("SELECT ad,soyad,tip FROM kullanici WHERE birimID =  $id");
+		global $myDefines;
 
 		echo "<table class='table table-striped'>
-		<tr>
-					<th>Ad</th>
-					<th>Soyad</th>
-					<th>Kullanıcı Tipi</th>
-				</tr>
-		";
+		<tr>";
+			foreach ($myDefines["birimKullaniciHeader"] as $headerName) {
+				echo "<th>".$headerName."</th>";
+			}				
+		"</tr>";
 		while ($satir = mysqli_fetch_assoc($sonuc)) {
 			echo "
-				<tr>
-					<td>".$satir["ad"]."</td>
-					<td>".$satir['soyad']."</td>
-					<td>".$satir['tip']."</td>
-				</tr>
+				<tr>";
+					foreach ($myDefines["birimKullaniciColNames"] as $colName) {
+						echo "<td>".$satir[$colName]."</td>";
+					}
+				"</tr>
 			";
 		}
 		echo "</table>";
@@ -218,29 +221,28 @@
 		$kontrol = new BirimKontrol();
 		$sonuc = $kontrol -> listele("SELECT * FROM birim  WHERE il LIKE '%".$deger."%' and ilce LIKE '%".$deger1."%'");
 
-		echo "<table class='table table-striped'>
-		<tr>
-					<th>Birim Adı</th>
-					<th>Birim İl</th>
-					<th>Birim İlçe</th>
-					<th>Birim Adres</th>
-					<th>Islemler</th>
-				</tr>
+		global $myDefines;
 
-		";
+		echo "<table class='table table-striped'>
+		<tr>";
+			foreach ($myDefines["birimHeader"] as $key => $headerName) {
+				echo "<th>".$headerName."</th>";	
+			}
+		echo "</tr>";
+
 		while ($satir = mysqli_fetch_assoc($sonuc)) {
-			echo "
-				<tr>
-					<td>".$satir["ad"]."</td>
-					<td>".$satir['il']."</td>
-					<td>".$satir['ilce']."</td>
-					<td>".$satir['adres']."</td>
-					<td>
-						<button id='upBtn' onclick=\"ajaxInputDoldur(this,'birimAjax','doldur');\" value=".$satir["id"].">Guncelle</button>
-						<button id='silBtn' onclick=\"ajaxSil(this,'birimAjax');\" value=".$satir["id"].">Sil</button>
-					</td>
-				</tr>
-			";
+			echo "<tr>";
+					foreach ($myDefines["birimColonNames"] as $key => $colonName) {
+						echo "<td>".$satir[$colonName]."</td>";
+					}
+
+					echo "<td>";
+						if($_SESSION["kullanici"] == -1){
+							echo "<button id='upBtn' onclick=\"ajaxInputDoldur(this,'birimAjax','doldur');\" value=".$satir["id"].">Guncelle</button>
+							<button id='silBtn' onclick=\"ajaxSil(this,'birimAjax');\" value=".$satir["id"].">Sil</button>";
+						}
+					"</td>
+				</tr>";
 		}
 		echo "</table>";
 	}

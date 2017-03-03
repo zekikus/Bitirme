@@ -1,7 +1,8 @@
 <?php
 	
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Kontrol/UrunKontrol.php");
-
+	session_start();
+	$myDefines = include("myDefines.php");
 
 	if(isset($_POST['query'])){
 
@@ -106,30 +107,28 @@
 	}
 
 	function kayitListele($deger,$deger1){
-
+		global $myDefines;
 		$kontrol = new UrunKontrol();
 		$sonuc = $kontrol -> listele("SELECT u.id,u.ad,u.tag_id,ut.ad as 'TanimAd' FROM urun u,uruntanim ut WHERE u.tanim_id = ut.id and u.tag_id LIKE '%".$deger."%' and u.ad LIKE '%".$deger1."%'");
 
 		echo "<table class='table table-striped'>
-		<tr>
-					<th>Ürün Adı</th>
-					<th>Ürün Tanım</th>
-					<th>Ürün No</th>
-					<th>Islemler</th>
-				</tr>
-
-		";
+				<tr>";
+					foreach ($myDefines["urunHeaderNames"] as $headerName) {
+						echo "<th>".$headerName."</th>";
+					}
+		echo	"</tr>";
 		while ($satir = mysqli_fetch_assoc($sonuc)) {
 
-			echo "
-				<tr>
-					<td>".$satir["ad"]."</td>
-					<td>".$satir['TanimAd']."</td>
-					<td>".$satir['tag_id']."</td>
-					<td>
-						<button id='upBtn' onclick=\"ajaxInputDoldur(this,'urunAjax','doldur');\" value=".$satir["id"].">Guncelle</button>
-						<button id='silBtn' onclick=\"ajaxSil(this,'urunAjax');\" value=".$satir["id"].">Sil</button>
-					</td>
+			echo "<tr>";
+					foreach ($myDefines["urunColNames"] as $colName) {
+						echo "<td>".$satir[$colName]."</td>";
+					}
+			echo	"<td>";
+					if($_SESSION["kullanici"] == -1){ 
+						echo "<button id='upBtn' onclick=\"ajaxInputDoldur(this,'urunAjax','doldur');\" value=".$satir["id"].">Guncelle</button>
+							<button id='silBtn' onclick=\"ajaxSil(this,'urunAjax');\" value=".$satir["id"].">Sil</button>";
+					}
+					"</td>
 				</tr>
 			";
 		}

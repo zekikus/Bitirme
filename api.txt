@@ -42,12 +42,15 @@
 ## Alarm ##
 
 - getAlarmByIdOrStcNo/id/?/stcno/? : Gelen id veya stcnoya göre alarmlarý listeler.
+- getAlarmInfoById/? : Gelen id deðerine göre alarm detaylý bilgisini listeler.
 
 ## DolapTipi ##
 
 - getDolapTipiByName/? : Gelen string deðere göre dolap tiplerini listeler.
+- getDolapTipiById/? : Gelen id deðere göre dolap tipi ayrýntýlarýný listeler.
 
 ## Ürün Taným ##
 
 - getUrunTanimByName/? : Gelen string deðere göre ürün tanýmlarýný listeler.
+- getUrunTanimById/? : Gelen id deðerine göre ürün taným ayrýntýlarýný listeler.
 

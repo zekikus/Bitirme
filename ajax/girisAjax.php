@@ -41,6 +41,8 @@
 		$sonuc = $kontrol -> listele("SELECT id,ad,soyad,kullaniciAdi FROM kullanici WHERE id = (SELECT kullanici_id FROM iletisim WHERE deger = '".$query['email']."' LIMIT 1)");
 		$veri = mysqli_fetch_assoc($sonuc);
 
+		echo "<script>alert('".$veri["ad"]."')</script>";
+
 		if($veri['ad'] != ""){	
 			$ySifre = $veri['kullaniciAdi'].substr(mktime(), 0,4);
 			$mail = new PHPMailer();
@@ -58,10 +60,11 @@
 			$content = '<div style="background: #eee; padding: 10px; font-size: 14px">Sayın '.$veri['ad'].' '.$veri['soyad'].' <br/><br/>
 					  <b>Kullanıcı Adınız :</b> '.$veri['kullaniciAdi'].'<br/>
 					  <b>Şifreniz :</b> '.$ySifre.'</div>';
-			echo "<script>alert('Email Başarıyla Gönderildi.');</script>";
-			echo "<script>$('#lgnGonder').removeAttr('disabled');</script>";
+			
 			$mail->MsgHTML($content);
 			$mail->Send();
+			echo "<script>alert('Email Başarıyla Gönderildi.');</script>";
+			echo "<script>$('#lgnGonder').removeAttr('disabled');</script>";
 			sifreGuncelle($veri['id'],$ySifre);
 		}else{
 			echo "<script>alert('Email Sistemde Kayıtlı Değil.Yöneticiye Başvurunuz.');</script>";

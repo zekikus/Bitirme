@@ -18,12 +18,12 @@
 		}
 
 		public function getStokBirimById($birim_id){
-			$query = "SELECT id,ad,tanim,aciklama,hacim FROM stok_birim WHERE birim_id = ".$birim_id."";
+			$query = "SELECT id,ad,tanim,aciklama,hacim,sensor_id FROM stok_birim WHERE birim_id = ".$birim_id."";
 			$this -> listele($query);
 		}
 
 		public function getStokBirimInfoById($birim_id){
-			$query = "SELECT * FROM stok_birim WHERE id = $birim_id LIMIT 1";
+			$query = "SELECT `id`,`ad`,`aciklama`,`hacim`,`marka`,`model`,`uretim_tarihi`,`tanim`,`sicaklik_alt_limit`,`sicaklik_ust_limit` FROM `stok_birim` WHERE id = $birim_id LIMIT 1";
 			$this -> listele($query);
 		}
 

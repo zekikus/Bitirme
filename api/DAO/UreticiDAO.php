@@ -22,6 +22,11 @@
 			$this -> listele($query);
 		}
 
+		public function getUreticiById($uretici_id){
+			$query = "SELECT * FROM uretici WHERE id = '$uretici_id'";
+			$this -> listele($query);
+		}
+
 		public function listele($query){
 			$result = $this -> ureticiIslem -> listele($query);
 			$list = array();

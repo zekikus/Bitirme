@@ -28,7 +28,7 @@
 		}
 
 		public function getBirimStokById($birim_id){
-			$query = "SELECT u.ad,u.doz FROM stok s,urun u WHERE s.urun_id = u.id and s.stokbirim_id IN (SELECT id FROM stok_birim WHERE birim_id = $birim_id)";
+			$query = "SELECT u.tag_id,u.ad,u.doz FROM stok s,urun u WHERE s.urun_id = u.id and s.stokbirim_id IN (SELECT id FROM stok_birim WHERE birim_id = $birim_id)";
 			$this -> listele($query);
 		}
 

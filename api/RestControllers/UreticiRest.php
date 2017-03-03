@@ -13,6 +13,9 @@
 		case 'byName':
 			$ureticiDAO -> getUreticiByName($_GET['name']);
 			break;
+		case 'byId':
+			$ureticiDAO -> getUreticiById($_GET['id']);
+			break;
 	}
 
 ?>

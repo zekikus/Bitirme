@@ -27,6 +27,11 @@
 			$this -> listele($query);
 		}
 
+		public function getKullaniciInfoByBirimId($birim_id){
+			$query = "SELECT ad,soyad,tip FROM kullanici WHERE birimID =  $birim_id";
+			$this -> listele($query);
+		}
+
 		public function getKullaniciAdresById($kullanici_id){
 			$query = "SELECT * FROM adres WHERE kullanici_id = $kullanici_id";
 			$this -> listele($query);

@@ -1,7 +1,8 @@
 <?php
 	
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Kontrol/TuketimNedeniKontrol.php");
-
+	session_start();
+	$myDefines = include("myDefines.php");
 
 	if(isset($_POST['query'])){
 
@@ -88,18 +89,16 @@
 	}
 
 	function kayitListele($deger){
-
+		global $myDefines;
 		$kontrol = new TuketimNedeniKontrol();
 		$sonuc = $kontrol -> listele("SELECT * FROM tuketim_nedeni WHERE tanim LIKE '%".$deger."%'");
 
 		echo "<table class='table table-striped'>
-		<tr>
-					<th>Tanım</th>
-					<th>Aktif Mi</th>
-					<th>Islemler</th>
-				</tr>
-
-		";
+				<tr>";
+					foreach ($myDefines["tnHeaderNames"] as $headerName) {
+						echo "<th>".$headerName."</th>";
+					}
+		echo	"</tr>";
 		while ($satir = mysqli_fetch_assoc($sonuc)) {
 
 			$aktif = ($satir["aktifMi"] == 1) ? "Aktif" : 'Aktif Değil';
@@ -107,15 +106,16 @@
 				<tr>
 					<td>".$satir["tanim"]."</td>
 					<td>".$aktif."</td>
-					<td>
-						<button id='upBtn' onclick=\"ajaxInputDoldur(this,'tuketimNedeniAjax','doldur');\" value=".$satir["id"].">Guncelle</button>
-						<button id='silBtn' onclick=\"ajaxSil(this,'tuketimNedeniAjax');\" value=".$satir["id"].">Sil</button>
-					</td>
-				</tr>
-			";
+					<td>";
+					
+					if($_SESSION["kullanici"] == -1){
+						echo "
+							<button id='upBtn' onclick=\"ajaxInputDoldur(this,'tuketimNedeniAjax','doldur');\" value=".$satir["id"].">Guncelle</button>
+							<button id='silBtn' onclick=\"ajaxSil(this,'tuketimNedeniAjax');\" value=".$satir["id"].">Sil</button>
+						";
+					}
+				"</td></tr>";
 		}
 		echo "</table>";
 	}
-
-	//onclick="test('this','dolapTipiAjax');"
 ?>

@@ -13,6 +13,9 @@
 		case 'byName':
 			$urunTanimDAO -> getUrunTanimByName($_GET['name']);
 			break;
+		case 'byId':
+			$urunTanimDAO -> getUrunTanimById($_GET['id']);
+			break;
 	}
 
 ?>

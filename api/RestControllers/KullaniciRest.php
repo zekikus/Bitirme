@@ -22,6 +22,9 @@
 		case 'iletisimbyid':
 			$kullaniciDAO -> getKullaniciIletisimById($_GET['id']);
 			break;
+		case 'birimbyid':
+			$kullaniciDAO -> getKullaniciInfoByBirimId($_GET['id']);
+			break;
 	}
 
 ?>

@@ -1,7 +1,9 @@
 <?php
 	
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Kontrol/STCKontrol.php");
-
+	session_start();
+	$myDefines = include("myDefines.php");
+	$kontrol = new STCKontrol();
 
 	if(isset($_POST['query'])){
 
@@ -30,10 +32,9 @@
 	}
 
 	function inputDoldur($deger){
-
+		global $kontrol;
 		$sorgu = "SELECT cihaz_durum, alarm_uret FROM sicakliktakipcihazi WHERE id = $deger LIMIT 1";
 		
-		$kontrol = new STCKontrol();
 		$sonuc = $kontrol -> listele($sorgu);
 
 		while ($satir = mysqli_fetch_assoc($sonuc)) {
@@ -56,13 +57,13 @@
 	}
 
 	function kayitGuncelle($query){
+		global $kontrol;
 		$stokbirim_id = $query["stokbirim_id"];
 		$cihaz_durum = $query["cihaz_durum"];
 		$alarm_uret = $query["alarm_uret"];
 		$id = $_COOKIE['stcID'];
 		
 		$sorgu = "UPDATE sicakliktakipcihazi SET stokbirim_id = '".$stokbirim_id."',cihaz_durum = '".$cihaz_durum."', alarm_uret = '".$alarm_uret."' WHERE id = $id";
-		$kontrol = new STCKontrol();
 		$kontrol -> duzenle($sorgu,"guncelle");
 
 		echo "<script>
@@ -74,15 +75,12 @@
 	}
 
 	function kayitEkle($query){
-
+		global $kontrol;
 		$stokbirim_id = $query["stokbirim_id"];
 		$cihaz_durum = $query["cihaz_durum"];
 		$alarm_uret = $query["alarm_uret"];
 
-
 		$sorgu = "INSERT INTO `sicakliktakipcihazi` (`id`, `stokbirim_id`, `cihaz_durum`, `alarm_uret`) VALUES (NULL, '".$stokbirim_id."', '".$cihaz_durum."', '".$alarm_uret."')";
-
-		$kontrol = new STCKontrol();
 		$kontrol -> kaydet($sorgu);
 
 		$sonuc = $kontrol -> listele("SELECT id FROM sicakliktakipcihazi ORDER BY id DESC LIMIT 0,1");
@@ -95,43 +93,41 @@
 	}
 
 	function kayitSil($deger){
-
+		global $kontrol;
 		$sorgu = "DELETE FROM sicakliktakipcihazi WHERE id = $deger";
 
-		$kontrol = new STCKontrol();
 		$kontrol -> duzenle($sorgu,"sil");
 	}
 
 	function kayitListele($deger){
 
-		$kontrol = new STCKontrol();
-		$sonuc = $kontrol -> listele("SELECT sc.*,sb.ad FROM sicakliktakipcihazi sc,stok_birim sb WHERE sc.stokbirim_id = sb.id and sc.id LIKE '%".$deger."%'");
+		global $kontrol,$myDefines;
+		$sonuc = $kontrol -> listele("SELECT sc.*,sb.ad,sb.birim_id FROM sicakliktakipcihazi sc,stok_birim sb WHERE sc.stokbirim_id = sb.id and sc.id LIKE '%".$deger."%'");
 
 		echo "<table class='table table-striped'>
-		<tr>
-					<th>Cihaz ID</th>
-					<th>Stok Birim</th>
-					<th>Alarm Üret</th>
-					<th>Cihaz Durum</th>
-					<th>Islemler</th>
-				</tr>
-
-		";
+				<tr>";
+					foreach ($myDefines["stcHeaderNames"] as $headerName) {
+						echo "<th>".$headerName."</th>";
+					}
+		echo	"</tr>";
 		while ($satir = mysqli_fetch_assoc($sonuc)) {
 
 			$cihaz = ($satir["cihaz_durum"] == 1) ? "Aktif" : 'Aktif Değil';
 			$alarm = ($satir["alarm_uret"] == 1) ? "Aktif" : 'Aktif Değil';
-			echo "
-				<tr>
-					<td>".$satir["id"]."</td>
-					<td>".$satir["ad"]."</td>
-					<td>".$alarm."</td>
+			echo "<tr>";
+					foreach ($myDefines["stcColNames"] as $colName) {
+						echo "<td>".$satir[$colName]."</td>";
+					}
+			echo   "<td>".$alarm."</td>
 					<td>".$cihaz."</td>
-					<td>
-						<button id='detayBtn' onclick=\"ajaxIslemYap(this,'sicaklikListele','#detaySicaklik','STCAjax');\" value=".$satir["id"].">Detay</button>
-						<button id='upBtn' onclick=\"ajaxInputDoldur(this,'STCAjax');\" value=".$satir["id"].">Guncelle</button>
-						<button id='silBtn' onclick=\"ajaxSil(this,'STCAjax');\" value=".$satir["id"].">Sil</button>
-					</td>
+					<td>";
+						$session_Birim = $_SESSION["kullanici"];
+						if($session_Birim == $satir["birim_id"] || $session_Birim == -1){
+							echo "<button id='detayBtn' onclick=\"ajaxIslemYap(this,'sicaklikListele','#detaySicaklik','STCAjax');\" value=".$satir["id"].">Detay</button>
+							<button id='upBtn' onclick=\"ajaxInputDoldur(this,'STCAjax');\" value=".$satir["id"].">Guncelle</button>
+							<button id='silBtn' onclick=\"ajaxSil(this,'STCAjax');\" value=".$satir["id"].">Sil</button>";
+						}
+					"</td>
 				</tr>
 			";
 		}
@@ -139,7 +135,7 @@
 	}
 
 	function sicaklikListele($deger){
-
+		global $kontrol,$myDefines;
 		echo "<script>
 				$('#sicaklikDetay').css({
 		           'overlay' : '0.6',
@@ -148,30 +144,21 @@
 		    	$('#sicaklikDetay').toggle();
 		    	alert(".$deger.")</script>";
 
-		$kontrol = new STCKontrol();
 		$sonuc = $kontrol -> listele("SELECT sensor_id, sicaklik_deger, kayit_zamani, olcum_zamani FROM sicaklik WHERE sensor_id = $deger");
 
 		echo "<table class='table table-striped'>
-		<tr>
-					<th>Cihaz ID</th>
-					<th>Sıcaklık Değer</th>
-					<th>Kayıt Zamanı</th>
-					<th>Ölçüm Zamanı</th>
-				</tr>
-
-		";
+				<tr>";
+					foreach ($myDefines["stcSicaklikHeaderNames"] as $headerName) {
+						echo "<th>".$headerName."</th>";
+					}
+		echo	"</tr>";
 		while ($satir = mysqli_fetch_assoc($sonuc)) {
-			echo "
-				<tr>
-					<td>".$satir["sensor_id"]."</td>
-					<td>".$satir["sicaklik_deger"]."</td>
-					<td>".$satir["kayit_zamani"]."</td>
-					<td>".$satir["olcum_zamani"]."</td>
-				</tr>
-			";
+			echo "<tr>";
+				foreach ($myDefines["stcSicaklikColNames"] as $colName) {
+					echo "<td>".$satir[$colName]."</td>";
+				}
+			echo "</tr>";
 		}
 		echo "</table>";
 	}
-
-	//onclick="test('this','dolapTipiAjax');"
 ?>

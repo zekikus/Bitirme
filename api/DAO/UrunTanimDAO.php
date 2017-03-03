@@ -22,6 +22,11 @@
 			$this -> listele($query);
 		}
 
+		public function getUrunTanimById($urun_tanim_id){
+			$query = "SELECT ad,tip,aciklama FROM uruntanim WHERE id = $urun_tanim_id LIMIT 1";
+			$this -> listele($query);
+		}
+
 		public function listele($query){
 			$result = $this -> urunTanimIslem -> listele($query);
 			$list = array();

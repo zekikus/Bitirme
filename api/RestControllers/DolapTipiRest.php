@@ -13,6 +13,9 @@
 		case 'byName':
 			$dolaptipiDAO -> getDolapTipiByName($_GET['name']);
 			break;
+		case 'byId':
+			$dolaptipiDAO -> getDolapTipiById($_GET['id']);
+			break;
 	}
 
 ?>

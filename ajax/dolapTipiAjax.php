@@ -1,6 +1,7 @@
 <?php
 	
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Kontrol/DolapTipiKontrol.php");
+	$myDefines = include("myDefines.php");
 
 
 	if(isset($_POST['query'])){
@@ -86,18 +87,16 @@
 	}
 
 	function kayitListele($deger){
-
+		global $myDefines;
 		$kontrol = new DolapTipiKontrol();
 		$sonuc = $kontrol -> listele("SELECT * FROM dolap_tip WHERE ad LIKE '%".$deger."%'");
 
 		echo "<table class='table table-striped'>
-		<tr>
-					<th>Ad</th>
-					<th>Aktif Mi</th>
-					<th>Islemler</th>
-				</tr>
-
-		";
+				<tr>";
+					foreach ($myDefines["dtHeaderNames"] as $headerName) {
+						echo "<th>".$headerName."</th>";
+					}
+		echo	"</tr>";
 		while ($satir = mysqli_fetch_assoc($sonuc)) {
 
 			$aktif = ($satir["aktifMi"] == 1) ? "Aktif" : 'Aktif Değil';
@@ -114,6 +113,4 @@
 		}
 		echo "</table>";
 	}
-
-	//onclick="test('this','dolapTipiAjax');"
 ?>

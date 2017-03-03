@@ -1,7 +1,8 @@
 <?php
 	
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Kontrol/UreticiKontrol.php");
-
+	session_start();
+	$myDefines = include("myDefines.php");
 
 	if(isset($_POST['query'])){
 
@@ -84,26 +85,26 @@
 
 	function kayitListele($deger){
 
+		global $myDefines;
 		$kontrol = new UreticiKontrol();
 		$sonuc = $kontrol -> listele("SELECT * FROM uretici WHERE ad LIKE '%".$deger."%'");
 
 		echo "<table class='table table-striped'>
-		<tr>
-					<th>Ad</th>
-					<th>Ulke</th>
-					<th>Islemler</th>
-				</tr>
-
-		";
+				<tr>";
+					foreach ($myDefines["ureticiHeaderNames"] as $headerName) {
+						echo "<th>".$headerName."</th>";
+					}
+		echo	"</tr>";
 		while ($satir = mysqli_fetch_assoc($sonuc)) {
-			echo "
-				<tr>
-					<td>".$satir["ad"]."</td>
-					<td>".$satir["ulke"]."</td>
-					<td>
-						<button id='upBtn' onclick=\"ajaxInputDoldur(this,'ureticiAjax','doldur');\" value=".$satir["id"].">Guncelle</button>
-						<button id='silBtn' onclick=\"ajaxSil(this,'ureticiAjax');\" value=".$satir["id"].">Sil</button>
-					</td>
+			echo "<tr>";
+					foreach ($myDefines["ureticiColNames"] as $colName) {
+						echo "<td>".$satir[$colName]."</td>";
+					}
+			echo	"<td>";
+						if($_SESSION["kullanici"] == -1)
+							echo "<button id='upBtn' onclick=\"ajaxInputDoldur(this,'ureticiAjax','doldur');\" value=".$satir["id"].">Guncelle</button>
+							<button id='silBtn' onclick=\"ajaxSil(this,'ureticiAjax');\" value=".$satir["id"].">Sil</button>";
+					"</td>
 				</tr>
 			";
 		}

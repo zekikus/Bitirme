@@ -1,6 +1,7 @@
 <?php
 	
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Kontrol/KullaniciKontrol.php");
+	$myDefines = include("myDefines.php");
 
 	if(isset($_POST['query'])){
 
@@ -133,25 +134,23 @@
 
 	function adresGetir($deger){
 
+		global $myDefines;
 		$kontrol = new KullaniciKontrol();
 		$sonuc = $kontrol -> listele("SELECT * FROM adres WHERE kullanici_id = $deger");
 
 		echo "<table class='table table-striped'>
-		<tr>
-			<th>İl</th>
-			<th>İlçe</th>
-			<th>Açık Adres</th>
-			<th>Islemler</th>
-		</tr>
-		";
+		<tr>";
+			foreach ($myDefines["userAddrHeaderNames"] as $headerName) {
+				echo "<th>".$headerName."</th>";
+			}
+		echo "</tr>";
 
 		while ($satir = @mysqli_fetch_assoc($sonuc)) {
-			echo "
-				<tr>
-					<td>".$satir["il"]."</td>
-					<td>".$satir["ilce"]."</td>
-					<td>".$satir["acikAdres"]."</td>
-					<td>
+			echo "<tr>";
+					foreach ($myDefines["userAddrColNames"] as $colName) {
+						echo "<td>".$satir[$colName]."</td>";
+					}
+			echo 	"<td>
 						<button id='upBtn' onclick=\"ajaxIslemYap(this,'adresDoldur','#adresSonucccc','kullaniciAjax');\" value=".$satir["id"].">Guncelle</button>
 						<button id='silBtn' onclick=\"ajaxIslemYap(this,'adresSil','#adresSonucccc','kullaniciAjax');\" value=".$satir["id"].">Sil</button>
 					</td>
@@ -315,23 +314,23 @@
 	}
 
 	function iletisimGetir($deger){
+		global $myDefines;
 		$kontrol = new KullaniciKontrol();
 		$sonuc = $kontrol -> listele("SELECT id,tip,deger FROM iletisim WHERE kullanici_id = $deger");
 
 		echo "<table class='table table-striped'>
-		<tr>
-			<th>İletişim Tipi</th>
-			<th>Değer</th>
-			<th>Islemler</th>
-		</tr>
-		";
+		<tr>";
+			foreach ($myDefines["userContactHeaderNames"] as $headerName) {
+				echo "<th>".$headerName."</th>";
+			}
+		echo "</tr>";
 
 		while ($satir = @mysqli_fetch_assoc($sonuc)) {
-			echo "
-				<tr>
-					<td>".$satir["tip"]."</td>
-					<td>".$satir["deger"]."</td>
-					<td>
+			echo "<tr>";
+					foreach ($myDefines["userContactColNames"] as $colName) {
+						echo "<td>".$satir[$colName]."</td>";
+					}
+			echo	"<td>
 						<button id='upBtn' onclick=\"ajaxIslemYap(this,'iletisimDoldur','#iletisimSonuc','kullaniciAjax');\" value=".$satir["id"].">Guncelle</button>
 						<button id='silBtn' onclick=\"ajaxIslemYap(this,'iletisimSil','#iletisimSonuc','kullaniciAjax');\" value=".$satir["id"].">Sil</button>
 					</td>
@@ -371,30 +370,22 @@
 	}
 
 	function kayitListele($query){
-
+		global $myDefines;
 		$kontrol = new KullaniciKontrol();
 		$sonuc = $kontrol -> listele("SELECT k.id as 'kID',k.ad as 'kAd',k.soyad,k.birimID,b.* FROM kullanici k,birim b WHERE k.birimID = b.id and k.tcNo = '".$query['deger']."'");
 
 		echo "<table class='table table-striped'>
-				<tr>
-					<th>Ad</th>
-					<th>Soyad</th>
-					<th>Birim Ad</th>
-					<th>Birim İl</th>
-					<th>Birim İlçe</th>
-					<th>Islemler</th>
-				</tr>
-
-		";
+				<tr>";
+					foreach ($myDefines["userHeaderNames"] as $headerName) {
+						echo "<th>".$headerName."</th>";
+					}
+		echo	"</tr>";
 		while ($satir = mysqli_fetch_assoc($sonuc)) {
-			echo "
-				<tr>
-					<td>".$satir["kAd"]."</td>
-					<td>".$satir["soyad"]."</td>
-					<td>".$satir["ad"]."</td>
-					<td>".$satir["il"]."</td>
-					<td>".$satir["ilce"]."</td>
-					<td>
+			echo "<tr>";
+					foreach ($myDefines["userColNames"] as $colName) {
+						echo "<td>".$satir[$colName]."</td>";
+					}
+			echo	"<td>
 						<button id='upBtn' onclick=\"ajaxInputDoldur(this,'kullaniciAjax','doldur');\" value=".$satir["kID"].">Guncelle</button>
 						<button id='silBtn' onclick=\"ajaxSil(this,'kullaniciAjax');\" value=".$satir["kID"].">Sil</button>
 					</td>

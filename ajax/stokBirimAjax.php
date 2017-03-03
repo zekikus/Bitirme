@@ -1,6 +1,8 @@
 <?php
 	
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Kontrol/StokBirimKontrol.php");
+	session_start();
+	$myDefines = include("myDefines.php");
 
 	if(isset($_POST['query'])){
 
@@ -114,89 +116,79 @@
 
 	function kayitListele($query){
 
+		global $myDefines;
 		$kontrol = new StokBirimKontrol();
-		$sonuc = $kontrol -> listele("SELECT id,ad,tanim,aciklama,hacim FROM stok_birim WHERE birim_id = ".$query['deger']."");
+		$sonuc = $kontrol -> listele("SELECT id,ad,tanim,aciklama,hacim,birim_id FROM stok_birim WHERE birim_id = ".$query['deger']."");
 
 		echo "<table class='table table-striped'>
-		<tr>
-					<th>Stok Birim ID</th>
-					<th>Stok Birim Tipi</th>
-					<th>Açıklama</th>
-					<th>Hacim</th>
-					<th>Islemler</th>
-				</tr>
-
-		";
+				<tr>";
+					foreach ($myDefines["sbHeaderNames"] as $headerName) {
+						echo "<th>".$headerName."</th>";
+					}
+				"</tr>";
 		while ($satir = mysqli_fetch_assoc($sonuc)) {
 
-			echo "
-				<tr>
-					<td>".$satir["ad"]."</td>
-					<td>".$satir["tanim"]."</td>
-					<td>".$satir["aciklama"]."</td>
-					<td>".$satir["hacim"]."</td>
-					<td>
-						<button id='upBtn' onclick=\"ajaxInputDoldur(this,'stokBirimAjax');\" value=".$satir["id"].">Guncelle</button>
-						<button id='silBtn' onclick=\"ajaxSil(this,'stokBirimAjax');\" value=".$satir["id"].">Sil</button>
-					</td>
-				</tr>
-			";
+			echo "<tr>";
+					
+					foreach ($myDefines["sbColNames"] as $colName) {
+						echo "<td>".$satir[$colName]."</td>";
+					}
+
+					if($_SESSION["kullanici"] == $satir["birim_id"] || $_SESSION["kullanici"] == -1){
+						echo "<td>
+							<button id='upBtn' onclick=\"ajaxInputDoldur(this,'stokBirimAjax');\" value=".$satir["id"].">Guncelle</button>
+							<button id='silBtn' onclick=\"ajaxSil(this,'stokBirimAjax');\" value=".$satir["id"].">Sil</button>
+						</td>";
+					}
+					
+				echo "</tr>";
 		}
 		echo "</table>";
 	}
 
 	function stokListele($query){
 
+		global $myDefines;
 		$kontrol = new StokBirimKontrol();
 		$sonuc = $kontrol -> listele("SELECT tag_id,ad,doz,kullanim_suresi FROM urun u WHERE u.id IN (SELECT urun_id FROM stok WHERE stokbirim_id = ".$query['deger'].")");
 
 		echo "<table class='table table-striped'>
-		<tr>
-					<th>Ürün No</th>
-					<th>Ürün Adı</th>
-					<th>Doz</th>
-					<th>Son Kullanma Tarihi</th>
-				</tr>
-
-		";
+				<tr>";
+					foreach ($myDefines["sbStokHeaderNames"] as $headerName) {
+						echo "<th>".$headerName."</th>";
+					}
+				"</tr>";
 		while ($satir = mysqli_fetch_assoc($sonuc)) {
 
-			echo "
-				<tr>
-					<td>".$satir["tag_id"]."</td>
-					<td>".$satir["ad"]."</td>
-					<td>".$satir["doz"]."</td>
-					<td>".$satir["kullanim_suresi"]."</td>
-				</tr>
-			";
+			echo "<tr>";
+				foreach ($myDefines["sbStokColNames"] as $colName) {
+						echo "<td>".$satir[$colName]."</td>";
+					}	
+				
+			echo "</tr>";
 		}
 		echo "</table>";
 	}
 
 	function sicaklikListele($query){
 
+		global $myDefines;
 		$kontrol = new StokBirimKontrol();
 		$sonuc = $kontrol -> listele("SELECT * FROM sicaklik WHERE sensor_id IN (SELECT sensor_id FROM stok_birim WHERE id = ".$query['deger'].")");
 
 		echo "<table class='table table-striped'>
-		<tr>
-					<th>Sensör ID</th>
-					<th>Sıcaklık Değer</th>
-					<th>Kayıt Zamanı</th>
-					<th>Ölçüm Zamanı</th>
-				</tr>
-
-		";
+				<tr>";
+					foreach ($myDefines["sbSicaklikHeaderNames"] as $headerName) {
+							echo "<th>".$headerName."</th>";
+						}	
+		echo    "</tr>";
 		while ($satir = mysqli_fetch_assoc($sonuc)) {
 
-			echo "
-				<tr>
-					<td>".$satir["sensor_id"]."</td>
-					<td>".$satir["sicaklik_deger"]."</td>
-					<td>".$satir["kayit_zamani"]."</td>
-					<td>".$satir["olcum_zamani"]."</td>
-				</tr>
-			";
+			echo "<tr>";
+					foreach ($myDefines["sbSicaklikColonNames"] as $colName) {
+						echo "<td>".$satir[$colName]."</td>";
+					}
+			echo "</tr>";
 		}
 		echo "</table>";
 	}
