@@ -1,0 +1,4 @@
+#AlarmAjax dosyasýnda alarmlarý listelerken 3 tablo birleþtirilmiþ. Küçültülebilir mi bak!
+#Alarm Ekleme kýsmý eksik ona bak!
+#Alarm Detay kýsmýna bak bütün kýsýmlar gerekli deðil gibi!
+#Stok Ajax 3 tablo birleþtirilmiþ daha kýsa olabilir mi bak!
