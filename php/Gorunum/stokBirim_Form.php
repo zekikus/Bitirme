@@ -39,7 +39,7 @@
 		<div id="modal" class="popupContainer" style="display:none;">
 		<section class="popupBody">
 			<header class="popupHeader">
-				<span class="header_title">Sıcaklık Takip Cihazı İşlem</span>
+				<span class="header_title">Stok Birim İşlem</span>
 				<span class="modal_close"><i class="glyphicon glyphicon-remove"></i></span>
 			</header>
 			
@@ -56,8 +56,11 @@
 							<label>Birim:</label>
 							<select id='birimDeger'>
 								<?php
-									$sonuc = $kontrol -> listele("SELECT id,ad FROM birim");
+									$sorgu = "SELECT id,ad FROM birim";
 
+									if($_SESSION["kullanici"] != -1) $sorgu = $sorgu." WHERE id = ".$_SESSION["kullanici"]."";
+
+									$sonuc = $kontrol -> listele($sorgu);
 									while($satir = mysqli_fetch_assoc($sonuc)){
 										echo "<option value=".$satir['id'].">".$satir['ad']."</option>";
 									}

@@ -40,7 +40,10 @@
 		<div class="stokBirimContent">
 			<label>Stok Birim Seçiniz:</label>
 			<?php
-				$sonuc = $kontrol -> listele("SELECT id,ad FROM stok_birim");
+				$sorgu = "SELECT id,ad FROM stok_birim";
+				if($_SESSION["kullanici"] != -1) $sorgu = $sorgu." WHERE birim_id = ".$_SESSION["kullanici"]."";
+				$sonuc = $kontrol -> listele($sorgu);
+				
 				echo "<select id='sBirim'>";
 				while ($satir = mysqli_fetch_assoc($sonuc)) {
 					echo "<option value='".$satir['id']."'>".$satir['ad']."</option>";

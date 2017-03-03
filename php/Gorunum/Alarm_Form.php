@@ -5,9 +5,9 @@
 	<section>
 		<div class="header">
 			<span class="header_text">Alarm</span>
-			<!--<div class="header_icon">
+			<div class="header_icon">
 				<a id="modal_trigger" href="#modal" class="btn"><span class="glyphicon glyphicon-plus"></span></a>
-			</div>-->
+			</div>
 		</div>
 		<div class="search_form">
 			<form>

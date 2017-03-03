@@ -3,7 +3,10 @@
 		<div class="header">
 			<span class="header_text">Uretici</span>
 			<div class="header_icon">
-				<a id="modal_trigger" href="#modal" class="btn" onclick="butonTemizle('.form');"><span class="glyphicon glyphicon-plus"></span></a>
+				<?php
+					if($_SESSION["kullanici"] == -1)
+						echo '<a id="modal_trigger" href="#modal" class="btn" onclick="butonTemizle(\'.form\');"><span class="glyphicon glyphicon-plus"></span></a>';
+				?>
 			</div>
 		</div>
 		<div class="search_form">

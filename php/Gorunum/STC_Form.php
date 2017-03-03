@@ -34,7 +34,8 @@
 					<option value="sec">Seçiniz</option>
 					<?php
 						$sorgu = "SELECT id,ad FROM stok_birim";
-		
+						
+						if($_SESSION["kullanici"] != -1) $sorgu = $sorgu." WHERE birim_id = ".$_SESSION["kullanici"]."";
 						$kontrol = new STCKontrol();
 						$sonuc = $kontrol -> listele($sorgu);
 
