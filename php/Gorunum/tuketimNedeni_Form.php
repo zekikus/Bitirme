@@ -33,6 +33,13 @@
 				<input type="text"  id='tuketimTanim'/><br/>
 				<label>Aktif Mi:</label>
 				<input type="checkbox" id='aktifMi' onclick="checkBoxGuncelle(this);" /><br/>
+				<div id='erisilebilirlik'>
+					<label>Erişilebilirlik:</label>
+					<select>
+						<option value="-1">Sadece Yöneticiler</option>
+						<option value="0">Bütün Kullanıcılar</option>
+					</select>
+				</div><br/>
 				
 				<button class="btn btn-success" id='kaydetTN' onclick="ajaxTuketimNedeniKaydet(this);" value="">Kaydet</button>
 				<!-- Inputlar Son -->

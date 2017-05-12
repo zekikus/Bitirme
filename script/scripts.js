@@ -8,6 +8,7 @@ function tekrarla(){
 function denemeTest(islemtip){
   var bilgi = {
                     sb: $("#sBirim option:selected").val(),
+                    sb_ad: $("#sBirim option:selected").text(),
                     islem : islemtip
         };
 
@@ -33,7 +34,7 @@ function ajaxUreticiKaydet(nesne){
         };
 
         ajaxFonk(bilgi,'#denemeTablo','ajax/ureticiAjax.php');
-        $("#ad,#ulke").val("");   
+        $("#ad,#ulke").val("");
 }
  /* --------- Uretici Fonksiyonları Son ------------- */
 
@@ -49,7 +50,7 @@ function ajaxUreticiKaydet(nesne){
         };
 
         ajaxFonk(bilgi,'#denemeTablo','ajax/dolapTipiAjax.php');
-        $("#ad,#aktifMi").val("");   
+        $("#ad,#aktifMi").val("");
   }
 
 /* ---------- Dolap Tipi Fonksiyonlari Son -----------*/
@@ -61,16 +62,17 @@ function ajaxUreticiKaydet(nesne){
         var bilgi = {
                     tanim : $("#tuketimTanim").val(),
                     aktifMi : $("#aktifMi").val(),
+                    erisim: $('#erisebilirlik select option:selected').val(),
                     islem : islemTip
         };
 
-        
+
         ajaxFonk(bilgi,'#denemeTablo','ajax/tuketimNedeniAjax.php');
-        $("#tanim,#aktifMi").val("");   
+        $("#tanim,#aktifMi").val("");
   }
 
 /* ---------- Urun Tanım Fonksiyonlari -----------*/
-  
+
   function ajaxUrunTanimKaydet(nesne){
         var islemTip = ajaxKaydet(nesne);
         var bilgi = {
@@ -81,7 +83,7 @@ function ajaxUreticiKaydet(nesne){
         };
 
         ajaxFonk(bilgi,'#denemeTablo','ajax/urunTanimAjax.php');
-        $("#ad,#urunTip,#urunAciklama").val("");   
+        $("#ad,#urunTip,#urunAciklama").val("");
   }
 
 /* ---------- Urun Tanım Fonksiyonlari Son -----------*/
@@ -104,7 +106,7 @@ function ajaxUreticiKaydet(nesne){
         };
 
         ajaxFonk(bilgi,'#denemeTablo','ajax/urunAjax.php');
-        $("#ad,#urunTip,#urunAciklama").val("");   
+        $("#ad,#urunTip,#urunAciklama").val("");
   }
 
 /* ---------- Urun Tanım Fonksiyonlari Son -----------*/
@@ -125,7 +127,7 @@ function ajaxUreticiKaydet(nesne){
         };
 
         ajaxFonk(bilgi,'#denemeTablo','ajax/birimAjax.php');
-        $("#ad,#birimIl,#birimIlce,#birimAdres").val("");   
+        $("#ad,#birimIl,#birimIlce,#birimAdres").val("");
   }
 
   function formGetir(content,islemTip){
@@ -138,7 +140,7 @@ function ajaxUreticiKaydet(nesne){
 
   function panelTemizle(field){
     butonTemizle(field);
-    
+
     $("#stokLink").hide();
     $("#kullaniciLink").hide();
     $("#stokPanel").empty();
@@ -165,7 +167,7 @@ function ajaxUreticiKaydet(nesne){
                     islem : islemTip
         };
 
-        
+
         ajaxFonk(bilgi,'#denemeTablo','ajax/imhaAjax.php');
         $("#urunID,#islemTarih,#aciklama").val("");
   }
@@ -242,7 +244,7 @@ function ajaxUreticiKaydet(nesne){
           butonTemizle('#modalAdres');
   }
 
-  
+
 
 /* ---------- Kullanıcı Fonksiyonlari Son -----------*/
 
@@ -278,7 +280,7 @@ function ajaxSBKaydet(nesne){
     $('.nav-tabs a[href="'+alan+'"]').tab('show');
   }
 
- 
+
 
 /*----------- Stok Birim Fonksiyonları Son -------------*/
 
@@ -300,7 +302,7 @@ function ajaxSBKaydet(nesne){
         };
 
         ajaxFonk(bilgi,'#denemeTablo','ajax/STCAjax.php');
-        $("#cihazAktif,#aktifMi").val("");   
+        $("#cihazAktif,#aktifMi").val("");
 }
 
 /* ---------- Sıcaklık Cihazı Fonksiyonlari Son -----------*/
@@ -318,8 +320,8 @@ function ajaxAlarmDetayListele(nesne, url){
                     islem : "alarmListele"
                 };
     ajaxFonk(bilgi,"#modal #alarmDetay",'ajax/'+url+'.php');
-} 
-/* ---------- Alarm Fonksiyonlari Son-----------*/ 
+}
+/* ---------- Alarm Fonksiyonlari Son-----------*/
 
 /* ---------- Login Fonksiyonlari -----------*/
 function ajaxGiris(islemtip,content){
@@ -337,12 +339,12 @@ function ajaxGiris(islemtip,content){
           };
   }
   ajaxFonk(bilgi,content,'ajax/girisAjax.php');
-} 
+}
 /* ---------- Login Fonksiyonlari Son-----------*/
 
 /* ---------- Stok Çıkış Fonksiyonları ---------*/
 function ajaxStokCikis(islemtip){
-  var bilgi = { 
+  var bilgi = {
                     uID : $("#rfuID").val(),
                     tag_id : $('#rfTag').val(),
                     tc: $("#rfTC").val(),
@@ -353,7 +355,7 @@ function ajaxStokCikis(islemtip){
    $.ajax({
         type: 'post',
         data : {query : bilgi},
-        url: 'ajax/stokCikisAjax.php',
+        url: 'ajax/stokKabulAjax.php',
         success: function(result) {
           $(".header").html(result);
         }
@@ -420,7 +422,7 @@ function ajaxSil(nesne,url){
        };
        ajaxFonk(bilgi,"#denemeTablo","ajax/"+url+".php");
 
-       $("#ad,#aktifMi").val("");       
+       $("#ad,#aktifMi").val("");
 }
 
 function dolapKayitBilgi(islemTip){

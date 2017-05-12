@@ -22,6 +22,11 @@
 			$this -> listele($query);
 		}
 
+		public function getTuketimNedeniById($tuketim_id){
+			$query = "SELECT tanim,aktifMi FROM tuketim_nedeni WHERE id = $tuketim_id LIMIT 1";
+			$this -> listele($query);
+		}
+
 		public function listele($query){
 			$result = $this -> tuketimNedeniIslem -> listele($query);
 			$list = array();

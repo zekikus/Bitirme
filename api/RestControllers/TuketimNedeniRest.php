@@ -13,6 +13,9 @@
 		case 'byName':
 			$sehirDAO -> getTuketimNedeniByName($_GET['name']);
 			break;
+		case 'byId':
+			$sehirDAO -> getTuketimNedeniById($_GET['id']);
+			break;
 	}
 
 ?>

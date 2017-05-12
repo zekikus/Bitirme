@@ -27,7 +27,7 @@
 								}
 							?>
 						</select>
-						<button class="btn btn-success" onclick="ajaxStokCikis('listele');" style="margin:5% 35%;">Detay Getir</button>
+						<button class="btn btn-success" onclick="ajaxStokCikis('listeleCikis');" style="margin:5% 35%;">Detay Getir</button>
 				</div>
 				<div class="sagContent">
 					<div id="icContent">
@@ -46,7 +46,7 @@
 			</div>
 		</div>
 		<div class="stokBirimContent">
-			<button class="btn btn-success" onclick="ajaxStokCikis('kaydet');">Kaydet</button>
+			<button class="btn btn-success" onclick="ajaxStokCikis('kaydetCikis');">Kaydet</button>
 			
 		</div>
 	</section>

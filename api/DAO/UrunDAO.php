@@ -18,7 +18,7 @@
 		}
 
 		public function getUrunByTagOrName($tag_id,$urun_ad){
-			$query = "SELECT u.id,u.ad,u.tag_id,ut.ad as 'TanimAd',u.kullanim_suresi,u.doz FROM urun u,uruntanim ut WHERE u.tanim_id = ut.id and u.tag_id LIKE '%".$tag_id."%' or u.ad LIKE '%".$urun_ad."%'";
+			$query = "SELECT u.id,u.ad,u.tag_id,ut.ad as 'TanimAd',u.kullanim_suresi,u.doz FROM urun u,uruntanim ut WHERE u.tanim_id = ut.id and u.tag_id LIKE '%".$tag_id."%' and u.ad LIKE '%".$urun_ad."%'";
 			$this -> listele($query);
 		}
 

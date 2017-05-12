@@ -1,5 +1,5 @@
 <?php
-	
+
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/api/DAO/KullaniciDAO.php");
 
 	$view = "";
@@ -25,6 +25,9 @@
 		case 'birimbyid':
 			$kullaniciDAO -> getKullaniciInfoByBirimId($_GET['id']);
 			break;
+		case 'upToken':
+				$kullaniciDAO -> setToken($_GET['id'],$_GET['token']);
+				break;
 	}
 
 ?>

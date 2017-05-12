@@ -31,7 +31,7 @@
 		$aciklama = $query["aciklama"];
 		
 
-		$sorgu = "INSERT INTO `imha` (`id`, `urun_id`, `tarih`, `tuketim_neden`, `aciklama`) VALUES (NULL, '".$urun_id."', '".$tarih."', '".$tuketim."', '".$aciklama."')";
+		$sorgu = "INSERT INTO `imha` (`id`, `urun_id`, `tarih`, `tuketim_neden`, `aciklama`,`erisim`) VALUES (NULL, '".$urun_id."', '".$tarih."', '".$tuketim."', '".$aciklama."','".$_SESSION['kullanici']."')";
 
 		$kontrol -> kaydet($sorgu);
 	}
@@ -56,7 +56,10 @@
 	function kayitListele($deger){
 		global $myDefines,$kontrol;
 		
-		$sonuc = $kontrol -> listele("SELECT * FROM imha WHERE urun_id LIKE '%".$deger."%'");
+		$sorgu = "SELECT * FROM imha WHERE urun_id LIKE '%".$deger."%'";
+		if($_SESSION['kullanici'] != -1) $sorgu.=" AND erisim = '".$_SESSION['kullanici']."'";
+
+		$sonuc = $kontrol -> listele($sorgu); 
 
 		echo "<table class='table table-striped'>
 				<tr>";
@@ -71,8 +74,7 @@
 						echo "<td>".$satir[$colName]."</td>";
 					}
 			echo  "<td>";
-						if($_SESSION["kullanici"] == -1)
-							echo "<button id='silBtn' onclick=\"ajaxSil(this,'imhaAjax');\" value=".$satir["urun_id"].">İmha Et</button>";
+						echo "<button id='silBtn' onclick=\"ajaxSil(this,'imhaAjax');\" value=".$satir["urun_id"].">İmha Et</button>";
 					"</td>
 				</tr>
 			";

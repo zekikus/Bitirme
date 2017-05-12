@@ -1,5 +1,5 @@
 <?php
-	
+
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Kontrol/GirisKontrol.php");
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/class.phpmailer.php");
 
@@ -21,14 +21,15 @@
 	}
 
 	function girisKontrol($query){
-		
+
 		$kontrol = new GirisKontrol();
-		$sonuc = $kontrol -> listele("SELECT kullaniciAdi,birimID FROM kullanici WHERE kullaniciAdi = '".$query['kad']."' and kullaniciSifre = '".md5($query['sifre'])."' LIMIT 1");
+		$sonuc = $kontrol -> listele("SELECT kullaniciAdi,ad,soyad,birimID FROM kullanici WHERE kullaniciAdi = '".$query['kad']."' and kullaniciSifre = '".md5($query['sifre'])."' LIMIT 1");
 		$veri = mysqli_fetch_assoc($sonuc);
-		
+
 		if($veri['kullaniciAdi'] != ""){
 			session_start();
 			$_SESSION["kullanici"] = $veri['birimID'];
+			$_SESSION['loginUserInfo'] = array("ad"=>$veri['ad'],"soyad"=>$veri['soyad'],"birimID"=>$veri['birimID']);
 			echo "<script>window.location.href = 'index.php'</script>";
 		}else{
 			echo "<script>alert('Kullanıcı Adı veya Şifre Yanlış!')</script>";
@@ -43,7 +44,7 @@
 
 		echo "<script>alert('".$veri["ad"]."')</script>";
 
-		if($veri['ad'] != ""){	
+		if($veri['ad'] != ""){
 			$ySifre = $veri['kullaniciAdi'].substr(mktime(), 0,4);
 			$mail = new PHPMailer();
 			$mail->IsSMTP();
@@ -60,7 +61,7 @@
 			$content = '<div style="background: #eee; padding: 10px; font-size: 14px">Sayın '.$veri['ad'].' '.$veri['soyad'].' <br/><br/>
 					  <b>Kullanıcı Adınız :</b> '.$veri['kullaniciAdi'].'<br/>
 					  <b>Şifreniz :</b> '.$ySifre.'</div>';
-			
+
 			$mail->MsgHTML($content);
 			$mail->Send();
 			echo "<script>alert('Email Başarıyla Gönderildi.');</script>";
@@ -76,5 +77,5 @@
 		$kontrol -> sorguCalistir("UPDATE kullanici SET kullaniciSifre = '".md5($ySifre)."' WHERE id = $id");
 	}
 
-	
+
 ?>

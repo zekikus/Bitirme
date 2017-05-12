@@ -13,16 +13,34 @@
 <?php
 	session_start();
 	if(isset($_SESSION['kullanici'])){
+    $userInfo = $_SESSION['loginUserInfo'];
+    require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Kontrol/AnasayfaKontrol.php");
 
+    $birimAdi = "Admin";
+    $birimID = $userInfo["birimID"];
+    if ($birimID != -1) {
+      $sorgu = "SELECT ad FROM birim WHERE id = $birimID";
+      $kontrol = new AnasayfaKontrol();
+      $sonuc = $kontrol -> listele($sorgu);
+      $birimAdi = mysqli_fetch_assoc($sonuc)['ad'];
+    }
 ?>
 <body>
 
 <div id="wrapper">
 		<div id="sidebar-wrapper">
 			<!--Sidebar Sabit Kısım Bütün Sayfalarda Aynı-->
+      <div class="panel-user-wrapper style1">
+				<div class="panel-user">
+					<img src="img/user.jpg" width="50px" height="50px" alt="user-image">
+				</div>
+				<div class="panel-user-name">
+					Hoşgeldin <br/><?php echo $userInfo["ad"]." ".$userInfo["soyad"]; echo "<br/>".$birimAdi ?>
+				</div> <br>
+			</div>
 			<ul class="sidebar-nav">
 				<li>
-					<a href="#" id='anasayfa'><span class="glyphicon glyphicon-home"></span> Anasayfa</a>
+					<a href="index.php?s=anasayfa" id='anasayfa'><span class="glyphicon glyphicon-home"></span> Anasayfa</a>
 				</li>
 				<li>
 					<a href="#tanim" data-toggle="collapse"><span class="glyphicon glyphicon-cog"></span> Tanım</a>
@@ -50,7 +68,7 @@
 							<li><a href="index.php?s=stokKabul"><span class="glyphicon glyphicon-save"></span> Stok Giriş İşlemleri</a></li>
 							<li><a href="index.php?s=stokCikis"><span class="glyphicon glyphicon-open"></span> Stok Çıkış İşlemleri</a></li>
 						</ul>
-					</div>				
+					</div>
 				</li>
 				<li><a  onclick="ajaxGiris('cikisYap','#anasayfa');"><span class="glyphicon glyphicon-log-out"></span> Çıkış</a></li>
 			</ul>
@@ -66,8 +84,10 @@
 						<?php
 							if(isset($_GET["s"])){
 								include "php/Gorunum/".$_GET['s']."_Form.php";
-							}
-							
+							}else{
+                include "php/Gorunum/anasayfa_Form.php";
+              }
+
 						?>
 					</div>
 				</div>

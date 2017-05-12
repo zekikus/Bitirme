@@ -70,10 +70,9 @@
 
 		$tanim = $query["tanim"];
 		@$aktifMi = @$query["aktifMi"];
+		@$erisim = @$query["erisim"];
 
-		echo $tanim;
-
-		$sorgu = "INSERT INTO `tuketim_nedeni` (`id`, `tanim`, `aktifMi`) VALUES (NULL, '".$tanim."', '".$aktifMi."')";
+		$sorgu = "INSERT INTO `tuketim_nedeni` (`id`, `tanim`,`erisim`, `aktifMi`) VALUES (NULL, '".$tanim."','".$erisim."', '".$aktifMi."')";
 
 		$kontrol = new TuketimNedeniKontrol();
 		$kontrol -> kaydet($sorgu);

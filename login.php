@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php 
+<?php
 	session_start();
 	if(!isset($_SESSION['kullanici'])){
 ?>
@@ -20,7 +20,7 @@
 		<div class="login-panel">
 			<span class="glyphicon glyphicon-user"></span><input type="text" id="lgnKad" placeholder="Kullanıcı Adı" /><br/>
 			<span class="glyphicon glyphicon-lock"></span><input type="password"  id="lgnSifre" placeholder="Sifre" /><br/>
-			<button class="btn btn-primary" onclick="ajaxGiris('girisYap','#lgnEmail');" style="margin-left:18%;">Giris Yap</button>
+			<button class="btn btn-primary" onclick="ajaxGiris('girisYap','#lgnEmail');" style="margin-left:15%;">Giris Yap</button>
 			<button id="modal_trigger" onclick="butonTemizle('.ortakForm form');" href="#modal" class="btn btn-primary">Sifremi Unuttum</button>
 		</div>
 	</div>
@@ -31,13 +31,13 @@
 				<span class="header_title">Sifremi Unuttum</span>
 				<span class="modal_close"><i class="glyphicon glyphicon-remove"></i></span>
 			</header>
-		
+
 			<div class="ortakForm" id="sifreUnuttum">
 					<input type="email" id="lgnEmail" placeholder="Kayıtlı Email Adresinizi Giriniz">
 					<button class="btn btn-success" id="lgnGonder" onclick="ajaxGiris('sifirla','#lgnEmail');">Gonder</button>
 			</div>
 		</section>
-	</div>	
+	</div>
 </body>
 
 	<script type="text/javascript">

@@ -21,7 +21,7 @@
 	function kayitListele($query){
 		global $myDefines;
 		$kontrol = new AlarmKontrol();
-		$sorgu = "SELECT a.id as 'aID', a.tip as 'aTip', b.il as 'bIl' , b.ilce as 'bIlce' , b.ad as 'bAd' , sb.id as 'sbID' , sb.sensor_id as 'sbStcID' FROM alarm a, birim b, stok_birim sb WHERE a.sensor_id=sb.sensor_id AND sb.birim_id=b.id AND (a.id LIKE '%".$query['deger']."%' OR sb.sensor_id LIKE '%".$query['deger1']."%')";
+		$sorgu = "SELECT a.id as 'aID', a.tip as 'aTip', b.il as 'bIl' , b.ilce as 'bIlce' , b.ad as 'bAd' , sb.id as 'sbID' , sb.sensor_id as 'sbStcID' FROM alarm a, birim b, stok_birim sb WHERE a.sensor_id=sb.sensor_id AND sb.birim_id=b.id AND (a.id LIKE '%".$query['deger']."%' and sb.sensor_id LIKE '%".$query['deger1']."%')";
 		$sonuc = $kontrol -> listele($sorgu);
 
 		echo "<table class='table table-striped'>

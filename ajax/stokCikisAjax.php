@@ -18,7 +18,7 @@
 			if($islem == "kaydet"){
 				kayitGuncelle($rfbid,$query);
 			}else{
-				kayitListele($rfbid);
+				kayitListele($tagID);
 			}
 		}
 		
@@ -41,7 +41,7 @@
 	function kayitListele($deger){
 		
 		$kontrol = new StokKabulKontrol();
-		$sonuc = $kontrol -> listele("SELECT u.id,s.tag_id,ad,u.aciklama as 'uAc',kullanim_suresi FROM urun u,stok_cikis s WHERE u.id = s.urun_id and s.aciklama = '".$deger."' ORDER BY id DESC LIMIT 0,1");
+		$sonuc = $kontrol -> listele("SELECT u.id,s.tag_id,ad,u.aciklama as 'uAc',kullanim_suresi FROM urun u,stok_cikis s WHERE u.id = s.urun_id and s.tag_id = '".$deger."' ORDER BY id DESC LIMIT 0,1");
 
 		$satir = mysqli_fetch_assoc($sonuc);
 		echo "<script>

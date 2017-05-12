@@ -1,7 +1,7 @@
 <?php
-	
+
 	/*
-		Kısaltmalar: 
+		Kısaltmalar:
 			sb = StokBirim,
 			tn = Tüketim Nedeni,
 			dt = DolapTipi,
@@ -50,10 +50,14 @@
 	    'stcSicaklikColNames' => array("sensor_id","sicaklik_deger","kayit_zamani","olcum_zamani"),
 	    'stokTuketimHeaderNames' => array("Tüketim Nedeni","Tüketim Tarihi","Açıklama","Uygulanan T.C. No"),
 	    'stokTuketimColNames' => array("tuketim_nedeni","tarih","aciklama","uygulanan_tc"),
-	    'stokHeaderNames' => array("Ürün No","Ürün Adı","Kalan Doz","Stok Birim","Son Kullanma Tarihi","Islemeler"),
-	    'stokColNames' => array("tag_id","ad","doz","stokBirimAd","kullanim_suresi")
-
-
+	    'stokHeaderNames' => array("Ürün No","Ürün Adı","Kalan Doz","Stok Birim","Son Kullanma Tarihi","Islemler"),
+	    'stokColNames' => array("tag_id","ad","doz","stokBirimAd","kullanim_suresi"),
+			'homeAlarmHeaderNames' => array("STC No","Başlangıç Zamanı","Bitiş Zamanı","Alarm Tipi","Alarm Durumu"),
+			'homeAlarmColNames' => array("sensor_id","baslangic_zaman","bitis_zaman","tip"),
+			'homeStokHeaderNames' => array("Stok Birim Adı","Ürün Adı","Stok Sayısı"),
+			'homeStokColNames' => array("stokbirim_ad","ad","Stok_Sayisi"),
+			'homeSKTHeaderNames' => array("Stok Birim Adı","Ürün Adı","Ürün Tag","Kalan Gün"),
+			'homeSKTColNames' => array("stokbirim_ad","ad","TagID")
 	);
 
 

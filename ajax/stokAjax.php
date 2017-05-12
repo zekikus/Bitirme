@@ -89,7 +89,7 @@
 
 	function kayitListele($query){
 		global $kontrol,$myDefines;		
-		$sorgu = "SELECT u.tag_id,u.ad,u.doz,u.kullanim_suresi,s.stok_id,sb.ad as 'stokBirimAd' FROM urun u,stok s,stok_birim sb  WHERE u.id = s.urun_id and sb.id = s.stokbirim_id";
+		$sorgu = "SELECT s.tag_id,u.ad,u.doz,u.kullanim_suresi,s.stok_id,sb.ad as 'stokBirimAd' FROM urun u,stok s,stok_birim sb  WHERE u.id = s.urun_id and sb.id = s.stokbirim_id";
 
 		if($query['deger'] != '')
 			$sorgu .= " and u.ad = '".$query['deger2']."'";

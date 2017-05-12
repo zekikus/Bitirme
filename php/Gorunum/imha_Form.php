@@ -2,6 +2,7 @@
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Kontrol/ImhaKontrol.php");
 ?>
 <body>
+	
 	<section>
 		<div class="header">
 			<span class="header_text">İmha</span>
@@ -35,7 +36,7 @@
 					<option value="sec">Seçiniz</option>
 					<?php
 						$sorgu = "SELECT * FROM urun";
-		
+
 						$kontrol = new ImhaKontrol();
 						$sonuc = $kontrol -> listele($sorgu);
 
@@ -53,7 +54,8 @@
 					<option value="sec">Seçiniz</option>
 					<?php
 						$sorgu = "SELECT * FROM tuketim_nedeni";
-		
+						if($_SESSION["kullanici"] != -1) $sorgu.=" WHERE erisim = 0";
+						
 						$kontrol = new ImhaKontrol();
 						$sonuc = $kontrol -> listele($sorgu);
 

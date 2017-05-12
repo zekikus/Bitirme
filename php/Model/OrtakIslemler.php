@@ -46,5 +46,5 @@
 			return $this -> manager -> sorguCalistir($sorgu);
 		}
 }
-	
+
 ?>
