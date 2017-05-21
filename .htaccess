@@ -18,12 +18,13 @@ RewriteRule ^api/getIlceByID/([0-9]+)$   api/RestControllers/SehirRest.php?view=
 
 ## Tüketim Nedeni ##
 RewriteRule ^api/getTuketimNedeniByName/([a-zA-Z0-9]*)$   api/RestControllers/TuketimNedeniRest.php?view=byName&name=$1 [nc,qsa]
+RewriteRule ^api/getTuketimNedeniById/([0-9]*)$   api/RestControllers/TuketimNedeniRest.php?view=byId&id=$1 [nc,qsa]
 ##--Tüketim Nedeni--##
 
 ## Uretici ##
 RewriteRule ^api/getUreticiByName/([a-zA-Z0-9]*)$   api/RestControllers/UreticiRest.php?view=byName&name=$1 [nc,qsa]
 RewriteRule ^api/getUreticiById/([0-9]*)$   api/RestControllers/UreticiRest.php?view=byId&id=$1 [nc,qsa]
-## --Uretici-- ## 
+## --Uretici-- ##
 
 ## Urun ##
 RewriteRule ^api/getUrunByTagOrName/tag/?([^/])*/name/?([^/]*)$   api/RestControllers/UrunRest.php?view=byTagOrName&tag=$1&name=$2 [nc,qsa]
@@ -55,8 +56,10 @@ RewriteRule ^api/getUrunTanimByName/([a-zA-Z0-9]*)$   api/RestControllers/UrunTa
 RewriteRule ^api/getUrunTanimById/([0-9]*)$   api/RestControllers/UrunTanimRest.php?view=byId&id=$1 [nc,qsa]
 
 ## Kullanıcı ##
+RewriteRule ^api/checkAuth/username/([a-zA-Z0-9]+)/password/([a-zA-Z0-9]+)$   api/RestControllers/KullaniciRest.php?view=checkAuth&user=$1&pass=$2 [nc,qsa]
 RewriteRule ^api/getKullaniciByTC/([0-9]+)$   api/RestControllers/KullaniciRest.php?view=byTC&tc=$1 [nc,qsa]
 RewriteRule ^api/getKullaniciInfoById/([0-9]+)$   api/RestControllers/KullaniciRest.php?view=byId&id=$1 [nc,qsa]
 RewriteRule ^api/getKullaniciAdresById/([0-9]+)$   api/RestControllers/KullaniciRest.php?view=adresbyid&id=$1 [nc,qsa]
 RewriteRule ^api/getKullaniciIletisimById/([0-9]+)$   api/RestControllers/KullaniciRest.php?view=iletisimbyid&id=$1 [nc,qsa]
 RewriteRule ^api/getKullaniciByBirimID/([0-9]+)$   api/RestControllers/KullaniciRest.php?view=birimbyid&id=$1 [nc,qsa]
+RewriteRule ^api/setToken/id/?([^/])*/token/?([^/]*)$   api/RestControllers/KullaniciRest.php?view=upToken&id=$1&token=$2 [nc,qsa]

@@ -10,6 +10,9 @@
 	}
 
 	switch ($view) {
+		case 'checkAuth':
+			$kullaniciDAO -> getKullaniciInfo($_GET['user'],$_GET['pass']);
+			break;
 		case 'byTC':
 			$kullaniciDAO -> getKullaniciByTC($_GET['tc']);
 			break;

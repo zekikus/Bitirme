@@ -17,6 +17,11 @@
 			$this -> birimIslem = new OrtakIslem();
 		}
 
+		public function getKullaniciInfo($username,$password){
+			$query = "SELECT id,ad,soyad,kullaniciAdi,birimID FROM kullanici WHERE kullaniciAdi = '".$username."' and kullaniciSifre = '".md5($password)."'";
+			$this -> listele($query);
+		}
+
 		public function getKullaniciByTC($tc_no){
 			$query = "SELECT k.id as 'kID',k.ad as 'kAd',k.soyad,k.birimID,b.ad FROM kullanici k,birim b WHERE k.birimID = b.id and k.tcNo = '".$tc_no."'";
 			$this -> listele($query);
@@ -43,7 +48,7 @@
 		}
 
 		public function setToken($kullanici_id,$token){
-			$query = "UPDATE `kullanici` SET `token`='".$token."' WHERE `id`= $kullanici_id";
+			$query = "UPDATE `kullanici` SET `registration_id`='".$token."' WHERE `id`= $kullanici_id";
 			$this -> birimIslem -> sorguCalistir($query);
 			$list = array("Güncellendi");
 			echo $this -> encodeJSON($list);

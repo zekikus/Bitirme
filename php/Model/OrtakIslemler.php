@@ -1,8 +1,9 @@
 <?php
 
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/ApplicationContext.php");
+	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Model/IIslemler.php");
 
-	class OrtakIslem{
+	class OrtakIslem implements IIslemler{
 
 		private $context = "";
 		private $manager = "";
