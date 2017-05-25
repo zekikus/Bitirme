@@ -1,5 +1,5 @@
 <?php
-	
+
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Kontrol/STCKontrol.php");
 	session_start();
 	$myDefines = include("myDefines.php");
@@ -25,7 +25,7 @@
 		}
 		else if($islem == "sicaklikListele"){
 			sicaklikListele($deger);
-		}	
+		}
 		else{
 			inputDoldur($deger);
 		}
@@ -34,7 +34,7 @@
 	function inputDoldur($deger){
 		global $kontrol;
 		$sorgu = "SELECT cihaz_durum, alarm_uret FROM sicakliktakipcihazi WHERE id = $deger LIMIT 1";
-		
+
 		$sonuc = $kontrol -> listele($sorgu);
 
 		while ($satir = mysqli_fetch_assoc($sonuc)) {
@@ -62,7 +62,7 @@
 		$cihaz_durum = $query["cihaz_durum"];
 		$alarm_uret = $query["alarm_uret"];
 		$id = $_COOKIE['stcID'];
-		
+
 		$sorgu = "UPDATE sicakliktakipcihazi SET stokbirim_id = '".$stokbirim_id."',cihaz_durum = '".$cihaz_durum."', alarm_uret = '".$alarm_uret."' WHERE id = $id";
 		$kontrol -> duzenle($sorgu,"guncelle");
 
@@ -144,7 +144,7 @@
 		    	$('#sicaklikDetay').toggle();
 		    	alert(".$deger.")</script>";
 
-		$sonuc = $kontrol -> listele("SELECT sensor_id, sicaklik_deger, kayit_zamani, olcum_zamani FROM sicaklik WHERE sensor_id = $deger");
+		$sonuc = $kontrol -> listele("SELECT sensor_id, sicaklik_deger, kayit_zamani FROM sicaklik WHERE sensor_id = $deger");
 
 		echo "<table class='table table-striped'>
 				<tr>";

@@ -5,15 +5,20 @@
     $date1 = new DateTime($time1);
     $date2 = new DateTime($time2);
     return $date1->diff($date2);
+  }
 
+  function compTime($first,$second){
+    return (strtotime($first) > strtotime($second)) ? true : false;
   }
 
   function getAlarmAciliyet($baslangic){
+    date_default_timezone_set('Europe/Istanbul');
     $sonuc = getDateDiff($baslangic,date("d.m.Y H:i:s"));
 
     if($sonuc->d > 0) return array($sonuc->d." gün oldu.","green");
     else if ($sonuc->h > 0) return array($sonuc->h." saat oldu.","red");
     else if ($sonuc->i > 0) return array($sonuc->i." dakika oldu.","red");
+    else if ($sonuc->s > 0) return array($sonuc->s." saniye oldu.","red");
   }
 
   function getSKTAciliyet($startTime){

@@ -1,21 +1,80 @@
 <?php
-	
+
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Kontrol/AlarmKontrol.php");
 	$myDefines = include("myDefines.php");
 
 	if(isset($_POST['query'])){
 
 		$query = @$_POST['query'];
-		$degerID = @$query["degerID"];
-		$degerStcID = @$query["degerStcID"];
+		$deger = @$query["deger"];
+		//$degerID = @$query["degerID"];
+		//$degerStcID = @$query["degerStcID"];
 		$islem = @$query["islem"];
 
 		if($islem == "listele"){
 			kayitListele($query);
-		}	
-		else{
-			alarmListele($degerID);
+		}	else if($islem == "kaydet"){
+			kaydet($query);
+		}else if($islem == "sil"){
+			kayitSil($deger);
+		}else if($islem == "guncelle"){
+			kayitGuncelle($query);
 		}
+		else{
+			inputDoldur($deger);
+		}
+	}
+
+	function kaydet($query){
+			$kontrol = new AlarmKontrol();
+			$durum = ($query['durum'] == 1) ? "Aktif" : "Aktif Değil";
+			$sorgu = "INSERT INTO `alarm`(`sensor_id`, `tip`, `baslangic_zaman`, `bitis_zaman`, `durum`) VALUES ('".$query['stc_id']."','Sıcaklık','".$query['startTime']."','".$query['endTime']."','".$durum."')";
+			$sonuc = $kontrol -> kaydet($sorgu);
+	}
+
+	function kayitSil($deger){
+			$kontrol = new AlarmKontrol();
+			$sorgu = "DELETE FROM alarm WHERE id = $deger";
+			$kontrol -> duzenle($sorgu,"sil");
+	}
+
+	function inputDoldur($deger){
+
+		$sorgu = "SELECT id,sensor_id,baslangic_zaman,bitis_zaman,durum FROM alarm WHERE id = $deger LIMIT 1";
+		$kontrol = new AlarmKontrol();
+		$sonuc = $kontrol -> listele($sorgu);
+
+		while ($satir = mysqli_fetch_assoc($sonuc)) {
+			$durum = ($satir['durum'] == "Aktif") ? 1 : 0;
+			echo "<script>
+				$(document).ready(function(){
+					$('#stcID option[value=".$satir['sensor_id']."]').attr('selected','selected');
+					$('#durum option[value=".$durum."]').attr('selected','selected');
+					$('#alarmID').val('".$satir['id']."');
+					$('#startTime').val('".$satir['baslangic_zaman']."');
+					$('#endTime').val('".$satir['bitis_zaman']."');
+					$('#kaydetAlarm').val('Guncelle');
+					$('#kaydetAlarm').html('Guncelle');
+				});
+			</script>";
+		}
+	}
+
+	function kayitGuncelle($query){
+		$stc_id = $query["stc_id"];
+		$startTime = $query["startTime"];
+		$endTime = $query["endTime"];
+
+		$sorgu = "UPDATE alarm SET sensor_id = '".$stc_id."',baslangic_zaman = '".$startTime."',bitis_zaman = '".$endTime."',durum = '".$query['durum']."' WHERE id = '".$query['id']."'";
+		$kontrol = new AlarmKontrol();
+		$kontrol -> duzenle($sorgu,"guncelle");
+
+		echo "<script>
+			$(document).ready(function(){
+				$('#kaydetAlarm').val('');
+				$('#kaydetAlarm').html('Kaydet');
+			});
+		</script>";
 	}
 
 	function kayitListele($query){
@@ -37,6 +96,8 @@
 					}
 			echo	"<td>
 						<button id='detayBtn' onclick=\"ajaxAlarmDetayListele(this,'AlarmAjax');\" value=".$satir["aID"].">Detay</button>
+						<button id='upBtn' onclick=\"ajaxInputDoldur(this,'AlarmAjax');\" value=".$satir["aID"].">Guncelle</button>
+						<button id='silBtn' onclick=\"ajaxSil(this,'AlarmAjax');\" value=".$satir["aID"].">Sil</button>
 					</td>
 				</tr>
 			";

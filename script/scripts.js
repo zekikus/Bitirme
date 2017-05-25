@@ -321,6 +321,25 @@ function ajaxAlarmDetayListele(nesne, url){
                 };
     ajaxFonk(bilgi,"#modal #alarmDetay",'ajax/'+url+'.php');
 }
+
+function ajaxAlarmKaydet(nesne){
+
+      var islemTip = "";
+      if($(nesne).val() == "Guncelle")
+         islemTip = "guncelle";
+      else
+          islemTip = "kaydet";
+
+      var bilgi = {
+                  id:$('#alarmID').val(),
+                  stc_id : $("#stcID option:selected").val(),
+                  startTime : $("#startTime").val(),
+                  endTime : $("#endTime").val(),
+                  durum: $("#durum option:selected").val(),
+                  islem : islemTip
+      };
+      ajaxFonk(bilgi,'#denemeTablo','ajax/AlarmAjax.php');
+}
 /* ---------- Alarm Fonksiyonlari Son-----------*/
 
 /* ---------- Login Fonksiyonlari -----------*/
