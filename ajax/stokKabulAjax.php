@@ -64,10 +64,14 @@
 	}
 
 	function kayitGuncelle($deger,$sb,$sb_ad){
-		$tarih = date("d.m.Y H:i:s");
+		date_default_timezone_set('Europe/Istanbul');
+		$tarih = date("Y-m-d");
 		$kontrol = new StokKabulKontrol();
 		$kontrol -> duzenle("UPDATE stok SET stokbirim_id = ".$sb.", stokbirim_ad = '".$sb_ad."',aciklama = '',tarih = '".$tarih."' WHERE aciklama = '".$deger."'","guncelle");
-		echo "UPDATE stok SET stokbirim_id = ".$sb.", stokbirim_ad = '".$sb_ad."',aciklama = '',tarih = '".$tarih."' WHERE aciklama = '".$deger."'";
+		$sonuc = $kontrol -> listele("SELECT sensor_id FROM stok_birim WHERE id = $sb LIMIT 1");
+		$veri = mysqli_fetch_assoc($sonuc);
+		$sorgu = "INSERT INTO `alarm`(`sensor_id`, `tip`, `baslangic_zaman`, `bitis_zaman`, `durum`) VALUES ('".$veri['sensor_id']."','Sıcaklık','".$tarih."','2018-01-01','Aktif')";
+		$sonuc = $kontrol -> sorguCalistir($sorgu);
 		echo "<script>butonTemizle('.ortakForm');</script>";
 	}
 

@@ -4,8 +4,8 @@
   $myDefines = include($_SERVER["DOCUMENT_ROOT"]."/Bitirme/ajax/myDefines.php");
 
   $birimID = $_SESSION['kullanici'];
-  $sorgu = "SELECT * FROM alarm WHERE sensor_id IN (SELECT sb.sensor_id FROM stok_birim sb WHERE sb.birim_id = ".$birimID.") ORDER BY `id` DESC LIMIT 10";
-  if ($birimID == -1) $sorgu = "SELECT * FROM alarm ORDER BY `id` DESC LIMIT 5";
+  $sorgu = "SELECT * FROM sicaklik WHERE sensor_id IN (SELECT sb.sensor_id FROM stok_birim sb WHERE sb.birim_id = ".$birimID.") ORDER BY `id` DESC LIMIT 5";
+  if ($birimID == -1) $sorgu = "SELECT * FROM sicaklik ORDER BY `id` DESC LIMIT 5";
   $kontrol = new AnasayfaKontrol();
   $sonuc = $kontrol -> listele($sorgu);
 ?>
@@ -23,7 +23,7 @@
           </tr>
           <?php
             while ($satir = mysqli_fetch_assoc($sonuc)) {
-              $alarm_baslangic = $satir['baslangic_zaman'];
+              $alarm_baslangic = $satir['kayit_zamani'];
               $durum = getAlarmAciliyet($alarm_baslangic);
 
               echo "<tr>";
