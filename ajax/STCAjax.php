@@ -65,6 +65,7 @@
 
 		$sorgu = "UPDATE sicakliktakipcihazi SET stokbirim_id = '".$stokbirim_id."',cihaz_durum = '".$cihaz_durum."', alarm_uret = '".$alarm_uret."' WHERE id = $id";
 		$kontrol -> duzenle($sorgu,"guncelle");
+		$kontrol -> sorguCalistir("UPDATE stok_birim SET sensor_id = ".$id." WHERE id = $stokbirim_id");
 
 		echo "<script>
 			$(document).ready(function(){

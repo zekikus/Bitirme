@@ -54,6 +54,19 @@
 			echo $this -> encodeJSON($list);
 		}
 
+		public function getSTCInfo($id){
+			$query = "SELECT sicaklik_alt_limit,sicaklik_ust_limit FROM stok_birim WHERE sensor_id = $id";
+			$result = $this -> birimIslem -> listele($query);
+			while ($data = @mysqli_fetch_assoc($result)) {
+				foreach ($data as $key => $value) { // Loops 4 times because there are 4 columns
+					@$myObject -> $key = $value;
+    		}
+			}
+
+			echo json_encode($myObject);
+		}
+
+
 		public function listele($query){
 			$result = $this -> birimIslem -> listele($query);
 			$list = array();

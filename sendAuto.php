@@ -23,14 +23,14 @@
         date_default_timezone_set('Europe/Istanbul');
         $sensor_id = $_GET['sensorID'];
         $kontrol = new StokKabulKontrol();
-        $sorgu = "SELECT a.durum,a.baslangic_zaman,a.bitis_zaman,sc.cihaz_durum,sc.alarm_uret FROM alarm a,sicakliktakipcihazi sc WHERE a.sensor_id = sc.id and sensor_id = '".$sensor_id."'";
+        $sorgu = "SELECT a.durum,a.baslangic_zaman,a.bitis_zaman,sc.cihaz_durum,sc.alarm_uret,sb.birim_id,sb.ad as 'StokBirimAd' FROM alarm a,sicakliktakipcihazi sc,stok_birim sb WHERE a.sensor_id = sc.id and sb.sensor_id = sc.id and sc.id = '".$sensor_id."'";
         $result = $kontrol -> listele($sorgu);
 
         while($row = mysqli_fetch_assoc($result)){
           $isActive = $row['durum'];
           $isDevActive = $row['cihaz_durum'];
           $isAlarmActive = $row['alarm_uret'];
-          if($isActive && $isDevActive && $isAlarmActive){
+          if($isActive=="Aktif" && $isDevActive && $isAlarmActive){
 
             $startDate = $row['baslangic_zaman'];
             $endDate = $row['bitis_zaman'];
@@ -39,11 +39,11 @@
             $endDiff = compTime($endDate,$today);
 
             if(!$startDiff && $endDiff){
-              if(isset($_GET['title']) && isset($_GET['mesaj'])&& isset($_GET['birimID'])   ){
+              if(isset($_GET['title']) && isset($_GET['mesaj'])){
                   $title = $_GET['title'];
                   $sicaklik = $_GET['sicaklik'];
-                  $mesaj = $_GET['mesaj'].$sicaklik."\nStok Birim:".$_GET['stokBirim'];
-                  $birimID = $_GET['birimID'];
+                  $mesaj = $_GET['mesaj'].$sicaklik."\nStok Birim:".$row['StokBirimAd'];//$_GET['stokBirim'];
+                  $birimID = $row['birim_id'];//$_GET['birimID'];
               }
 
               $registration_ids = array();//registration idlerimizi tutacak array ı oluşturuyoruz

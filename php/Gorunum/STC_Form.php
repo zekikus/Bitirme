@@ -13,7 +13,7 @@
 			<form>
 				<label>Sıcaklık Takip Cihazı No:</label>
 				<input type="text" name="tuketimNeden" id="sInput"/>
-				<a id="search_sicaklikCihaz" onclick="ajaxListele('STCAjax');" ><span class="glyphicon glyphicon-list"></span></a><br/>			
+				<a id="search_sicaklikCihaz" onclick="ajaxListele('STCAjax');" ><span class="glyphicon glyphicon-list"></span></a><br/>
 			</form>
 		</div>
 		<div id='denemeTablo' value="">
@@ -26,16 +26,16 @@
 				<span class="header_title">Sıcaklık Takip Cihazı İşlem</span>
 				<span class="modal_close"><i class="glyphicon glyphicon-remove"></i></span>
 			</header>
-			
+
 			<div class="form">
 				<!-- Inputlar -->
 				<label>Stok Birim No:</label>
 				<select id='stokbirimID'>
 					<option value="sec">Seçiniz</option>
 					<?php
-						$sorgu = "SELECT id,ad FROM stok_birim";
-						
-						if($_SESSION["kullanici"] != -1) $sorgu = $sorgu." WHERE birim_id = ".$_SESSION["kullanici"]."";
+						$sorgu = "SELECT id,ad FROM stok_birim WHERE sensor_id = -1";
+
+						if($_SESSION["kullanici"] != -1) $sorgu = $sorgu." and birim_id = ".$_SESSION["kullanici"]."";
 						$kontrol = new STCKontrol();
 						$sonuc = $kontrol -> listele($sorgu);
 
@@ -50,7 +50,7 @@
 				<input type="checkbox" id='cihazAktif' onclick="checkBoxGuncelle(this);" /><br/>
 				<label>Alarm Aktifliği:</label>
 				<input type="checkbox" id='alarmAktif' onclick="checkBoxGuncelle(this);" /><br/>
-				
+
 				<button class="btn btn-success" id='kaydetSTC' onclick="ajaxSTCKaydet(this);" value="">Kaydet</button>
 				<!-- Inputlar Son -->
 			</div>
@@ -64,7 +64,7 @@
 				<span class="header_title">Sıcaklık Detay</span>
 				<span onclick="gizle('#sicaklikDetay');" class="modal_close"><i class="glyphicon glyphicon-remove"></i></span>
 			</header>
-			
+
 			<div class="formBirim" id="detaySicaklik">
 
 			</div>

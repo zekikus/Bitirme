@@ -31,6 +31,9 @@
 		case 'upToken':
 				$kullaniciDAO -> setToken($_GET['id'],$_GET['token']);
 				break;
+		case 'bySTC':
+				$kullaniciDAO -> getSTCInfo($_GET['stcid']);
+				break;
 	}
 
 ?>

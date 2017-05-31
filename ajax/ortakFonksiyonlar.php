@@ -28,8 +28,9 @@
     $month = ($result->m > 0) ? $result->m." ay " : "";
     $year =  ($result->y > 0) ? $result->y." yıl " : "";
     $hour =  ($result->h > 0 && $result->h < 24) ? $result->h." saat " : "";
+    $minute =  ($result->i > 0) ? $result->i." dakika " : "1 dakika";
     $diff = $result->format('%r%a');
-    $time = ($diff > 0) ? $year.$month.$day.$hour." kaldı" : $year.$month.$day.$hour." geçti";
+    $time = ($diff > 0) ? $year.$month.$day.$hour." kaldı" : $year.$month.$day.$hour.$minute." geçti";
 
     if($diff < 0) return array($time,"red");
     else if($month < 1 && $day < 5) return array($time,"red");

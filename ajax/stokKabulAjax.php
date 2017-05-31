@@ -70,8 +70,12 @@
 		$kontrol -> duzenle("UPDATE stok SET stokbirim_id = ".$sb.", stokbirim_ad = '".$sb_ad."',aciklama = '',tarih = '".$tarih."' WHERE aciklama = '".$deger."'","guncelle");
 		$sonuc = $kontrol -> listele("SELECT sensor_id FROM stok_birim WHERE id = $sb LIMIT 1");
 		$veri = mysqli_fetch_assoc($sonuc);
-		$sorgu = "INSERT INTO `alarm`(`sensor_id`, `tip`, `baslangic_zaman`, `bitis_zaman`, `durum`) VALUES ('".$veri['sensor_id']."','Sıcaklık','".$tarih."','2018-01-01','Aktif')";
-		$sonuc = $kontrol -> sorguCalistir($sorgu);
+		$kayitSayisi = $kontrol -> etkilenenKayitSayisi("SELECT id FROM alarm WHERE sensor_id = ".$veri['sensor_id']." LIMIT 1");
+		
+		if ($kayitSayisi == 0){
+			$sorgu = "INSERT INTO `alarm`(`sensor_id`, `tip`, `baslangic_zaman`, `bitis_zaman`, `durum`) VALUES ('".$veri['sensor_id']."','Sıcaklık','".$tarih."','2018-01-01','Aktif')";
+			$sonuc = $kontrol -> sorguCalistir($sorgu);
+		}
 		echo "<script>butonTemizle('.ortakForm');</script>";
 	}
 

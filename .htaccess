@@ -63,3 +63,4 @@ RewriteRule ^api/getKullaniciAdresById/([0-9]+)$   api/RestControllers/Kullanici
 RewriteRule ^api/getKullaniciIletisimById/([0-9]+)$   api/RestControllers/KullaniciRest.php?view=iletisimbyid&id=$1 [nc,qsa]
 RewriteRule ^api/getKullaniciByBirimID/([0-9]+)$   api/RestControllers/KullaniciRest.php?view=birimbyid&id=$1 [nc,qsa]
 RewriteRule ^api/setToken/id/?([^/])*/token/?([^/]*)$   api/RestControllers/KullaniciRest.php?view=upToken&id=$1&token=$2 [nc,qsa]
+RewriteRule ^api/getSTCInfo/([0-9]+)$   api/RestControllers/KullaniciRest.php?view=bySTC&stcid=$1 [nc,qsa]

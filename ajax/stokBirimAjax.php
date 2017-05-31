@@ -1,5 +1,5 @@
 <?php
-	
+
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/php/Kontrol/StokBirimKontrol.php");
 	session_start();
 	$myDefines = include("myDefines.php");
@@ -40,9 +40,9 @@
 
 		$kontrol = new StokBirimKontrol();
 		$sorgu = "SELECT * FROM stok_birim WHERE id = $deger LIMIT 1";
-		
+
 		$sonuc = $kontrol -> listele($sorgu);
-		
+
 		$sonuc1 = $kontrol -> listele("SELECT k.ad,k.soyad FROM kullanici k,stok_birim sb WHERE k.birimID = sb.birim_id and sb.id = $deger");
 
 		while($ySatir = mysqli_fetch_assoc($sonuc1)){
@@ -52,7 +52,7 @@
 				$kullanici2 = $ySatir['ad']." ".$ySatir['soyad'];
 			$sayac++;
 		}
-		
+
 
 		while ($satir = mysqli_fetch_assoc($sonuc)) {
 			echo "<script>
@@ -83,9 +83,9 @@
 	}
 
 	function kayitGuncelle($query){
-		
+
 		$sorgu = "UPDATE stok_birim SET sicaklik_alt_limit = '".$query['sAlt']."',sicaklik_ust_limit = '".$query['sUst']."', tanim = '".$query['sbTip']."',aciklama = '".$query['sbAciklama']."',hacim = '".$query['sbHacim']."',marka = '".$query['sbMarka']."',model = '".$query['sbModel']."',uretim_tarihi = '".$query['sbUT']."' WHERE id = ".$query['sbID']."";
-		
+
 		$kontrol = new StokBirimKontrol();
 		$kontrol -> duzenle($sorgu,"guncelle");
 
@@ -99,7 +99,7 @@
 
 	function kayitEkle($query){
 
-		$sorgu = "INSERT INTO `stok_birim`(`id`, `ad`, `birim_id`, `aciklama`, `hacim`, `marka`, `model`, `uretim_tarihi`, `tanim`, `sicaklik_alt_limit`, `sicaklik_ust_limit`) VALUES (NULL,'".$query['stokBirimID']."',".$query['birimDeger'].",'".$query['sbAciklama']."','".$query['sbHacim']."','".$query['sbMarka']."','".$query['sbModel']."','".$query['sbUT']."','".$query['sbTip']."','".$query['sAlt']."','".$query['sUst']."')";
+		$sorgu = "INSERT INTO `stok_birim`(`id`, `ad`,`sensor_id`, `birim_id`, `aciklama`, `hacim`, `marka`, `model`, `uretim_tarihi`, `tanim`, `sicaklik_alt_limit`, `sicaklik_ust_limit`) VALUES (NULL,'".$query['stokBirimID']."','-1',".$query['birimDeger'].",'".$query['sbAciklama']."','".$query['sbHacim']."','".$query['sbMarka']."','".$query['sbModel']."','".$query['sbUT']."','".$query['sbTip']."','".$query['sAlt']."','".$query['sUst']."')";
 
 		$kontrol = new StokBirimKontrol();
 		$kontrol -> kaydet($sorgu);
@@ -129,7 +129,7 @@
 		while ($satir = mysqli_fetch_assoc($sonuc)) {
 
 			echo "<tr>";
-					
+
 					foreach ($myDefines["sbColNames"] as $colName) {
 						echo "<td>".$satir[$colName]."</td>";
 					}
@@ -140,7 +140,7 @@
 							<button id='silBtn' onclick=\"ajaxSil(this,'stokBirimAjax');\" value=".$satir["id"].">Sil</button>
 						</td>";
 					}
-					
+
 				echo "</tr>";
 		}
 		echo "</table>";
@@ -163,8 +163,8 @@
 			echo "<tr>";
 				foreach ($myDefines["sbStokColNames"] as $colName) {
 						echo "<td>".$satir[$colName]."</td>";
-					}	
-				
+					}
+
 			echo "</tr>";
 		}
 		echo "</table>";
@@ -180,7 +180,7 @@
 				<tr>";
 					foreach ($myDefines["sbSicaklikHeaderNames"] as $headerName) {
 							echo "<th>".$headerName."</th>";
-						}	
+						}
 		echo    "</tr>";
 		while ($satir = mysqli_fetch_assoc($sonuc)) {
 
@@ -200,7 +200,7 @@
 		$sorgu = "SELECT * FROM ilce WHERE il_id = $il";
 		$kontrol = new StokBirimKontrol();
 		$sonuc = $kontrol -> listele($sorgu);
-		
+
 		echo "<label>Stok Birim İlçe:</label>
 			  <select id='stokIlce' value='' onchange=\"ajaxBirimGetir('#biSonuc','#stokIl','#stokIlce','stokBirimAjax')\">";
 			  	echo "<option id='ilkIlce'></option>";
@@ -217,7 +217,7 @@
 		$sorgu = "SELECT id,ad FROM birim WHERE il = '".$il."' and ilce = '".$ilce."' ";
 		$kontrol = new StokBirimKontrol();
 		$sonuc = $kontrol -> listele($sorgu);
-		
+
 		echo "<label>Birim:</label>
 			  <select id='sInput' value=''>";
 			  echo "<option id='ilkBirim'></option>";
