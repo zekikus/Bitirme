@@ -1,5 +1,5 @@
 <?php
-	
+
 	/**
 	* StokBirim DAO
 	*/
@@ -11,7 +11,7 @@
 	{
 
 		private $stokBirim;
-		
+
 		function __construct()
 		{
 			$this -> stokBirim = new OrtakIslem();
@@ -32,15 +32,15 @@
 			$this -> listele($query);
 		}
 
-		public function getSicaklikById($birim_id){
-			$query = "SELECT * FROM sicaklik WHERE sensor_id IN (SELECT sensor_id FROM stok_birim WHERE id = ".$birim_id.")";
+		public function getSicaklikById($sensor_id){
+			$query = "SELECT * FROM sicaklik WHERE sensor_id = $sensor_id";
 			$this -> listele($query);
 		}
 
 		public function listele($query){
 			$result = $this -> stokBirim -> listele($query);
 			$list = array();
-			
+
 			while ($data = @mysqli_fetch_assoc($result)) {
 				array_push($list,$data);
 			}

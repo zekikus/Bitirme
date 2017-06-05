@@ -1,5 +1,5 @@
 <?php
-	
+
 	/**
 	* Sehir DAO
 	*/
@@ -11,7 +11,7 @@
 	{
 
 		private $urunIslem;
-		
+
 		function __construct()
 		{
 			$this -> urunIslem = new OrtakIslem();
@@ -27,10 +27,15 @@
 			$this -> listele($query);
 		}
 
+		public function getSKTInfo($birimID){
+			$query = "SELECT s.stokbirim_ad,s.tag_id as TagID,u.ad,u.kullanim_suresi FROM stok s,urun u WHERE s.urun_id = u.id and s.stokbirim_id IN (SELECT id FROM stok_birim WHERE stok_birim.birim_id = ".$birimID.")";
+			$this -> listele($query);
+		}
+
 		public function listele($query){
 			$result = $this -> urunIslem -> listele($query);
 			$list = array();
-			
+
 			while ($data = @mysqli_fetch_assoc($result)) {
 				array_push($list,$data);
 			}

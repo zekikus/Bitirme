@@ -1,5 +1,5 @@
 <?php
-	
+
 	/**
 	* Sehir DAO
 	*/
@@ -11,7 +11,7 @@
 	{
 
 		private $alarmIslem;
-		
+
 		function __construct()
 		{
 			$this -> alarmIslem = new OrtakIslem();
@@ -27,10 +27,15 @@
 			$this -> listele($query);
 		}
 
+		public function getSicaklikInfo($birimID){
+			$query = "SELECT * FROM sicaklik WHERE sensor_id IN (SELECT sb.sensor_id FROM stok_birim sb WHERE sb.birim_id = ".$birimID.") ORDER BY `id` DESC LIMIT 3";
+			$this -> listele($query);
+		}
+
 		public function listele($query){
 			$result = $this -> alarmIslem -> listele($query);
 			$list = array();
-			
+
 			while ($data = @mysqli_fetch_assoc($result)) {
 				array_push($list,$data);
 			}

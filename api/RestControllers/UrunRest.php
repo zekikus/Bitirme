@@ -1,5 +1,5 @@
 <?php
-	
+
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/api/DAO/UrunDAO.php");
 
 	$view = "";
@@ -16,6 +16,10 @@
 		case 'uruninfobyid':
 			$urunDAO -> getUrunInfoById($_GET['id']);
 			break;
+		case 'sktinfobyBirim':
+			$urunDAO -> getSKTInfo($_GET['birimID']);
+			break;
+
 	}
 
 ?>

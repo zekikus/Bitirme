@@ -1,5 +1,5 @@
 <?php
-	
+
 	require_once($_SERVER["DOCUMENT_ROOT"]."/Bitirme/api/DAO/AlarmDAO.php");
 
 	$view = "";
@@ -15,6 +15,10 @@
 			break;
 		case 'infoById':
 			$alarmDAO -> getAlarmInfoById($_GET['id']);
+			break;
+		case 'infoSicaklik':
+			$alarmDAO -> getSicaklikInfo($_GET['stcno']);
+			break;
 	}
 
 ?>

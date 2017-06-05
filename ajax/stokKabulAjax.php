@@ -9,7 +9,7 @@
 		$tagID = trim($_GET['tag']);
 		$bid = trim($_GET['bid']);
 		kayitEkle($uid,$tagID,$bid);
-		cikisKayitEkle($uid,$tagID,$bid);
+		//cikisKayitEkle($uid,$tagID,$bid);
 	}else{
 		if(isset($_POST['query'])){
 
@@ -41,6 +41,9 @@
 		if($kayitSayisi == 0){
 			$sorgu = "INSERT INTO `stok`(`stok_id`, `stokbirim_id`, `urun_id`, `tag_id`, `aciklama`, `tarih`) VALUES (NULL,0,".$uid.",'".$tagID."','".$bid."','Test')";
 			$kontrol -> kaydet($sorgu);
+		}else{
+
+			cikisKayitEkle($uid,$tagID,$bid);
 		}
 	}
 
@@ -71,7 +74,7 @@
 		$sonuc = $kontrol -> listele("SELECT sensor_id FROM stok_birim WHERE id = $sb LIMIT 1");
 		$veri = mysqli_fetch_assoc($sonuc);
 		$kayitSayisi = $kontrol -> etkilenenKayitSayisi("SELECT id FROM alarm WHERE sensor_id = ".$veri['sensor_id']." LIMIT 1");
-		
+
 		if ($kayitSayisi == 0){
 			$sorgu = "INSERT INTO `alarm`(`sensor_id`, `tip`, `baslangic_zaman`, `bitis_zaman`, `durum`) VALUES ('".$veri['sensor_id']."','Sıcaklık','".$tarih."','2018-01-01','Aktif')";
 			$sonuc = $kontrol -> sorguCalistir($sorgu);
@@ -93,7 +96,7 @@
 	}
 
 	function cikisKayitListele($deger){
-
+		//echo "<script>alert(".$deger.")</script>";
 		$kontrol = new StokKabulKontrol();
 		$sonuc = $kontrol -> listele("SELECT u.id,s.tag_id,ad,u.aciklama as 'uAc',kullanim_suresi FROM urun u,stok_cikis s WHERE u.id = s.urun_id and s.aciklama = '".$deger."' ORDER BY id DESC LIMIT 1");
 
